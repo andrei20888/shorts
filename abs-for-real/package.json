@@ -1,0 +1,24 @@
+{
+  "name": "abs-for-real-tiktok",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Abs For Real presale TikTok (Remotion): 29s + 15s vertical videos and thumbnail",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:28": "remotion render src/index.ts AbsForReal28 out/abs-for-real-28s.mp4 --codec h264",
+    "render:15": "remotion render src/index.ts AbsForReal15 out/abs-for-real-15s.mp4 --codec h264",
+    "render:thumb": "remotion still src/index.ts Thumbnail out/thumbnail.png",
+    "render:all": "npm run render:28 && npm run render:15 && npm run render:thumb"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.539",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "remotion": "^4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}
