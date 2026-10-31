@@ -1,0 +1,34 @@
+{
+  "id": "shanghai_1987_2024",
+  "title": "Shanghai was rice fields in 1987",
+  "years": [1987, 2024],
+  "coords": "31.24° N   121.49° E",
+  "voice": "am_michael", "voice_speed": 1.07, "bpm": 100, "seed": 23,
+  "lead_in": 0.15, "tail": 1.0, "rewind": 0.8,
+  "scene": {
+    "kind": "coastal", "seed": 23, "palette": "lush", "sea_side": "right", "sea_fraction": 0.30, "coast_rough": 0.8,
+    "mountains": 0.1, "coast_affinity": 0.8, "cloud_cover": 0.11, "light_warmth": 0.45,
+    "river": [[0.1, 0.95], [0.3, 0.7], [0.45, 0.55], [0.5, 0.35], [0.75, 0.2], [0.95, 0.15]], "river_width": 0.02,
+    "cities": [[0.42, 0.52, 0.30, 1.0, 0.0, 0], [0.58, 0.36, 0.20, 0.9, 0.35, 27], [0.35, 0.78, 0.14, 0.6, 0.5, 10]]
+  },
+  "beats": [
+    {"vo": "In 1987, this was rice fields.", "caption": "In 1987 this was rice fields", "style": "hook", "year": 1987, "fx": ["punch"], "pad": 0.3},
+    {"vo": "Thirty five years later, it's the skyline of the future. Watch.", "caption": "Watch the future get built", "style": "hook", "year": 1987, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.04, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Follow the river.", "style": "beat", "year": 1992, "pad": 0.2},
+    {"vo": "1990. China opens Pudong. The fields start to vanish.", "caption": "China opens Pudong. The fields vanish.", "style": "beat", "year": 1997, "fx": ["scan"], "pad": 0.2},
+    {"vo": "Bridges cross the river. Towers follow.", "style": "beat", "year": 2003, "pad": 0.2, "cam": {"scale": 1.12, "cx": 0.5, "cy": 0.48}},
+    {"vo": "Every few years, a new tallest building.", "style": "beat", "year": 2010, "fx": ["punch"], "pad": 0.2},
+    {"vo": "Twenty five million people. One city.", "style": "beat", "year": 2020, "pad": 0.25, "cam": {"scale": 1.06, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Now turn off the sun.", "caption": "Now turn off the sun", "style": "hook", "year": 2024, "night": 1.0, "night_fast": 1.3, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "Thirty five years. Farmland to megacity.", "caption": "35 years. Farmland to megacity.", "style": "stat", "year": 2024, "fx": ["punch"], "pad": 0.4, "cam": {"scale": 1.4, "cx": 0.47, "cy": 0.47}},
+    {"vo": "Somewhere down there, a farmer's grandchild lives on the eightieth floor.", "caption": "A farmer's grandchild now lives on the 80th floor", "style": "quiet", "year": 2024, "pad": 0.5},
+    {"vo": "Pause on the year you were born. Then comment it.", "caption": "Pause on your birth year", "style": "cta", "year": 2024, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Tokyo or Mumbai next? Vote below.", "caption": "Tokyo or Mumbai next? Vote", "style": "interact", "year": 2024, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Shanghai was rice fields in 1987. Watch it become the future 🛰️ #shorts",
+    "description": "In 1987 Pudong was farmland across the river from old Shanghai. 35 years later it is one of the densest skylines on Earth, home to 25 million people.\n\nWatch our planet change in seconds. Accelerated urban growth, geographic shifts and climate overviews from a clean satellite perspective.\n\n📍 Shanghai, China · 1987 → 2024\n🎬 Stylized satellite reconstruction based on real-world growth patterns.\n\nPause on the year you were born and comment it 👇\n\n#Shanghai #Timelapse #Earth #Satellite #China #Geography #Shorts",
+    "hashtags": ["#Shorts", "#Shanghai", "#Timelapse", "#Earth", "#Satellite", "#China", "#Geography"],
+    "pinned_comment": "Tokyo 🗼 or Mumbai 🌆 next? Like this comment for Tokyo, reply for Mumbai."
+  }
+}

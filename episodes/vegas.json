@@ -1,0 +1,34 @@
+{
+  "id": "las_vegas_1984_2024",
+  "title": "The fastest growing city in America is running out of water",
+  "years": [1984, 2024],
+  "coords": "36.17° N   115.14° W",
+  "voice": "am_michael", "voice_speed": 1.07, "bpm": 98, "seed": 77,
+  "lead_in": 0.15, "tail": 1.0, "rewind": 0.8,
+  "cam_start": {"scale": 1.0, "cx": 0.5, "cy": 0.5},
+  "scene": {
+    "kind": "lake", "seed": 77, "palette": "desert", "sea_side": "none", "mountains": 0.45, "cloud_cover": 0.03, "light_warmth": 0.55,
+    "lake_center": [0.74, 0.36], "lake_size": 0.62, "lake_shrink": {"t0": 0.42, "t1": 0.98, "amount": 0.16},
+    "cities": [[0.30, 0.62, 0.24, 1.0, 0.0, 0], [0.22, 0.42, 0.12, 0.7, 0.4, 0]], "coast_affinity": 0.0, "city_max": 1.05
+  },
+  "beats": [
+    {"vo": "The fastest growing city in America is running out of water.", "caption": "America's fastest growing city is running out of water", "style": "hook", "year": 1984, "fx": ["punch"], "pad": 0.3},
+    {"vo": "Watch the desert fill up, and the lake drain.", "caption": "Watch the desert fill up and the lake drain", "style": "hook", "year": 1984, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.03, "cx": 0.5, "cy": 0.5}},
+    {"vo": "1984. A few casinos in the sand.", "style": "beat", "year": 1990, "pad": 0.2},
+    {"vo": "Two million people arrive, looking for sun.", "style": "beat", "year": 2000, "fx": ["scan"], "pad": 0.2, "cam": {"scale": 1.1, "cx": 0.42, "cy": 0.55}},
+    {"vo": "Then the drought begins.", "style": "beat", "year": 2008, "pad": 0.2, "cam": {"scale": 1.1, "cx": 0.6, "cy": 0.45}},
+    {"vo": "The lake drops fifty metres. A white ring marks the old shoreline.", "caption": "The lake drops 50 metres. A white ring marks the old shore.", "style": "beat", "year": 2016, "fx": ["punch"], "pad": 0.2, "cam": {"scale": 1.22, "cx": 0.7, "cy": 0.38}},
+    {"vo": "The city keeps growing anyway.", "style": "beat", "year": 2022, "pad": 0.25, "cam": {"scale": 1.04, "cx": 0.5, "cy": 0.5}},
+    {"vo": "At night, it's one of the brightest spots on Earth.", "caption": "At night it's one of the brightest spots on Earth", "style": "hook", "year": 2024, "night": 1.0, "night_fast": 1.3, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "Forty years. Two million people. One shrinking lake.", "caption": "40 years. 2 million people. 1 shrinking lake.", "style": "stat", "year": 2024, "fx": ["punch"], "pad": 0.4, "cam": {"scale": 1.35, "cx": 0.36, "cy": 0.58}},
+    {"vo": "Every light down there depends on that water.", "caption": "Every light down there depends on that water", "style": "quiet", "year": 2024, "pad": 0.5, "cam": {"scale": 1.1, "cx": 0.55, "cy": 0.48}},
+    {"vo": "Would you move here? Yes or no in the comments.", "caption": "Would you move here? Yes or no", "style": "cta", "year": 2024, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.08, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Next: a city that sank ten metres. Follow.", "caption": "Next: a city that sank 10 metres. Follow.", "style": "interact", "year": 2024, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Las Vegas is growing while its lake disappears 🛰️ #shorts",
+    "description": "Since 1984 Las Vegas grew by about two million people. Meanwhile its water source, Lake Mead, dropped roughly 50 metres in two decades of drought, leaving a white bathtub ring along the old shoreline.\n\nWatch our planet change in seconds. Accelerated urban growth, geographic shifts and climate overviews from a clean satellite perspective.\n\n📍 Las Vegas & Lake Mead, USA · 1984 → 2024\n🎬 Stylized satellite reconstruction based on real-world change.\n\nWould you move here? 👇\n\n#LasVegas #LakeMead #Timelapse #Earth #Satellite #Drought #Shorts",
+    "hashtags": ["#Shorts", "#LasVegas", "#LakeMead", "#Timelapse", "#Earth", "#Satellite", "#Drought"],
+    "pinned_comment": "Yes or no: would you move to a desert city that is running out of water? 👇"
+  }
+}

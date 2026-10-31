@@ -1,0 +1,41 @@
+{
+  "id": "dubai_1990_2024",
+  "title": "Dubai didn't exist in 1990",
+  "years": [1990, 2024],
+  "coords": "25.11° N   55.14° E",
+  "voice": "am_michael",
+  "voice_speed": 1.07,
+  "bpm": 96,
+  "seed": 11,
+  "lead_in": 0.15,
+  "tail": 1.0,
+  "rewind": 0.8,
+  "cam_start": {"scale": 1.0, "cx": 0.5, "cy": 0.5},
+  "scene": {
+    "kind": "coastal", "seed": 11, "palette": "desert", "sea_side": "left", "sea_fraction": 0.40,
+    "coast_rough": 0.7, "mountains": 0.15, "coast_affinity": 1.4, "cloud_cover": 0.08, "light_warmth": 0.3,
+    "cities": [[0.56, 0.52, 0.24, 1.0, 0.0, 18], [0.55, 0.30, 0.14, 0.7, 0.3, 18], [0.60, 0.72, 0.12, 0.6, 0.45, 18]],
+    "palm": {"x": 0.42, "y": 0.46, "dir": 180, "size": 0.24, "t0": 0.36, "t1": 0.62}
+  },
+  "beats": [
+    {"vo": "In 1990, this was nothing but sand.", "caption": "In 1990 this was just sand", "style": "hook", "year": 1990, "fx": ["punch"], "pad": 0.3},
+    {"vo": "Now watch the sea grow a palm tree.", "caption": "Watch the sea grow a palm tree", "style": "hook", "year": 1990, "fx": ["punch"], "pad": 0.35, "cam": {"scale": 1.04, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Keep your eyes on the coast.", "style": "beat", "year": 1996, "pad": 0.2},
+    {"vo": "Towers rise from the desert, block by block.", "style": "beat", "year": 2001, "pad": 0.2, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "2001. They start building land where there was only water.", "caption": "They start building land on the water", "style": "beat", "year": 2005, "fx": ["scan"], "pad": 0.2},
+    {"vo": "Sixteen fronds. One crescent. Visible from space.", "style": "beat", "year": 2009, "fx": ["punch"], "pad": 0.2, "cam": {"scale": 1.18, "cx": 0.47, "cy": 0.48}},
+    {"vo": "Then the tallest building on Earth.", "style": "beat", "year": 2013, "pad": 0.2},
+    {"vo": "Three million people arrive. The sand disappears.", "style": "beat", "year": 2021, "pad": 0.25, "cam": {"scale": 1.08, "cx": 0.5, "cy": 0.5}},
+    {"vo": "And when the sun goes down...", "caption": "And when the sun goes down", "style": "hook", "year": 2024, "night": 1.0, "night_fast": 1.4, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "This is what thirty four years looks like from orbit.", "caption": "34 years. From orbit.", "style": "stat", "year": 2024, "fx": ["punch"], "pad": 0.4, "cam": {"scale": 1.45, "cx": 0.43, "cy": 0.47}},
+    {"vo": "Every light down there is a life that wasn't here in 1990.", "caption": "Every light is a life that wasn't here in 1990", "style": "quiet", "year": 2024, "pad": 0.5},
+    {"vo": "Comment the year you were born. We'll show you how your city changed.", "caption": "Comment your birth year", "style": "cta", "year": 2024, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Which city should we fast forward next?", "caption": "Which city next? Comment below", "style": "interact", "year": 2024, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Dubai didn't exist in 1990. Watch it grow from space 🛰️ #shorts",
+    "description": "In 1990 this coastline was sand. 34 years later: a palm-shaped island visible from orbit, the tallest building on Earth and 3 million people.\n\nWatch our planet change in seconds. Accelerated urban growth, geographic shifts and climate overviews, from a clean satellite perspective.\n\n📍 Dubai, UAE · 1990 → 2024\n🎬 Stylized satellite reconstruction based on real-world growth patterns.\n\nComment the year you were born 👇\n\n#Dubai #Timelapse #Earth #Satellite #PalmJumeirah #Geography #Shorts",
+    "hashtags": ["#Shorts", "#Dubai", "#Timelapse", "#Earth", "#Satellite", "#PalmJumeirah", "#Geography"],
+    "pinned_comment": "Which city should we fast-forward next? 👇 The most-liked answer becomes the next episode."
+  }
+}

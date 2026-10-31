@@ -1,0 +1,33 @@
+{
+  "id": "amazon_rondonia_1984_2024",
+  "title": "Watch the rainforest grow a skeleton",
+  "years": [1984, 2024],
+  "coords": "11.00° S   62.50° W",
+  "voice": "am_michael", "voice_speed": 1.06, "bpm": 92, "seed": 31,
+  "lead_in": 0.15, "tail": 1.0, "rewind": 0.8,
+  "scene": {
+    "kind": "inland", "seed": 31, "palette": "rainforest", "sea_side": "none", "mountains": 0.12, "cloud_cover": 0.14,
+    "river": [[0.9, 0.05], [0.7, 0.3], [0.75, 0.6], [0.55, 0.9]], "river_width": 0.01,
+    "fishbone": {"x": 0.45, "y": 0.5, "angle": 28, "spacing": 0.075, "feeder_len": 0.35, "t0": 0.05, "t1": 1.0}, "cities": []
+  },
+  "beats": [
+    {"vo": "Watch the rainforest grow a skeleton.", "caption": "Watch the rainforest grow a skeleton", "style": "hook", "year": 1984, "fx": ["punch"], "pad": 0.3},
+    {"vo": "This is the Amazon from orbit. 1984.", "caption": "The Amazon from orbit. 1984.", "style": "hook", "year": 1984, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.03, "cx": 0.5, "cy": 0.5}},
+    {"vo": "One road. That's all it takes.", "style": "beat", "year": 1990, "fx": ["scan"], "pad": 0.2},
+    {"vo": "Side roads branch off. Settlers follow.", "style": "beat", "year": 1996, "pad": 0.2},
+    {"vo": "Each branch clears a strip of forest. Then a wider one.", "caption": "Each branch clears a strip. Then a wider one.", "style": "beat", "year": 2003, "pad": 0.2, "cam": {"scale": 1.12, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Scientists call it the fishbone pattern.", "style": "beat", "year": 2010, "fx": ["punch"], "pad": 0.2},
+    {"vo": "An area the size of a country, cleared.", "style": "beat", "year": 2018, "pad": 0.25, "cam": {"scale": 1.06, "cx": 0.5, "cy": 0.5}},
+    {"vo": "At night the forest is dark. The clearings glow.", "caption": "At night the forest is dark. The clearings glow.", "style": "hook", "year": 2024, "night": 0.9, "night_fast": 1.3, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "Forty years. One road became thousands.", "caption": "40 years. One road became thousands.", "style": "stat", "year": 2024, "fx": ["punch"], "pad": 0.4, "cam": {"scale": 1.35, "cx": 0.47, "cy": 0.5}},
+    {"vo": "This forest took fifty five million years to grow.", "caption": "This forest took 55 million years to grow", "style": "quiet", "year": 2024, "pad": 0.5},
+    {"vo": "Type FOREST if this should stop.", "caption": "Type FOREST if this should stop", "style": "cta", "year": 2024, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Next: the desert that turned green. Follow.", "caption": "Next: the desert that turned green. Follow.", "style": "interact", "year": 2024, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Watch the Amazon grow a skeleton from space 🛰️ #shorts",
+    "description": "In Rondônia, Brazil, one highway was enough. Side roads branched off, settlers followed, and each branch cleared a strip of rainforest. From orbit the pattern looks like a fishbone.\n\nWatch our planet change in seconds. Accelerated geographic shifts, urban growth and climate overviews from a clean satellite perspective.\n\n📍 Rondônia, Brazil · 1984 → 2024\n🎬 Stylized satellite reconstruction based on real-world deforestation patterns.\n\nType FOREST if this should stop 👇\n\n#Amazon #Deforestation #Timelapse #Earth #Satellite #Climate #Shorts",
+    "hashtags": ["#Shorts", "#Amazon", "#Deforestation", "#Timelapse", "#Earth", "#Satellite", "#Climate"],
+    "pinned_comment": "FOREST 🌳 — type it if you think this should stop. We read every comment."
+  }
+}
