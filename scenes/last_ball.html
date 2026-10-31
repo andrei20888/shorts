@@ -5,11 +5,12 @@
 </head><body>
 <script type="module">
 import * as THREE from 'three';
-import { BRAND, params, W, H, FPS, makeRenderer, makeComposer, envMap, gridPlane, gradientBackground, loadFonts, sendFrame, rng, ease, clamp01 } from './lib/lab.js';
+import { BRAND, params, W, H, makeRenderer, makeComposer, envMap, gridPlane, gradientBackground, loadFonts, sendFrame, rng, ease, clamp01 } from './lib/lab.js';
 
 await loadFonts();
 const D = await (await fetch('/' + params.data + '.json')).json();
 const BIN = new Float32Array(await (await fetch('/' + params.data + '.bin')).arrayBuffer());
+const FPS = D.fps, STEP = +(params.step || 1), RS = +(params.rs || 1); // sim fps, output every STEP-th frame, 3D render scale
 const L = D.layout, NB = L.N_BODIES, NT = L.tiles.length, NBALL = L.balls.length;
 const N = D.nFrames;
 const R = rng(99);
@@ -23,7 +24,8 @@ const elimEvents = D.events.filter(e => e.type === 'elim');
 const winnerEv = D.events.find(e => e.type === 'winner');
 
 // ---------- renderer / scene ----------
-const renderer = makeRenderer(W, H);
+const RW = Math.round(W * RS), RH = Math.round(H * RS);
+const renderer = makeRenderer(RW, RH);
 const env = envMap(renderer);
 const scene = new THREE.Scene();
 scene.background = gradientBackground('#1b1f25', '#07080a');
@@ -170,11 +172,12 @@ function stepConfetti(dt) {
 const cam = new THREE.PerspectiveCamera(72, W / H, 0.1, 400);
 const camTarget = new THREE.Vector3(0, 0, 0), camLook = new THREE.Vector3();
 let camDist = 9, camElev = 0.62, camAz = 0.55, trauma = 0, punch = 0;
-const { composer, bloomPass, finishPass } = makeComposer(renderer, scene, cam, { bloom: 0.62, radius: 0.5, threshold: 0.86 });
+const { composer, bloomPass, finishPass } = makeComposer(renderer, scene, cam, { w: RW, h: RH, bloom: 0.62, radius: 0.5, threshold: 0.86 });
 
 // ---------- 2D overlay ----------
 const out = document.createElement('canvas'); out.width = W; out.height = H;
-const ctx = out.getContext('2d');
+const ctx = out.getContext('2d', { willReadFrequently: true });
+ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
 document.body.appendChild(out);
 const EMO = "'Noto Color Emoji'";
 const overlays = []; // {start, dur, draw(t, k)}
@@ -292,7 +295,7 @@ for (const e of D.events) {
 let flash = 0, redPulse = 0;
 function drawOverlay(f) {
   const t = f / FPS;
-  ctx.drawImage(renderer.domElement, 0, 0);
+  ctx.drawImage(renderer.domElement, 0, 0, W, H);
   if (flash > 0.01) { ctx.fillStyle = `rgba(255,245,235,${Math.min(0.85, flash)})`; ctx.fillRect(0, 0, W, H); }
   if (redPulse > 0.01) {
     const g = ctx.createRadialGradient(W / 2, H / 2, H * 0.25, W / 2, H / 2, H * 0.7);
@@ -421,7 +424,7 @@ const last = stillFrame != null ? stillFrame : to;
 for (let f = 0; f <= last; f++) {
   update(f);
   if (stillFrame != null) continue;
-  if (f < from) continue;
+  if (f < from || (f - from) % STEP) continue;
   composer.render();
   drawOverlay(f);
   await sendFrame(ctx);
