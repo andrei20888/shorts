@@ -1,6 +1,6 @@
 # The Great Pyramid Has a Ramp HIDDEN INSIDE It 🔺 #AncientTech
 
-**Durata:** 54.6s
+**Durata:** 56.5s
 
 ## Descriere YouTube
 
@@ -16,9 +16,9 @@ Sources: Houdin & Brier, 'The Secret of the Great Pyramid'; ScanPyramids, Nature
 
 ## Comentariu fixat (pinned)
 
-A = the Antikythera computer ⚙️
-B = the Roman crane that lifted 6 tons 🏗️
-Vote below — most votes gets rebuilt next!
+A = How Rome lifted a 53-TON block onto Trajan's Column 🏛️
+B = Zhang Heng's seismoscope — it detected quakes 600 km away 🐉
+Vote — most votes gets rebuilt next!
 
 ## Script (VO)
 
@@ -33,4 +33,4 @@ Vote below — most votes gets rebuilt next!
 - [34.4s] A sled of stone going down... pulls the beam up.
 - [37.8s] Then, in twenty-seventeen, cosmic ray scanners found a hidden void... right above that gallery.
 - [44.3s] 30 M
-- [48.0s] Should I rebuild the ancient computer next... or the Roman crane? Comment A or B.
+- [48.0s] Should I rebuild the fifty-three ton block of Trajan's Column next... or China's ancient earthquake detector? Comment A or B.

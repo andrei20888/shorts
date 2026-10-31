@@ -1,6 +1,6 @@
 # How Egypt Stood Up a 455-TON Obelisk… With Sand 🏛️ #AncientTech
 
-**Durata:** 50.5s
+**Durata:** 51.4s
 
 ## Descriere YouTube
 
@@ -16,9 +16,9 @@ Sources: Engelbach, 'The Problem of the Obelisks' (1923); NOVA 'Secrets of Lost 
 
 ## Comentariu fixat (pinned)
 
-A = the ramp hidden INSIDE the Great Pyramid 🔺
-B = the Roman crane that lifted 6 tons with 2 men 🏗️
-Most votes wins the next 3D rebuild!
+A = Baalbek — the 1,000-TON stone moved by hand 🪨
+B = Stonehenge — bluestones dragged 230 km 🛖
+Vote — most votes gets rebuilt next!
 
 ## Script (VO)
 
@@ -32,4 +32,4 @@ Most votes wins the next 3D rebuild!
 - [32.3s] 3 YEARS
 - [35.9s] The biggest one ever attempted never left the quarry.
 - [39.6s] 1,090 TONS
-- [43.9s] Should I rebuild the pyramid's hidden ramp next... or the Roman crane? Comment A or B.
+- [43.9s] Should I rebuild the thousand-ton stone of Baalbek next... or how Stonehenge was moved? Comment A or B.

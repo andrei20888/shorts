@@ -1,27 +1,175 @@
 {
-  "id": "04-archimedes-screw", "scene": "screw", "voice": "bm_george", "speed": 1.04, "cover_t": 1.1,
-  "hook": {"title": "2,300 YRS", "sub": "and it still runs today", "tag": "SYRACUSE · 250 BC", "end": 2.6, "y": 760, "size": 150},
-  "params": {"bpm": 90},
+  "id": "04-archimedes-screw",
+  "scene": "screw",
+  "voice": "bm_george",
+  "speed": 1.04,
+  "cover_t": 1.1,
+  "hook": {
+    "title": "2,300 YRS",
+    "sub": "and it still runs today",
+    "tag": "SYRACUSE · 250 BC",
+    "end": 2.6,
+    "y": 760,
+    "size": 150
+  },
+  "params": {
+    "bpm": 90
+  },
   "beats": [
-    {"vo": "A tube. A spiral. And water that climbs uphill... by itself.", "keys": ["climbs uphill"], "cue": "assemble", "sfx": ["whoosh@0.0", "hit@2.6"],
-     "hud": {"fig": "FIG. I", "label": "ARCHIMEDES SCREW — SECTION", "scale": "1:20"}},
-    {"vo": "This is the Archimedes screw. Twenty-three centuries old... and still in use today.", "keys": ["Archimedes screw", "still in use"], "cue": "reveal", "sfx": ["hit@0.0"]},
-    {"vo": "Here's the trick. Tilt it to thirty degrees.", "keys": ["thirty degrees"], "cue": "tilt", "sfx": ["creak@0.8", "blip@1.9"]},
-    {"vo": "Turn it... and every pocket of water gets trapped between the blades.", "keys": ["trapped"], "cue": "spin", "sfx": ["grind@0.0", "blip@2.0"], "prompt": {"text": "WATCH ONE POCKET", "offset": 0.6, "dur": 2.6}},
-    {"vo": "The screw turns. The pocket can't fall back... so it climbs.", "keys": ["can't fall back", "climbs"], "cue": "climb", "sfx": ["hit@0.0"]},
-    {"vo": "No pump. No pressure. Just geometry.", "number": "0 PUMPS", "sub": "just geometry", "cue": "geometry", "sfx": ["hit@0.0"], "y": 1250},
-    {"vo": "Archimedes used it to drain a ship the size of a palace.", "keys": ["drain a ship"], "cue": "ship", "sfx": ["whoosh@0.0", "hit@1.5"],
-     "hud": {"fig": "FIG. II", "label": "SYRACUSIA — BILGE SCREW", "scale": "1:200"}},
-    {"vo": "And today, cities run it in reverse. Water flows down... and the screw makes electricity.", "keys": ["in reverse", "electricity"], "cue": "reverse", "sfx": ["riser@0.0", "boom@2.4", "blip@3.4"],
-     "hud": {"fig": "FIG. III", "label": "SCREW TURBINE — 2020s", "scale": "1:20"}},
-    {"vo": "Twenty-three centuries... and we never found anything better.", "number": "2,300 YEARS", "count_from": 0, "count_to": 2300, "unit": "YEARS", "sub": "same design, still unbeaten", "cue": "end_number", "sfx": ["hit@0.0"], "y": 1250},
-    {"vo": "Should I rebuild the Roman crane next... or the pyramid's hidden ramp? Comment A or B.", "keys": ["A", "B"], "cta_here": true, "cue": "end", "gap": 0.1}
+    {
+      "vo": "A tube. A spiral. And water that climbs uphill... by itself.",
+      "keys": [
+        "climbs uphill"
+      ],
+      "cue": "assemble",
+      "sfx": [
+        "whoosh@0.0",
+        "hit@2.6"
+      ],
+      "hud": {
+        "fig": "FIG. I",
+        "label": "ARCHIMEDES SCREW — SECTION",
+        "scale": "1:20"
+      }
+    },
+    {
+      "vo": "This is the Archimedes screw. Twenty-three centuries old... and still in use today.",
+      "keys": [
+        "Archimedes screw",
+        "still in use"
+      ],
+      "cue": "reveal",
+      "sfx": [
+        "hit@0.0"
+      ]
+    },
+    {
+      "vo": "Here's the trick. Tilt it to thirty degrees.",
+      "keys": [
+        "thirty degrees"
+      ],
+      "cue": "tilt",
+      "sfx": [
+        "creak@0.8",
+        "blip@1.9"
+      ]
+    },
+    {
+      "vo": "Turn it... and every pocket of water gets trapped between the blades.",
+      "keys": [
+        "trapped"
+      ],
+      "cue": "spin",
+      "sfx": [
+        "grind@0.0",
+        "blip@2.0"
+      ],
+      "prompt": {
+        "text": "WATCH ONE POCKET",
+        "offset": 0.6,
+        "dur": 2.6
+      }
+    },
+    {
+      "vo": "The screw turns. The pocket can't fall back... so it climbs.",
+      "keys": [
+        "can't fall back",
+        "climbs"
+      ],
+      "cue": "climb",
+      "sfx": [
+        "hit@0.0"
+      ]
+    },
+    {
+      "vo": "No pump. No pressure. Just geometry.",
+      "number": "0 PUMPS",
+      "sub": "just geometry",
+      "cue": "geometry",
+      "sfx": [
+        "hit@0.0"
+      ],
+      "y": 1250
+    },
+    {
+      "vo": "Archimedes used it to drain a ship the size of a palace.",
+      "keys": [
+        "drain a ship"
+      ],
+      "cue": "ship",
+      "sfx": [
+        "whoosh@0.0",
+        "hit@1.5"
+      ],
+      "hud": {
+        "fig": "FIG. II",
+        "label": "SYRACUSIA — BILGE SCREW",
+        "scale": "1:200"
+      }
+    },
+    {
+      "vo": "And today, cities run it in reverse. Water flows down... and the screw makes electricity.",
+      "keys": [
+        "in reverse",
+        "electricity"
+      ],
+      "cue": "reverse",
+      "sfx": [
+        "riser@0.0",
+        "boom@2.4",
+        "blip@3.4"
+      ],
+      "hud": {
+        "fig": "FIG. III",
+        "label": "SCREW TURBINE — 2020s",
+        "scale": "1:20"
+      }
+    },
+    {
+      "vo": "Twenty-three centuries... and we never found anything better.",
+      "number": "2,300 YEARS",
+      "count_from": 0,
+      "count_to": 2300,
+      "unit": "YEARS",
+      "sub": "same design, still unbeaten",
+      "cue": "end_number",
+      "sfx": [
+        "hit@0.0"
+      ],
+      "y": 1250
+    },
+    {
+      "vo": "Should I rebuild the Roman fire pump next... or the aqueduct that pushed water uphill? Comment A or B.",
+      "keys": [
+        "A",
+        "B"
+      ],
+      "cta_here": true,
+      "cue": "end",
+      "gap": 0.1
+    }
   ],
-  "cta": {"title": "WHICH ONE NEXT?", "a": "the Roman 6-ton crane", "b": "the pyramid's hidden ramp", "footer": "Comment A or B", "sub": "Follow — the winner gets rebuilt in 3D"},
+  "cta": {
+    "title": "WHICH ONE NEXT?",
+    "a": "the Roman fire pump",
+    "b": "the uphill aqueduct of Lyon",
+    "footer": "Comment A or B",
+    "sub": "Follow — the winner gets rebuilt in 3D"
+  },
   "metadata": {
     "title": "This 2,300-Year-Old Machine Still Powers Cities 🌀 #AncientTech",
     "description": "The Archimedes screw: tilt a spiral to ~30°, turn it, and every pocket of water is trapped and forced uphill — no pump, no pressure, just geometry. Today it runs in reverse as a hydro turbine.\n\n3D reconstruction by Ancient Tech. Comment A or B to pick the next build.\n\nSources: Vitruvius X.6; Rorres, 'The Turn of the Screw' (2000).",
-    "hashtags": ["#shorts", "#ancienttech", "#archimedes", "#engineering", "#history", "#3danimation", "#physics", "#mechanism", "#ancientgreece"],
-    "pinned_comment": "A = the Roman crane that lifted 6 tons with 2 men 🏗️\nB = the ramp hidden INSIDE the Great Pyramid 🔺\nVote — most votes gets rebuilt next!"
+    "hashtags": [
+      "#shorts",
+      "#ancienttech",
+      "#archimedes",
+      "#engineering",
+      "#history",
+      "#3danimation",
+      "#physics",
+      "#mechanism",
+      "#ancientgreece"
+    ],
+    "pinned_comment": "A = Ctesibius' fire pump — a Roman fire hose 🔥\nB = The Lyon inverted siphon — water climbing a valley 💧\nVote — most votes gets rebuilt next!"
   }
 }

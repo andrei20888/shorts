@@ -1,6 +1,6 @@
 # This 2,300-Year-Old Machine Still Powers Cities 🌀 #AncientTech
 
-**Durata:** 46.0s
+**Durata:** 46.6s
 
 ## Descriere YouTube
 
@@ -16,8 +16,8 @@ Sources: Vitruvius X.6; Rorres, 'The Turn of the Screw' (2000).
 
 ## Comentariu fixat (pinned)
 
-A = the Roman crane that lifted 6 tons with 2 men 🏗️
-B = the ramp hidden INSIDE the Great Pyramid 🔺
+A = Ctesibius' fire pump — a Roman fire hose 🔥
+B = The Lyon inverted siphon — water climbing a valley 💧
 Vote — most votes gets rebuilt next!
 
 ## Script (VO)
@@ -31,4 +31,4 @@ Vote — most votes gets rebuilt next!
 - [25.2s] Archimedes used it to drain a ship the size of a palace.
 - [29.5s] And today, cities run it in reverse. Water flows down... and the screw makes electricity.
 - [35.6s] 2,300 YEARS
-- [39.4s] Should I rebuild the Roman crane next... or the pyramid's hidden ramp? Comment A or B.
+- [39.4s] Should I rebuild the Roman fire pump next... or the aqueduct that pushed water uphill? Comment A or B.

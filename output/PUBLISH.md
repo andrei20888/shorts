@@ -71,7 +71,7 @@ Most votes wins!
 
 ---
 
-## 03-pyramid  →  `output/03-pyramid.mp4`  (55 s)
+## 03-pyramid  →  `output/03-pyramid.mp4`  (56 s)
 
 **Titlu**
 
@@ -94,17 +94,17 @@ Sources: Houdin & Brier, 'The Secret of the Great Pyramid'; ScanPyramids, Nature
 **Primul comentariu (pin)**
 
 ```
-A = the Antikythera computer ⚙️
-B = the Roman crane that lifted 6 tons 🏗️
-Vote below — most votes gets rebuilt next!
+A = How Rome lifted a 53-TON block onto Trajan's Column 🏛️
+B = Zhang Heng's seismoscope — it detected quakes 600 km away 🐉
+Vote — most votes gets rebuilt next!
 ```
 
-**Hook card:** 2.3 MILLION — blocks · one every 3 minutes  ·  **CTA:** A = the 2,100-year-old computer / B = the Roman 6-ton crane
+**Hook card:** 2.3 MILLION — blocks · one every 3 minutes  ·  **CTA:** A = Trajan's 53-ton column block / B = China's 132 AD quake detector
 
 
 ---
 
-## 04-archimedes-screw  →  `output/04-archimedes-screw.mp4`  (46 s)
+## 04-archimedes-screw  →  `output/04-archimedes-screw.mp4`  (47 s)
 
 **Titlu**
 
@@ -127,17 +127,17 @@ Sources: Vitruvius X.6; Rorres, 'The Turn of the Screw' (2000).
 **Primul comentariu (pin)**
 
 ```
-A = the Roman crane that lifted 6 tons with 2 men 🏗️
-B = the ramp hidden INSIDE the Great Pyramid 🔺
+A = Ctesibius' fire pump — a Roman fire hose 🔥
+B = The Lyon inverted siphon — water climbing a valley 💧
 Vote — most votes gets rebuilt next!
 ```
 
-**Hook card:** 2,300 YRS — and it still runs today  ·  **CTA:** A = the Roman 6-ton crane / B = the pyramid's hidden ramp
+**Hook card:** 2,300 YRS — and it still runs today  ·  **CTA:** A = the Roman fire pump / B = the uphill aqueduct of Lyon
 
 
 ---
 
-## 05-obelisk  →  `output/05-obelisk.mp4`  (50 s)
+## 05-obelisk  →  `output/05-obelisk.mp4`  (51 s)
 
 **Titlu**
 
@@ -160,9 +160,9 @@ Sources: Engelbach, 'The Problem of the Obelisks' (1923); NOVA 'Secrets of Lost 
 **Primul comentariu (pin)**
 
 ```
-A = the ramp hidden INSIDE the Great Pyramid 🔺
-B = the Roman crane that lifted 6 tons with 2 men 🏗️
-Most votes wins the next 3D rebuild!
+A = Baalbek — the 1,000-TON stone moved by hand 🪨
+B = Stonehenge — bluestones dragged 230 km 🛖
+Vote — most votes gets rebuilt next!
 ```
 
-**Hook card:** 455 TONS — stood up with sand  ·  **CTA:** A = the pyramid's hidden ramp / B = the Roman 6-ton crane
+**Hook card:** 455 TONS — stood up with sand  ·  **CTA:** A = Baalbek's 1,000-ton stone / B = moving Stonehenge 230 km

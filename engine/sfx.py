@@ -98,7 +98,7 @@ def place(mix, clip, t, gain=1.0):
     mix[i:i + n] += clip[:n] * gain
 
 def fade(x, fi=0.01, fo=0.05):
-    n = len(x); a = int(fi * SR); b = int(fo * SR)
+    n = len(x); a = min(int(fi * SR), n // 2); b = min(int(fo * SR), n // 2)
     if a: x[:a] *= np.linspace(0, 1, a)
     if b: x[-b:] *= np.linspace(1, 0, b)
     return x
