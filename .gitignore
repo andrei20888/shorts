@@ -12,3 +12,5 @@ out/*/frames_lossless*.mkv
 out/*/render*.log
 out/*/mix.m4a
 out/*/parts.txt
+out/*/video_delivery.mp4
+out/*/qa/
