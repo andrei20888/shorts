@@ -1,0 +1,228 @@
+{
+ "id": "001-earth-to-ton618",
+ "title": "Earth will disappear in 40 seconds 🌍➡️🕳️",
+ "youtube": {
+  "title": "Earth Disappears in 40 Seconds (Scale of the Universe) #shorts",
+  "description": "This is Earth. Keep your eyes on it.\n\nJupiter → the Sun → Betelgeuse → Stephenson 2-18 → TON 618, the most massive black hole we know. Every jump is to scale.\n\nComment which one broke your brain 🧠\nTomorrow: smaller than an atom.\n\n#shorts #space #astronomy #universe #scale #blackhole #TON618 #cosmicscale",
+  "hashtags": [
+   "#shorts",
+   "#space",
+   "#astronomy",
+   "#universe",
+   "#blackhole"
+  ]
+ },
+ "voice": {
+  "name": "am_michael",
+  "speed": 1.12,
+  "lang": "en-us"
+ },
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "countdown": {
+  "from_line": "hook2",
+  "to_beat_end": "nested",
+  "placeholder_seconds": 40
+ },
+ "beats": [
+  {
+   "id": "earth",
+   "scene": "earth",
+   "lines": [
+    {
+     "id": "hook1",
+     "text": "This is Earth.",
+     "caption": "THIS IS *EARTH*",
+     "pause_after": 0.35
+    },
+    {
+     "id": "hook2",
+     "text": "In {N} seconds, it will disappear.",
+     "caption": "IN *{N} SECONDS*\nIT DISAPPEARS",
+     "pause_after": 0.55
+    }
+   ]
+  },
+  {
+   "id": "jupiter",
+   "scene": "jupiter",
+   "lines": [
+    {
+     "id": "j1",
+     "text": "Jupiter.",
+     "caption": "*JUPITER*",
+     "pause_after": 0.25
+    },
+    {
+     "id": "j2",
+     "text": "Thirteen hundred Earths fit inside.",
+     "caption": "*1,321 EARTHS*\nFIT INSIDE",
+     "pause_after": 0.5
+    }
+   ]
+  },
+  {
+   "id": "sun",
+   "scene": "sun",
+   "lines": [
+    {
+     "id": "s1",
+     "text": "The Sun.",
+     "caption": "*THE SUN*",
+     "pause_after": 0.25
+    },
+    {
+     "id": "s2",
+     "text": "One thousand Jupiters.",
+     "caption": "*1,000* JUPITERS",
+     "pause_after": 0.3
+    },
+    {
+     "id": "s3",
+     "text": "Earth is now a speck of dust.",
+     "caption": "EARTH IS NOW\n*A SPECK OF DUST*",
+     "pause_after": 0.6
+    }
+   ]
+  },
+  {
+   "id": "betelgeuse",
+   "scene": "betelgeuse",
+   "lines": [
+    {
+     "id": "b1",
+     "text": "But the Sun is a dot, next to Betelgeuse.",
+     "caption": "THE SUN IS A DOT\nNEXT TO *BETELGEUSE*",
+     "pause_after": 0.3
+    },
+    {
+     "id": "b2",
+     "text": "Put it where our Sun is, and it swallows Mercury, Venus, Earth, and Mars.",
+     "caption": "IT SWALLOWS\n*MERCURY · VENUS\nEARTH · MARS*",
+     "pause_after": 0.5
+    }
+   ]
+  },
+  {
+   "id": "find",
+   "scene": "find_sun",
+   "lines": [
+    {
+     "id": "f1",
+     "text": "Our Sun is still on screen. Pause. Try to find it.",
+     "caption": "⏸ PAUSE\n*FIND THE SUN*",
+     "pause_after": 1.3
+    }
+   ]
+  },
+  {
+   "id": "stephenson",
+   "scene": "stephenson",
+   "lines": [
+    {
+     "id": "st1",
+     "text": "Now meet Stephenson two-eighteen. The largest known star.",
+     "caption": "*STEPHENSON 2-18*\nTHE LARGEST KNOWN STAR",
+     "pause_after": 0.25
+    },
+    {
+     "id": "st3",
+     "text": "Ten billion Suns fit inside.",
+     "caption": "*10 BILLION* SUNS\nFIT INSIDE",
+     "pause_after": 0.3
+    },
+    {
+     "id": "st4",
+     "text": "Light itself needs nine hours to travel around it.",
+     "caption": "LIGHT NEEDS *9 HOURS*\nTO GO AROUND IT",
+     "pause_after": 0.6
+    }
+   ]
+  },
+  {
+   "id": "onemore",
+   "scene": "one_more",
+   "lines": [
+    {
+     "id": "o1",
+     "text": "And it still isn't the biggest thing out there.",
+     "caption": "STILL NOT\n*THE BIGGEST*",
+     "pause_after": 0.7
+    }
+   ]
+  },
+  {
+   "id": "ton618",
+   "scene": "ton618",
+   "lines": [
+    {
+     "id": "t1",
+     "text": "Ton six-eighteen.",
+     "caption": "*TON 618*",
+     "pause_after": 0.35
+    },
+    {
+     "id": "t2",
+     "text": "A black hole with the mass of sixty-six billion Suns.",
+     "caption": "*66 BILLION*\nSUNS",
+     "pause_after": 0.3
+    },
+    {
+     "id": "t3",
+     "text": "Our entire solar system fits inside it.",
+     "caption": "OUR *SOLAR SYSTEM*\nFITS INSIDE",
+     "pause_after": 0.25
+    },
+    {
+     "id": "t4",
+     "text": "Forty times over.",
+     "caption": "*×40*",
+     "pause_after": 0.7
+    }
+   ]
+  },
+  {
+   "id": "nested",
+   "scene": "nested",
+   "lines": [
+    {
+     "id": "n2",
+     "text": "And Earth? Still in there. A dot, on a dot, on a dot.",
+     "caption": "AND EARTH?\nA DOT ON A DOT\n*ON A DOT*",
+     "pause_after": 0.9
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "scene": "cta",
+   "lines": [
+    {
+     "id": "c1",
+     "text": "Comment which one broke your brain.",
+     "caption": "COMMENT 🧠\n*WHICH ONE BROKE\nYOUR BRAIN?*",
+     "pause_after": 0.3
+    },
+    {
+     "id": "c2",
+     "text": "Tomorrow, we go smaller than an atom.",
+     "caption": "TOMORROW:\n*SMALLER THAN AN ATOM*",
+     "pause_after": 0.8
+    }
+   ]
+  }
+ ],
+ "facts": {
+  "earth_diameter_km": 12742,
+  "jupiter_diameter_km": 139820,
+  "sun_diameter_km": 1392700,
+  "betelgeuse_radius_rsun": 764,
+  "stephenson218_radius_rsun": 2150,
+  "ton618_mass_msun": 66000000000.0,
+  "ton618_schwarzschild_radius_au": 1300,
+  "sources": "Jupiter≈1,321 Earths by volume; Sun≈986 Jupiters by volume; Betelgeuse R≈764 R☉ (Joyce et al. 2020); Stephenson 2-18 R≈2,150 R☉ (Fok et al. 2012); TON 618 M≈6.6×10^10 M☉ (Shemmer et al. 2004), r_s≈1,300 AU, diameter≈2,600 AU ≈ 43× Neptune's orbital diameter; light around Stephenson 2-18: 2π·10 AU ≈ 8.7 h."
+ }
+}

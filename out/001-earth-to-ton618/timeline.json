@@ -1,0 +1,1021 @@
+{
+ "id": "001-earth-to-ton618",
+ "fps": 30,
+ "size": [
+  1080,
+  1920
+ ],
+ "duration": 55.152,
+ "voice": {
+  "name": "am_michael",
+  "speed": 1.12,
+  "lang": "en-us"
+ },
+ "facts": {
+  "earth_diameter_km": 12742,
+  "jupiter_diameter_km": 139820,
+  "sun_diameter_km": 1392700,
+  "betelgeuse_radius_rsun": 764,
+  "stephenson218_radius_rsun": 2150,
+  "ton618_mass_msun": 66000000000.0,
+  "ton618_schwarzschild_radius_au": 1300,
+  "sources": "Jupiter\u22481,321 Earths by volume; Sun\u2248986 Jupiters by volume; Betelgeuse R\u2248764 R\u2609 (Joyce et al. 2020); Stephenson 2-18 R\u22482,150 R\u2609 (Fok et al. 2012); TON 618 M\u22486.6\u00d710^10 M\u2609 (Shemmer et al. 2004), r_s\u22481,300 AU, diameter\u22482,600 AU \u2248 43\u00d7 Neptune's orbital diameter; light around Stephenson 2-18: 2\u03c0\u00b710 AU \u2248 8.7 h."
+ },
+ "countdown": {
+  "t_from": 1.287,
+  "t_to": 49.61,
+  "seconds_spoken": 50
+ },
+ "beats": [
+  {
+   "id": "earth",
+   "scene": "earth",
+   "t0": 0.0,
+   "lines": [
+    {
+     "id": "hook1",
+     "text": "This is Earth.",
+     "caption": "THIS IS *EARTH*",
+     "t0": 0.0,
+     "t1": 0.937,
+     "pause_after": 0.35,
+     "words": [
+      {
+       "w": "This",
+       "t0": 0.0,
+       "t1": 0.312
+      },
+      {
+       "w": "is",
+       "t0": 0.312,
+       "t1": 0.624
+      },
+      {
+       "w": "Earth.",
+       "t0": 0.624,
+       "t1": 0.937
+      }
+     ]
+    },
+    {
+     "id": "hook2",
+     "text": "In fifty seconds, it will disappear.",
+     "caption": "IN *50 SECONDS*\nIT DISAPPEARS",
+     "t0": 1.287,
+     "t1": 3.402,
+     "pause_after": 0.55,
+     "words": [
+      {
+       "w": "In",
+       "t0": 1.287,
+       "t1": 1.569
+      },
+      {
+       "w": "50",
+       "t0": 1.569,
+       "t1": 1.851
+      },
+      {
+       "w": "seconds,",
+       "t0": 1.851,
+       "t1": 2.274
+      },
+      {
+       "w": "it",
+       "t0": 2.274,
+       "t1": 2.556
+      },
+      {
+       "w": "will",
+       "t0": 2.556,
+       "t1": 2.838
+      },
+      {
+       "w": "disappear.",
+       "t0": 2.838,
+       "t1": 3.402
+      }
+     ]
+    }
+   ],
+   "t1": 3.952
+  },
+  {
+   "id": "jupiter",
+   "scene": "jupiter",
+   "t0": 3.952,
+   "lines": [
+    {
+     "id": "j1",
+     "text": "Jupiter.",
+     "caption": "*JUPITER*",
+     "t0": 3.952,
+     "t1": 4.651,
+     "pause_after": 0.25,
+     "words": [
+      {
+       "w": "Jupiter.",
+       "t0": 3.952,
+       "t1": 4.651
+      }
+     ]
+    },
+    {
+     "id": "j2",
+     "text": "Thirteen hundred Earths fit inside.",
+     "caption": "*1,321 EARTHS*\nFIT INSIDE",
+     "t0": 4.901,
+     "t1": 6.835,
+     "pause_after": 0.5,
+     "words": [
+      {
+       "w": "Thirteen",
+       "t0": 4.901,
+       "t1": 5.346
+      },
+      {
+       "w": "hundred",
+       "t0": 5.346,
+       "t1": 5.791
+      },
+      {
+       "w": "Earths",
+       "t0": 5.791,
+       "t1": 6.09
+      },
+      {
+       "w": "fit",
+       "t0": 6.09,
+       "t1": 6.39
+      },
+      {
+       "w": "inside.",
+       "t0": 6.39,
+       "t1": 6.835
+      }
+     ]
+    }
+   ],
+   "t1": 7.335
+  },
+  {
+   "id": "sun",
+   "scene": "sun",
+   "t0": 7.335,
+   "lines": [
+    {
+     "id": "s1",
+     "text": "The Sun.",
+     "caption": "*THE SUN*",
+     "t0": 7.335,
+     "t1": 7.989,
+     "pause_after": 0.25,
+     "words": [
+      {
+       "w": "The",
+       "t0": 7.335,
+       "t1": 7.662
+      },
+      {
+       "w": "Sun.",
+       "t0": 7.662,
+       "t1": 7.989
+      }
+     ]
+    },
+    {
+     "id": "s2",
+     "text": "One thousand Jupiters.",
+     "caption": "*1,000* JUPITERS",
+     "t0": 8.239,
+     "t1": 9.61,
+     "pause_after": 0.3,
+     "words": [
+      {
+       "w": "One",
+       "t0": 8.239,
+       "t1": 8.559
+      },
+      {
+       "w": "thousand",
+       "t0": 8.559,
+       "t1": 9.016
+      },
+      {
+       "w": "Jupiters.",
+       "t0": 9.016,
+       "t1": 9.61
+      }
+     ]
+    },
+    {
+     "id": "s3",
+     "text": "Earth is now a speck of dust.",
+     "caption": "EARTH IS NOW\n*A SPECK OF DUST*",
+     "t0": 9.91,
+     "t1": 11.589,
+     "pause_after": 0.6,
+     "words": [
+      {
+       "w": "Earth",
+       "t0": 9.91,
+       "t1": 10.15
+      },
+      {
+       "w": "is",
+       "t0": 10.15,
+       "t1": 10.389
+      },
+      {
+       "w": "now",
+       "t0": 10.389,
+       "t1": 10.629
+      },
+      {
+       "w": "a",
+       "t0": 10.629,
+       "t1": 10.869
+      },
+      {
+       "w": "speck",
+       "t0": 10.869,
+       "t1": 11.109
+      },
+      {
+       "w": "of",
+       "t0": 11.109,
+       "t1": 11.349
+      },
+      {
+       "w": "dust.",
+       "t0": 11.349,
+       "t1": 11.589
+      }
+     ]
+    }
+   ],
+   "t1": 12.189
+  },
+  {
+   "id": "betelgeuse",
+   "scene": "betelgeuse",
+   "t0": 12.189,
+   "lines": [
+    {
+     "id": "b1",
+     "text": "But the Sun is a dot, next to Betelgeuse.",
+     "caption": "THE SUN IS A DOT\nNEXT TO *BETELGEUSE*",
+     "t0": 12.189,
+     "t1": 14.72,
+     "pause_after": 0.3,
+     "words": [
+      {
+       "w": "But",
+       "t0": 12.189,
+       "t1": 12.439
+      },
+      {
+       "w": "the",
+       "t0": 12.439,
+       "t1": 12.69
+      },
+      {
+       "w": "Sun",
+       "t0": 12.69,
+       "t1": 12.94
+      },
+      {
+       "w": "is",
+       "t0": 12.94,
+       "t1": 13.191
+      },
+      {
+       "w": "a",
+       "t0": 13.191,
+       "t1": 13.442
+      },
+      {
+       "w": "dot,",
+       "t0": 13.442,
+       "t1": 13.692
+      },
+      {
+       "w": "next",
+       "t0": 13.692,
+       "t1": 13.943
+      },
+      {
+       "w": "to",
+       "t0": 13.943,
+       "t1": 14.194
+      },
+      {
+       "w": "Betelgeuse.",
+       "t0": 14.194,
+       "t1": 14.72
+      }
+     ]
+    },
+    {
+     "id": "b2",
+     "text": "Put it where our Sun is, and it swallows Mercury, Venus, Earth, and Mars.",
+     "caption": "IT SWALLOWS\n*MERCURY \u00b7 VENUS\nEARTH \u00b7 MARS*",
+     "t0": 15.02,
+     "t1": 19.33,
+     "pause_after": 0.5,
+     "words": [
+      {
+       "w": "Put",
+       "t0": 15.02,
+       "t1": 15.287
+      },
+      {
+       "w": "it",
+       "t0": 15.287,
+       "t1": 15.554
+      },
+      {
+       "w": "where",
+       "t0": 15.554,
+       "t1": 15.821
+      },
+      {
+       "w": "our",
+       "t0": 15.821,
+       "t1": 16.088
+      },
+      {
+       "w": "Sun",
+       "t0": 16.088,
+       "t1": 16.354
+      },
+      {
+       "w": "is,",
+       "t0": 16.354,
+       "t1": 16.621
+      },
+      {
+       "w": "and",
+       "t0": 16.621,
+       "t1": 16.888
+      },
+      {
+       "w": "it",
+       "t0": 16.888,
+       "t1": 17.155
+      },
+      {
+       "w": "swallows",
+       "t0": 17.155,
+       "t1": 17.565
+      },
+      {
+       "w": "Mercury,",
+       "t0": 17.565,
+       "t1": 18.119
+      },
+      {
+       "w": "Venus,",
+       "t0": 18.119,
+       "t1": 18.53
+      },
+      {
+       "w": "Earth,",
+       "t0": 18.53,
+       "t1": 18.797
+      },
+      {
+       "w": "and",
+       "t0": 18.797,
+       "t1": 19.063
+      },
+      {
+       "w": "Mars.",
+       "t0": 19.063,
+       "t1": 19.33
+      }
+     ]
+    }
+   ],
+   "t1": 19.83
+  },
+  {
+   "id": "find",
+   "scene": "find_sun",
+   "t0": 19.83,
+   "lines": [
+    {
+     "id": "f1",
+     "text": "Our Sun is still on screen. Pause. Try to find it.",
+     "caption": "\u23f8 PAUSE\n*FIND THE SUN*",
+     "t0": 19.83,
+     "t1": 22.806,
+     "pause_after": 1.3,
+     "words": [
+      {
+       "w": "Our",
+       "t0": 19.83,
+       "t1": 20.101
+      },
+      {
+       "w": "Sun",
+       "t0": 20.101,
+       "t1": 20.371
+      },
+      {
+       "w": "is",
+       "t0": 20.371,
+       "t1": 20.642
+      },
+      {
+       "w": "still",
+       "t0": 20.642,
+       "t1": 20.912
+      },
+      {
+       "w": "on",
+       "t0": 20.912,
+       "t1": 21.183
+      },
+      {
+       "w": "screen.",
+       "t0": 21.183,
+       "t1": 21.453
+      },
+      {
+       "w": "Pause.",
+       "t0": 21.453,
+       "t1": 21.724
+      },
+      {
+       "w": "Try",
+       "t0": 21.724,
+       "t1": 21.994
+      },
+      {
+       "w": "to",
+       "t0": 21.994,
+       "t1": 22.265
+      },
+      {
+       "w": "find",
+       "t0": 22.265,
+       "t1": 22.535
+      },
+      {
+       "w": "it.",
+       "t0": 22.535,
+       "t1": 22.806
+      }
+     ]
+    }
+   ],
+   "t1": 24.106
+  },
+  {
+   "id": "stephenson",
+   "scene": "stephenson",
+   "t0": 24.106,
+   "lines": [
+    {
+     "id": "st1",
+     "text": "Now meet Stephenson two-eighteen. The largest known star.",
+     "caption": "*STEPHENSON 2-18*\nTHE LARGEST KNOWN STAR",
+     "t0": 24.106,
+     "t1": 27.667,
+     "pause_after": 0.25,
+     "words": [
+      {
+       "w": "Now",
+       "t0": 24.106,
+       "t1": 24.462
+      },
+      {
+       "w": "meet",
+       "t0": 24.462,
+       "t1": 24.818
+      },
+      {
+       "w": "Stephenson",
+       "t0": 24.818,
+       "t1": 25.53
+      },
+      {
+       "w": "two-eighteen.",
+       "t0": 25.53,
+       "t1": 26.064
+      },
+      {
+       "w": "The",
+       "t0": 26.064,
+       "t1": 26.42
+      },
+      {
+       "w": "largest",
+       "t0": 26.42,
+       "t1": 26.955
+      },
+      {
+       "w": "known",
+       "t0": 26.955,
+       "t1": 27.311
+      },
+      {
+       "w": "star.",
+       "t0": 27.311,
+       "t1": 27.667
+      }
+     ]
+    },
+    {
+     "id": "st3",
+     "text": "Ten billion Suns fit inside.",
+     "caption": "*10 BILLION* SUNS\nFIT INSIDE",
+     "t0": 27.917,
+     "t1": 29.679,
+     "pause_after": 0.3,
+     "words": [
+      {
+       "w": "Ten",
+       "t0": 27.917,
+       "t1": 28.209
+      },
+      {
+       "w": "billion",
+       "t0": 28.209,
+       "t1": 28.652
+      },
+      {
+       "w": "Suns",
+       "t0": 28.652,
+       "t1": 28.944
+      },
+      {
+       "w": "fit",
+       "t0": 28.944,
+       "t1": 29.236
+      },
+      {
+       "w": "inside.",
+       "t0": 29.236,
+       "t1": 29.679
+      }
+     ]
+    },
+    {
+     "id": "st4",
+     "text": "Light itself needs nine hours to travel around it.",
+     "caption": "LIGHT NEEDS *9 HOURS*\nTO GO AROUND IT",
+     "t0": 29.979,
+     "t1": 32.997,
+     "pause_after": 0.6,
+     "words": [
+      {
+       "w": "Light",
+       "t0": 29.979,
+       "t1": 30.264
+      },
+      {
+       "w": "itself",
+       "t0": 30.264,
+       "t1": 30.7
+      },
+      {
+       "w": "needs",
+       "t0": 30.7,
+       "t1": 30.985
+      },
+      {
+       "w": "nine",
+       "t0": 30.985,
+       "t1": 31.27
+      },
+      {
+       "w": "hours",
+       "t0": 31.27,
+       "t1": 31.555
+      },
+      {
+       "w": "to",
+       "t0": 31.555,
+       "t1": 31.84
+      },
+      {
+       "w": "travel",
+       "t0": 31.84,
+       "t1": 32.276
+      },
+      {
+       "w": "around",
+       "t0": 32.276,
+       "t1": 32.712
+      },
+      {
+       "w": "it.",
+       "t0": 32.712,
+       "t1": 32.997
+      }
+     ]
+    }
+   ],
+   "t1": 33.597
+  },
+  {
+   "id": "onemore",
+   "scene": "one_more",
+   "t0": 33.597,
+   "lines": [
+    {
+     "id": "o1",
+     "text": "And it still isn't the biggest thing out there.",
+     "caption": "STILL NOT\n*THE BIGGEST*",
+     "t0": 33.597,
+     "t1": 35.768,
+     "pause_after": 0.7,
+     "words": [
+      {
+       "w": "And",
+       "t0": 33.597,
+       "t1": 33.824
+      },
+      {
+       "w": "it",
+       "t0": 33.824,
+       "t1": 34.051
+      },
+      {
+       "w": "still",
+       "t0": 34.051,
+       "t1": 34.277
+      },
+      {
+       "w": "isn't",
+       "t0": 34.277,
+       "t1": 34.504
+      },
+      {
+       "w": "the",
+       "t0": 34.504,
+       "t1": 34.731
+      },
+      {
+       "w": "biggest",
+       "t0": 34.731,
+       "t1": 35.088
+      },
+      {
+       "w": "thing",
+       "t0": 35.088,
+       "t1": 35.315
+      },
+      {
+       "w": "out",
+       "t0": 35.315,
+       "t1": 35.541
+      },
+      {
+       "w": "there.",
+       "t0": 35.541,
+       "t1": 35.768
+      }
+     ]
+    }
+   ],
+   "t1": 36.468
+  },
+  {
+   "id": "ton618",
+   "scene": "ton618",
+   "t0": 36.468,
+   "lines": [
+    {
+     "id": "t1",
+     "text": "Ton six-eighteen.",
+     "caption": "*TON 618*",
+     "t0": 36.468,
+     "t1": 37.571,
+     "pause_after": 0.35,
+     "words": [
+      {
+       "w": "Ton",
+       "t0": 36.468,
+       "t1": 36.854
+      },
+      {
+       "w": "six-eighteen.",
+       "t0": 36.854,
+       "t1": 37.571
+      }
+     ]
+    },
+    {
+     "id": "t2",
+     "text": "A black hole with the mass of sixty-six billion Suns.",
+     "caption": "*66 BILLION*\nSUNS",
+     "t0": 37.921,
+     "t1": 40.753,
+     "pause_after": 0.3,
+     "words": [
+      {
+       "w": "A",
+       "t0": 37.921,
+       "t1": 38.156
+      },
+      {
+       "w": "black",
+       "t0": 38.156,
+       "t1": 38.39
+      },
+      {
+       "w": "hole",
+       "t0": 38.39,
+       "t1": 38.746
+      },
+      {
+       "w": "with",
+       "t0": 38.746,
+       "t1": 38.981
+      },
+      {
+       "w": "the",
+       "t0": 38.981,
+       "t1": 39.216
+      },
+      {
+       "w": "mass",
+       "t0": 39.216,
+       "t1": 39.45
+      },
+      {
+       "w": "of",
+       "t0": 39.45,
+       "t1": 39.685
+      },
+      {
+       "w": "sixty-six",
+       "t0": 39.685,
+       "t1": 40.162
+      },
+      {
+       "w": "billion",
+       "t0": 40.162,
+       "t1": 40.518
+      },
+      {
+       "w": "Suns.",
+       "t0": 40.518,
+       "t1": 40.753
+      }
+     ]
+    },
+    {
+     "id": "t3",
+     "text": "Our entire solar system fits inside it.",
+     "caption": "OUR *SOLAR SYSTEM*\nFITS INSIDE",
+     "t0": 41.053,
+     "t1": 43.339,
+     "pause_after": 0.25,
+     "words": [
+      {
+       "w": "Our",
+       "t0": 41.053,
+       "t1": 41.308
+      },
+      {
+       "w": "entire",
+       "t0": 41.308,
+       "t1": 41.688
+      },
+      {
+       "w": "solar",
+       "t0": 41.688,
+       "t1": 42.068
+      },
+      {
+       "w": "system",
+       "t0": 42.068,
+       "t1": 42.448
+      },
+      {
+       "w": "fits",
+       "t0": 42.448,
+       "t1": 42.703
+      },
+      {
+       "w": "inside",
+       "t0": 42.703,
+       "t1": 43.083
+      },
+      {
+       "w": "it.",
+       "t0": 43.083,
+       "t1": 43.339
+      }
+     ]
+    },
+    {
+     "id": "t4",
+     "text": "Forty times over.",
+     "caption": "*\u00d740*",
+     "t0": 43.589,
+     "t1": 44.767,
+     "pause_after": 0.7,
+     "words": [
+      {
+       "w": "Forty",
+       "t0": 43.589,
+       "t1": 43.982
+      },
+      {
+       "w": "times",
+       "t0": 43.982,
+       "t1": 44.374
+      },
+      {
+       "w": "over.",
+       "t0": 44.374,
+       "t1": 44.767
+      }
+     ]
+    }
+   ],
+   "t1": 45.467
+  },
+  {
+   "id": "nested",
+   "scene": "nested",
+   "t0": 45.467,
+   "lines": [
+    {
+     "id": "n2",
+     "text": "And Earth? Still in there. A dot, on a dot, on a dot.",
+     "caption": "AND EARTH?\nA DOT ON A DOT\n*ON A DOT*",
+     "t0": 45.467,
+     "t1": 48.71,
+     "pause_after": 0.9,
+     "words": [
+      {
+       "w": "And",
+       "t0": 45.467,
+       "t1": 45.717
+      },
+      {
+       "w": "Earth?",
+       "t0": 45.717,
+       "t1": 45.966
+      },
+      {
+       "w": "Still",
+       "t0": 45.966,
+       "t1": 46.216
+      },
+      {
+       "w": "in",
+       "t0": 46.216,
+       "t1": 46.465
+      },
+      {
+       "w": "there.",
+       "t0": 46.465,
+       "t1": 46.714
+      },
+      {
+       "w": "A",
+       "t0": 46.714,
+       "t1": 46.964
+      },
+      {
+       "w": "dot,",
+       "t0": 46.964,
+       "t1": 47.213
+      },
+      {
+       "w": "on",
+       "t0": 47.213,
+       "t1": 47.463
+      },
+      {
+       "w": "a",
+       "t0": 47.463,
+       "t1": 47.712
+      },
+      {
+       "w": "dot,",
+       "t0": 47.712,
+       "t1": 47.961
+      },
+      {
+       "w": "on",
+       "t0": 47.961,
+       "t1": 48.211
+      },
+      {
+       "w": "a",
+       "t0": 48.211,
+       "t1": 48.46
+      },
+      {
+       "w": "dot.",
+       "t0": 48.46,
+       "t1": 48.71
+      }
+     ]
+    }
+   ],
+   "t1": 49.61
+  },
+  {
+   "id": "cta",
+   "scene": "cta",
+   "t0": 49.61,
+   "lines": [
+    {
+     "id": "c1",
+     "text": "Comment which one broke your brain.",
+     "caption": "COMMENT \ud83e\udde0\n*WHICH ONE BROKE\nYOUR BRAIN?*",
+     "t0": 49.61,
+     "t1": 51.395,
+     "pause_after": 0.3,
+     "words": [
+      {
+       "w": "Comment",
+       "t0": 49.61,
+       "t1": 50.035
+      },
+      {
+       "w": "which",
+       "t0": 50.035,
+       "t1": 50.307
+      },
+      {
+       "w": "one",
+       "t0": 50.307,
+       "t1": 50.579
+      },
+      {
+       "w": "broke",
+       "t0": 50.579,
+       "t1": 50.851
+      },
+      {
+       "w": "your",
+       "t0": 50.851,
+       "t1": 51.123
+      },
+      {
+       "w": "brain.",
+       "t0": 51.123,
+       "t1": 51.395
+      }
+     ]
+    },
+    {
+     "id": "c2",
+     "text": "Tomorrow, we go smaller than an atom.",
+     "caption": "TOMORROW:\n*SMALLER THAN AN ATOM*",
+     "t0": 51.695,
+     "t1": 53.752,
+     "pause_after": 0.8,
+     "words": [
+      {
+       "w": "Tomorrow,",
+       "t0": 51.695,
+       "t1": 52.149
+      },
+      {
+       "w": "we",
+       "t0": 52.149,
+       "t1": 52.379
+      },
+      {
+       "w": "go",
+       "t0": 52.379,
+       "t1": 52.608
+      },
+      {
+       "w": "smaller",
+       "t0": 52.608,
+       "t1": 52.95
+      },
+      {
+       "w": "than",
+       "t0": 52.95,
+       "t1": 53.18
+      },
+      {
+       "w": "an",
+       "t0": 53.18,
+       "t1": 53.41
+      },
+      {
+       "w": "atom.",
+       "t0": 53.41,
+       "t1": 53.752
+      }
+     ]
+    }
+   ],
+   "t1": 55.152
+  }
+ ]
+}

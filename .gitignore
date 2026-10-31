@@ -1,0 +1,10 @@
+node_modules/
+pipeline/models/*.onnx
+pipeline/models/*.bin
+out/*/frames/
+out/*/*.wav
+out/*/video_only.mp4
+out/*/preview/
+__pycache__/
+*.pyc
+.DS_Store

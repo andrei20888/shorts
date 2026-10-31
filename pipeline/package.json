@@ -1,0 +1,10 @@
+{
+  "name": "cosmic-scale-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Render pipeline for Cosmic Scale YouTube Shorts (three.js + Playwright + ffmpeg)",
+  "dependencies": {
+    "three": "0.170.0"
+  }
+}

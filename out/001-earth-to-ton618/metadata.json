@@ -1,0 +1,37 @@
+{
+ "id": "001-earth-to-ton618",
+ "youtube": {
+  "title": "Earth Disappears in 40 Seconds (Scale of the Universe) #shorts",
+  "description": "This is Earth. Keep your eyes on it.\n\nJupiter → the Sun → Betelgeuse → Stephenson 2-18 → TON 618, the most massive black hole we know. Every jump is to scale.\n\nComment which one broke your brain 🧠\nTomorrow: smaller than an atom.\n\n#shorts #space #astronomy #universe #scale #blackhole #TON618 #cosmicscale",
+  "hashtags": [
+   "#shorts",
+   "#space",
+   "#astronomy",
+   "#universe",
+   "#blackhole"
+  ]
+ },
+ "duration_s": 55.152,
+ "voice": {
+  "name": "am_michael",
+  "speed": 1.12,
+  "lang": "en-us"
+ },
+ "facts": {
+  "earth_diameter_km": 12742,
+  "jupiter_diameter_km": 139820,
+  "sun_diameter_km": 1392700,
+  "betelgeuse_radius_rsun": 764,
+  "stephenson218_radius_rsun": 2150,
+  "ton618_mass_msun": 66000000000.0,
+  "ton618_schwarzschild_radius_au": 1300,
+  "sources": "Jupiter≈1,321 Earths by volume; Sun≈986 Jupiters by volume; Betelgeuse R≈764 R☉ (Joyce et al. 2020); Stephenson 2-18 R≈2,150 R☉ (Fok et al. 2012); TON 618 M≈6.6×10^10 M☉ (Shemmer et al. 2004), r_s≈1,300 AU, diameter≈2,600 AU ≈ 43× Neptune's orbital diameter; light around Stephenson 2-18: 2π·10 AU ≈ 8.7 h."
+ },
+ "pinned_comment": "Which one broke your brain? 🧠 Earth → Jupiter → Sun → Betelgeuse → Stephenson 2-18 → TON 618. Tomorrow we go SMALLER than an atom.",
+ "upload_notes": [
+  "Upload as a Short (vertical 1080×1920, under 60 s).",
+  "First frame = Earth, so no custom thumbnail needed; if asked, use frame 0.",
+  "Pin the comment above within the first minute to seed replies.",
+  "Post time: use Metricool best-time data for the channel's audience (US evening works for space content)."
+ ]
+}

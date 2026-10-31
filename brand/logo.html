@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cosmic Scale — Logo</title>
+<style>
+  :root{
+    --void:#05070D; --void-2:#0A1020; --nebula:#141B3A;
+    --cosmic:#2F7BFF; --cosmic-deep:#0A3D91; --ice:#5CC8FF; --lumen:#F2F7FF;
+  }
+  html,body{margin:0;padding:0;background:var(--void);}
+  canvas{display:block;width:1024px;height:1024px;}
+</style>
+</head>
+<body>
+<canvas id="c" width="1024" height="1024"></canvas>
+<script>
+(async function(){
+  const W = 1024, H = 1024;
+  const cv = document.getElementById('c');
+  const ctx = cv.getContext('2d');
+
+  // ---- deterministic PRNG ----
+  function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;}}
+  const rnd = mulberry32(20261031);
+
+  const C = {x: W/2, y: H/2};
+  // Composition (visually centred bounding box, everything inside r≈470 circle)
+  const S = {x: 560, y: 418, r: 198};              // main sphere
+  const RING = {a: 348, b: 96, tilt: -24 * Math.PI/180, w: 17};
+  const P0 = {x: 158, y: 800};                       // start of the dot chain
+  const dirx = S.x - P0.x, diry = S.y - P0.y;
+  const L = Math.hypot(dirx, diry);
+  const ux = dirx / L, uy = diry / L;
+  const dots = [ // [distance from P0, radius] — last dot stays clear of the ring
+    [0,   6],
+    [64,  9.5],
+    [134, 14],
+    [206, 19],
+    [268, 25],
+  ];
+
+  function rgba(hex, a){const n=parseInt(hex.slice(1),16);return `rgba(${n>>16&255},${n>>8&255},${n&255},${a})`;}
+  const VOID='#05070D', NEB='#141B3A', COS='#2F7BFF', DEEP='#0A3D91', ICE='#5CC8FF', LUM='#F2F7FF';
+
+  // ---- background ----
+  ctx.fillStyle = VOID; ctx.fillRect(0,0,W,H);
+  // centre lift (nebula) + glow near sphere
+  let g = ctx.createRadialGradient(C.x, C.y, 0, C.x, C.y, 620);
+  g.addColorStop(0, rgba(NEB, 0.85)); g.addColorStop(0.55, rgba(NEB, 0.25)); g.addColorStop(1, rgba(NEB, 0));
+  ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+  g = ctx.createRadialGradient(S.x, S.y, 0, S.x, S.y, 560);
+  g.addColorStop(0, rgba(DEEP, 0.55)); g.addColorStop(0.5, rgba(DEEP, 0.16)); g.addColorStop(1, rgba(DEEP, 0));
+  ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+  // star dust
+  for (let i=0;i<260;i++){
+    const x = rnd()*W, y = rnd()*H;
+    const d = Math.hypot(x-C.x, y-C.y); if (d > 500) continue;
+    const s = 0.5 + rnd()*1.1, a = 0.12 + rnd()*0.5;
+    ctx.fillStyle = rnd() < 0.3 ? rgba(ICE, a) : rgba(LUM, a);
+    ctx.beginPath(); ctx.arc(x, y, s, 0, Math.PI*2); ctx.fill();
+  }
+  // a few brighter stars with soft halo
+  for (let i=0;i<9;i++){
+    const x = 90 + rnd()*(W-180), y = 90 + rnd()*(H-180);
+    if (Math.hypot(x-S.x,y-S.y) < 300) continue;
+    const hg = ctx.createRadialGradient(x,y,0,x,y,12);
+    hg.addColorStop(0, rgba(LUM,0.9)); hg.addColorStop(0.2, rgba(ICE,0.35)); hg.addColorStop(1, rgba(ICE,0));
+    ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(x,y,12,0,Math.PI*2); ctx.fill();
+  }
+
+  // ---- helpers ----
+  function glow(x,y,r0,r1,color,a0){
+    const gg = ctx.createRadialGradient(x,y,r0,x,y,r1);
+    gg.addColorStop(0, rgba(color,a0)); gg.addColorStop(0.45, rgba(color,a0*0.35)); gg.addColorStop(1, rgba(color,0));
+    ctx.fillStyle = gg; ctx.beginPath(); ctx.arc(x,y,r1,0,Math.PI*2); ctx.fill();
+  }
+  function sphere(x,y,r){
+    // two-layer glow
+    glow(x,y,r*0.9,r*2.35,COS,0.38);
+    glow(x,y,r*0.95,r*1.32,ICE,0.55);
+    // body
+    const gx = x - 0.36*r, gy = y - 0.36*r;
+    const bg = ctx.createRadialGradient(gx,gy,r*0.02,x,y,r);
+    bg.addColorStop(0.00,'#D2F0FF');
+    bg.addColorStop(0.16,ICE);
+    bg.addColorStop(0.50,COS);
+    bg.addColorStop(0.84,DEEP);
+    bg.addColorStop(1.00,'#062256');
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    // limb darkening
+    const lg = ctx.createRadialGradient(x,y,r*0.72,x,y,r);
+    lg.addColorStop(0,'rgba(5,7,13,0)'); lg.addColorStop(0.75,'rgba(5,7,13,0.28)'); lg.addColorStop(1,'rgba(5,7,13,0.62)');
+    ctx.fillStyle = lg; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    // terminator shade (dark lower-right)
+    const tg = ctx.createRadialGradient(x+0.55*r,y+0.55*r,r*0.1,x+0.55*r,y+0.55*r,r*1.25);
+    tg.addColorStop(0,'rgba(3,8,30,0.55)'); tg.addColorStop(0.5,'rgba(3,8,30,0.18)'); tg.addColorStop(1,'rgba(3,8,30,0)');
+    ctx.fillStyle = tg; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    // specular
+    const sg = ctx.createRadialGradient(x-0.42*r,y-0.44*r,0,x-0.42*r,y-0.44*r,r*0.42);
+    sg.addColorStop(0,'rgba(255,255,255,0.62)'); sg.addColorStop(0.35,'rgba(255,255,255,0.18)'); sg.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle = sg; ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2); ctx.fill();
+    // rim light on lit edge
+    ctx.save();
+    ctx.beginPath(); ctx.arc(x,y,r-1.2,Math.PI*0.95,Math.PI*1.75);
+    ctx.strokeStyle = rgba(ICE,0.95); ctx.lineWidth = Math.max(1.5, r*0.016);
+    ctx.shadowColor = rgba(ICE,0.9); ctx.shadowBlur = r*0.12; ctx.stroke();
+    ctx.restore();
+  }
+  function ringArc(x,y,a,b,tilt,t0,t1,width,alpha,bright){
+    ctx.save();
+    ctx.translate(x,y); ctx.rotate(tilt);
+    // gradient along the ring: dim lower-left -> bright upper-right
+    const lg = ctx.createLinearGradient(-a,0,a,0);
+    lg.addColorStop(0.00, rgba(COS, alpha*0.75));
+    lg.addColorStop(0.28, rgba(ICE, alpha));
+    lg.addColorStop(0.55, rgba(bright?LUM:ICE, alpha));
+    lg.addColorStop(0.80, rgba(ICE, alpha));
+    lg.addColorStop(1.00, rgba(COS, alpha*0.8));
+    // outer soft glow
+    ctx.beginPath(); ctx.ellipse(0,0,a,b,0,t0,t1);
+    ctx.strokeStyle = rgba(ICE, alpha*0.55); ctx.lineWidth = width*2.2;
+    ctx.shadowColor = rgba(COS, alpha); ctx.shadowBlur = 34; ctx.globalAlpha = 0.55; ctx.stroke();
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+    // main band
+    ctx.beginPath(); ctx.ellipse(0,0,a,b,0,t0,t1);
+    ctx.strokeStyle = lg; ctx.lineWidth = width; ctx.lineCap='butt'; ctx.stroke();
+    // thin bright edge
+    ctx.beginPath(); ctx.ellipse(0,0,a+width*0.42,b+width*0.42,0,t0,t1);
+    ctx.strokeStyle = rgba(LUM, alpha*(bright?0.75:0.35)); ctx.lineWidth = 1.6; ctx.stroke();
+    // dark gap (Cassini-like)
+    ctx.beginPath(); ctx.ellipse(0,0,a-width*0.12,b-width*0.12,0,t0,t1);
+    ctx.strokeStyle = rgba(VOID, alpha*0.55); ctx.lineWidth = 1.8; ctx.stroke();
+    ctx.restore();
+  }
+
+  // ---- dot chain line ----
+  const endD = L - S.r - 10;
+  ctx.save();
+  const lgL = ctx.createLinearGradient(P0.x,P0.y,P0.x+ux*endD,P0.y+uy*endD);
+  lgL.addColorStop(0, rgba(ICE,0.10)); lgL.addColorStop(0.6, rgba(ICE,0.45)); lgL.addColorStop(1, rgba(ICE,0.75));
+  ctx.strokeStyle = lgL; ctx.lineWidth = 2.2; ctx.lineCap='round';
+  ctx.shadowColor = rgba(COS,0.8); ctx.shadowBlur = 10;
+  ctx.beginPath(); ctx.moveTo(P0.x,P0.y); ctx.lineTo(P0.x+ux*endD, P0.y+uy*endD); ctx.stroke();
+  ctx.restore();
+
+  // ---- dots (small spheres) ----
+  for (const [d,r] of dots){
+    const x = P0.x + ux*d, y = P0.y + uy*d;
+    sphere(x,y,r);
+  }
+
+  // ---- ring back half, sphere, ring front half ----
+  // In local ellipse coords, y>0 (t in 0..π) is the lower/front half.
+  ringArc(S.x,S.y,RING.a,RING.b,RING.tilt, Math.PI, Math.PI*2, RING.w*0.78, 0.40, false);
+  sphere(S.x,S.y,S.r);
+  // ring shadow on sphere (soft dark band just above the front ring)
+  ctx.save();
+  ctx.beginPath(); ctx.arc(S.x,S.y,S.r,0,Math.PI*2); ctx.clip();
+  ctx.translate(S.x,S.y); ctx.rotate(RING.tilt);
+  ctx.beginPath(); ctx.ellipse(0,-RING.w*0.75,RING.a,RING.b,0,0,Math.PI);
+  ctx.strokeStyle='rgba(3,8,30,0.45)'; ctx.lineWidth=RING.w*0.9; ctx.filter='blur(5px)'; ctx.stroke();
+  ctx.restore();
+  ringArc(S.x,S.y,RING.a,RING.b,RING.tilt, 0, Math.PI, RING.w, 0.98, true);
+
+  // ---- vignette ----
+  g = ctx.createRadialGradient(C.x,C.y,360,C.x,C.y,740);
+  g.addColorStop(0,'rgba(5,7,13,0)'); g.addColorStop(1,'rgba(2,3,7,0.72)');
+  ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+
+  // ---- dither (kills banding on 8-bit gradients) ----
+  const img = ctx.getImageData(0,0,W,H), d = img.data;
+  for (let i=0;i<d.length;i+=4){
+    const n = (rnd()-0.5)*3.2;
+    d[i]   = Math.max(0,Math.min(255,d[i]  +n));
+    d[i+1] = Math.max(0,Math.min(255,d[i+1]+n));
+    d[i+2] = Math.max(0,Math.min(255,d[i+2]+n));
+  }
+  ctx.putImageData(img,0,0);
+
+  await document.fonts.ready;
+  window.__ready = true;
+})();
+</script>
+</body>
+</html>
