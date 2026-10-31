@@ -14,10 +14,11 @@ export const H = 1920;
 export const sec = (s: number): number => Math.round(s * FPS);
 
 /**
- * TikTok covers the bottom (caption, sound, actions) and the right column (buttons).
- * Everything lives in the middle third, with extra right margin.
+ * TikTok covers the bottom (caption, sound, actions) and the right column (buttons, lower half).
+ * Everything lives in the middle third, centered on screen; lines stay under ~860 px wide so the
+ * right-hand button column (x > 950 px) is never covered.
  */
-export const SAFE = {left: 60, right: 150, top: 560, bottom: 560};
+export const SAFE = {left: 100, right: 100, top: 560, bottom: 560};
 
 export const FONT: CSSProperties = {
   fontFamily: 'Archivo, "Archivo Fallback", sans-serif',
