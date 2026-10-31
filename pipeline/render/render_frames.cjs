@@ -21,6 +21,7 @@ const every = opt('--every');
 const limit = opt('--limit');
 const crf = opt('--crf') || '17';
 const preset = opt('--preset') || 'slow';
+const fromFrame = Number(opt('--from') || 0);
 
 const ROOT = path.resolve(__dirname, '..', '..');
 const RENDER_DIR = __dirname;
@@ -80,9 +81,10 @@ const server = http.createServer((req, res) => {
   let frames;
   if (previewList) frames = previewList.split(',').map(Number);
   else if (every) { frames = []; for (let i = 0; i < TOTAL; i += Number(every)) frames.push(i); }
-  else { frames = [...Array(limit ? Math.min(TOTAL, Number(limit)) : TOTAL).keys()]; }
+  else { frames = []; for (let i = fromFrame; i < (limit ? Math.min(TOTAL, Number(limit)) : TOTAL); i++) frames.push(i); }
 
-  const outFile = path.join(outDir, 'video_only.mp4'); const tmpFile = path.join(outDir, 'frames_lossless.mkv');
+  const outFile = path.join(outDir, 'video_only.mp4');
+  const tmpFile = path.join(outDir, fromFrame > 0 ? `frames_lossless_from${fromFrame}.mkv` : 'frames_lossless.mkv');
   if (!previewList && !every) {
     // Stage 1: lossless, ultrafast intermediate (keeps CPU free for the software GL renderer).
     ff = spawn('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error',
@@ -117,11 +119,21 @@ const server = http.createServer((req, res) => {
     // Stage 2: final high-quality encode with all cores.
     console.log('[render] encoding final video...');
     const { spawnSync } = require('child_process');
-    const r = spawnSync('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error', '-stats', '-i', tmpFile, '-vf', 'format=yuv420p',
+    // gather all lossless parts (base + resumed parts) in frame order and concat them
+    const parts = fs.readdirSync(outDir).filter((f) => /^frames_lossless(_from\d+)?\.mkv$/.test(f))
+      .map((f) => ({ f, from: Number((f.match(/_from(\d+)/) || [0, 0])[1]) })).sort((a, b) => a.from - b.from);
+    const listFile = path.join(outDir, 'parts.txt');
+    const lines = [];
+    for (let k = 0; k < parts.length; k++) {
+      const next = parts[k + 1]; const cnt = next ? next.from - parts[k].from : null;
+      lines.push(`file '${path.join(outDir, parts[k].f)}'` + (cnt ? `\noutpoint ${(cnt / FPS).toFixed(6)}` : ''));
+    }
+    fs.writeFileSync(listFile, lines.join('\n') + '\n');
+    const r = spawnSync('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error', '-stats', '-f', 'concat', '-safe', '0', '-i', listFile, '-vf', 'format=yuv420p', '-r', String(FPS),
       '-c:v', 'libx264', '-preset', preset, '-crf', crf, '-profile:v', 'high', '-level', '4.2',
       '-x264-params', 'aq-mode=3:aq-strength=1.1:deblock=-1,-1:ref=4:bframes=5', '-g', String(FPS * 2), '-movflags', '+faststart', outFile], { stdio: 'inherit' });
     if (r.status !== 0) throw new Error('final encode failed');
-    if (!args.includes('--keep-lossless')) fs.unlinkSync(tmpFile);
+    if (!args.includes('--keep-lossless')) for (const p of parts) fs.unlinkSync(path.join(outDir, p.f));
     console.log('[render] wrote', outFile);
   }
   server.close();
