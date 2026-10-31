@@ -2,29 +2,37 @@
   "id": "05-obelisk",
   "scene": "obelisk",
   "voice": "bm_george",
-  "speed": 1.04,
-  "cover_t": 1.1,
+  "speed": 1.12,
+  "cover_t": 0.3,
   "hook": {
     "title": "455 TONS",
-    "sub": "stood up with sand",
-    "tag": "EGYPT · 1400 BC",
-    "end": 2.6,
+    "sub": "stood up with sand. one chance.",
+    "tag": "NO CRANE",
+    "end": 1.9,
     "y": 760
   },
   "params": {
-    "bpm": 86
+    "bpm": 92
   },
   "beats": [
     {
-      "vo": "Four hundred and fifty-five tons of solid granite... standing on its end. No crane. No engine.",
+      "vo": "Four hundred fifty-five tons of granite, stood up with sand.",
       "keys": [
-        "no crane",
-        "no engine"
+        "sand"
+      ],
+      "cue": "cold",
+      "sfx": [
+        "hit@1.0"
+      ]
+    },
+    {
+      "vo": "No crane. No engine. One chance to get it right.",
+      "keys": [
+        "one chance"
       ],
       "cue": "assemble",
       "sfx": [
-        "whoosh@0.0",
-        "hit@3.4"
+        "hit@0.0"
       ],
       "hud": {
         "fig": "FIG. I",
@@ -33,44 +41,34 @@
       }
     },
     {
-      "vo": "How do you stand up a thirty-two meter needle?",
-      "keys": [
-        "thirty-two meter"
-      ],
-      "cue": "measure",
-      "sfx": [
-        "blip@1.2"
-      ]
-    },
-    {
-      "vo": "First, you drag it up a ramp... to the edge of a pit full of sand.",
+      "vo": "Drag it up a ramp, to a pit full of sand.",
       "keys": [
         "pit full of sand"
       ],
       "cue": "drag",
       "sfx": [
-        "grind@0.3",
-        "hit@2.6"
+        "grind@0.2",
+        "hit@1.8"
       ]
     },
     {
-      "vo": "Then you do the unexpected. You let the sand out.",
+      "vo": "Then let the sand out.",
       "keys": [
         "let the sand out"
       ],
       "cue": "sand_out",
       "sfx": [
-        "hit@0.0",
-        "riser@1.4"
+        "riser@0.0",
+        "hit@1.0"
       ],
       "prompt": {
-        "text": "WATCH THE SAND LEVEL",
-        "offset": 1.6,
+        "text": "WATCH THE SAND LEVEL ↓",
+        "offset": 0.9,
         "dur": 2.4
       }
     },
     {
-      "vo": "Grain by grain the pit empties... and the obelisk tilts, slowly, under its own weight.",
+      "vo": "As the pit empties, the obelisk tilts under its own weight.",
       "keys": [
         "tilts",
         "own weight"
@@ -78,12 +76,11 @@
       "cue": "tilt",
       "sfx": [
         "grind@0.0",
-        "creak@2.4",
-        "grind@3.6"
+        "creak@1.8"
       ]
     },
     {
-      "vo": "Gravity does the lifting. Sand does the braking.",
+      "vo": "Gravity lifts. Sand brakes.",
       "number": "90°",
       "count_from": 5,
       "count_to": 90,
@@ -96,16 +93,16 @@
       "y": 1250
     },
     {
-      "vo": "The last few degrees? Ropes, hundreds of men... and one chance to get it right.",
+      "vo": "The last degrees: ropes, hundreds of men, and no second chance.",
       "keys": [
         "hundreds of men",
-        "one chance"
+        "no second chance"
       ],
       "cue": "pull",
       "sfx": [
         "whoosh@0.0",
-        "creak@1.6",
-        "boom@3.4"
+        "creak@1.2",
+        "boom@2.6"
       ],
       "hud": {
         "fig": "FIG. II",
@@ -114,24 +111,14 @@
       }
     },
     {
-      "vo": "Get it wrong, and three years of carving... shatters.",
-      "number": "3 YEARS",
-      "sub": "of carving, one mistake",
-      "cue": "risk",
-      "sfx": [
-        "hit@0.0"
-      ],
-      "y": 1250
-    },
-    {
-      "vo": "The biggest one ever attempted never left the quarry.",
+      "vo": "The biggest one ever attempted cracked in the quarry.",
       "keys": [
-        "never left the quarry"
+        "cracked"
       ],
       "cue": "aswan",
       "sfx": [
         "whoosh@0.0",
-        "hit@1.2"
+        "boom@1.6"
       ],
       "hud": {
         "fig": "FIG. III",
@@ -140,20 +127,20 @@
       }
     },
     {
-      "vo": "One thousand and ninety tons... cracked, before it could stand.",
+      "vo": "One thousand ninety tons. Still lying there, three thousand years later.",
       "number": "1,090 TONS",
       "count_from": 0,
       "count_to": 1090,
       "unit": "TONS",
-      "sub": "still lying in the quarry",
+      "sub": "still in the quarry",
       "cue": "crack",
       "sfx": [
-        "boom@1.9"
+        "hit@0.0"
       ],
       "y": 1250
     },
     {
-      "vo": "Should I rebuild the thousand-ton stone of Baalbek next... or how Stonehenge was moved? Comment A or B.",
+      "vo": "Should we finish it today? A or B.",
       "keys": [
         "A",
         "B"
@@ -164,15 +151,15 @@
     }
   ],
   "cta": {
-    "title": "WHICH ONE NEXT?",
-    "a": "Baalbek's 1,000-ton stone",
-    "b": "moving Stonehenge 230 km",
+    "title": "FINISH IT TODAY?",
+    "a": "Yes — raise it with cranes",
+    "b": "No — leave it in the rock",
     "footer": "Comment A or B",
-    "sub": "Follow — the winner gets rebuilt in 3D"
+    "sub": "Follow — next: Baalbek's 1,000-ton stone"
   },
   "metadata": {
-    "title": "How Egypt Stood Up a 455-TON Obelisk… With Sand 🏛️ #AncientTech",
-    "description": "No crane, no engine: drag the obelisk to a sand-filled pit, let the sand out slowly, and gravity tilts 455 tons of granite onto its pedestal. The biggest one ever attempted (1,090 t) cracked and still lies in the Aswan quarry.\n\n3D reconstruction by Ancient Tech. Comment A or B to pick the next build.\n\nSources: Engelbach, 'The Problem of the Obelisks' (1923); NOVA 'Secrets of Lost Empires'.",
+    "title": "Egypt Stood Up a 455-TON Obelisk With SAND 🏛️ Should we finish the broken one?",
+    "description": "No crane, no engine: drag the obelisk to a sand-filled pit, let the sand out slowly, and gravity tilts 455 tons of granite onto its pedestal — with one chance to get it right. The biggest one ever attempted (1,090 t) cracked and still lies in the Aswan quarry.\n\n3D reconstruction by Ancient Tech. Should we finish it today? Comment A or B.\n\nSources: Engelbach, 'The Problem of the Obelisks' (1923); NOVA 'Secrets of Lost Empires'.",
     "hashtags": [
       "#shorts",
       "#ancienttech",
@@ -184,6 +171,6 @@
       "#ancientegypt",
       "#construction"
     ],
-    "pinned_comment": "A = Baalbek — the 1,000-TON stone moved by hand 🪨\nB = Stonehenge — bluestones dragged 230 km 🛖\nVote — most votes gets rebuilt next!"
+    "pinned_comment": "The 1,090-ton Unfinished Obelisk still lies cracked in Aswan. Finish it with modern cranes? A = yes, B = leave it 👇\nNext: Baalbek's 1,000-TON stone 🪨"
   }
 }

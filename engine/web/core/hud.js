@@ -50,29 +50,25 @@ export class HUD {
     this.mono(`${label} ${Math.floor(p * 100)}%`, this.W - 90, y - 22, 20, this.pal.gold_bright, 'right');
     ctx.restore();
   }
-  // Opening hook card (0 .. hook.end)
+  // Opening hook card v2: on screen from frame 0, auto-fits width, leaves on a hard cut at hook.end
   hookCard(hook, t) {
-    if (!hook) return; const end = hook.end ?? 2.2; if (t > end + 0.35) return;
-    const ctx = this.ctx, W = this.W; const y = hook.y || this.H * 0.50;
-    const inP = win(t, hook.start || 0, 0.28); const out = win(t, end, 0.3);
-    const sc = (2.6 - 1.6 * easeOutExpo(inP)) * (1 + out * 0.25); const alpha = clamp(inP * 2) * (1 - out);
-    ctx.save(); ctx.globalAlpha = alpha; ctx.translate(W / 2, y); ctx.scale(sc, sc);
-    ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
-    const size = hook.size || 170; ctx.font = `900 ${size}px Cinzel, serif`;
-    ctx.lineWidth = size * 0.12; ctx.strokeStyle = 'rgba(8,5,2,0.9)'; ctx.strokeText(hook.title, 0, 0);
-    ctx.shadowColor = 'rgba(255,194,74,0.95)'; ctx.shadowBlur = 60 * (1 - inP) + 30; ctx.fillStyle = this.pal.gold; ctx.fillText(hook.title, 0, 0);
+    if (!hook) return; const end = hook.end ?? 1.9; if (t > end) return;
+    const ctx = this.ctx, W = this.W; const y = hook.y || this.H * 0.47; const maxW = 880;
+    const inP = easeOutExpo(win(t, hook.start || 0, 0.3)); const sc = 1.1 - 0.1 * inP;
+    ctx.save(); ctx.translate(W / 2, y); ctx.scale(sc, sc); ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineJoin = 'round';
+    let size = hook.size || 150; ctx.font = `900 ${size}px Cinzel, serif`; const tw = ctx.measureText(hook.title).width;
+    if (tw > maxW) { size = Math.floor(size * maxW / tw); ctx.font = `900 ${size}px Cinzel, serif`; }
+    ctx.lineWidth = size * 0.12; ctx.strokeStyle = 'rgba(8,5,2,0.92)'; ctx.strokeText(hook.title, 0, 0);
+    ctx.shadowColor = 'rgba(255,194,74,0.95)'; ctx.shadowBlur = 40 * (1 - inP) + 24; ctx.fillStyle = this.pal.gold; ctx.fillText(hook.title, 0, 0);
     ctx.shadowBlur = 0; ctx.fillStyle = 'rgba(255,246,220,0.55)'; ctx.fillText(hook.title, 0, 0);
     if (hook.sub) {
-      const sp = win(t, (hook.start || 0) + 0.25, 0.3); ctx.globalAlpha = alpha * sp;
-      ctx.font = `800 ${Math.round(size * 0.3)}px Inter, sans-serif`; ctx.lineWidth = 10; ctx.strokeText(hook.sub.toUpperCase(), 0, size * 0.72);
-      ctx.fillStyle = this.pal.text; ctx.fillText(hook.sub.toUpperCase(), 0, size * 0.72);
+      let ss = Math.round((hook.size || 150) * 0.31); ctx.font = `900 ${ss}px Inter, sans-serif`; const sub = hook.sub.toUpperCase(); const sw = ctx.measureText(sub).width;
+      if (sw > maxW) { ss = Math.floor(ss * maxW / sw); ctx.font = `900 ${ss}px Inter, sans-serif`; }
+      ctx.lineWidth = ss * 0.22; ctx.strokeText(sub, 0, size * 0.74); ctx.fillStyle = '#ffffff'; ctx.fillText(sub, 0, size * 0.74);
     }
     ctx.restore();
-    // hook.tag: small red "alert" tag above the title
-    if (hook.tag) {
-      const tp = win(t, (hook.start || 0) + 0.12, 0.25); if (tp > 0) { ctx.save(); ctx.globalAlpha = alpha * tp; ctx.translate(W / 2, y - (hook.size || 170) * 0.78); ctx.font = `800 30px Inter, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-        const w = ctx.measureText(hook.tag).width + 44; ctx.fillStyle = this.pal.accent_alert; ctx.fillRect(-w / 2, -26, w, 52); ctx.fillStyle = '#fff'; ctx.fillText(hook.tag, 0, 1); ctx.restore(); }
-    }
+    if (hook.tag) { ctx.save(); ctx.translate(W / 2, y - size * 0.8 * sc); ctx.font = `800 32px Inter, sans-serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      const w = ctx.measureText(hook.tag).width + 48; ctx.fillStyle = this.pal.accent_alert; ctx.fillRect(-w / 2, -28, w, 56); ctx.fillStyle = '#fff'; ctx.fillText(hook.tag, 0, 1); ctx.restore(); }
   }
   // Interactive end card
   ctaCard(cta, t, dur) {

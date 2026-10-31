@@ -1,36 +1,32 @@
-# The Great Pyramid Has a Ramp HIDDEN INSIDE It 🔺 #AncientTech
+# The Great Pyramid Has a Ramp HIDDEN INSIDE It 🔺 Would you go in?
 
-**Durata:** 56.5s
+**Durata:** 34.8s
 
 ## Descriere YouTube
 
-2.3 million blocks, one every 3 minutes. An outside ramp would be 1.6 km long — so engineer Jean-Pierre Houdin proposed an internal spiral ramp and a counterweight in the Grand Gallery for the 60-ton beams. In 2017, ScanPyramids found a 30 m void above that gallery.
+2.3 million blocks, one every 3 minutes. An outside ramp would be 1.6 km long — so engineer Jean-Pierre Houdin proposed an internal spiral ramp and a counterweight in the Grand Gallery for the 60-ton beams. In 2017, ScanPyramids found a 30 m void right above it. Nobody has been inside.
 
-3D reconstruction by Ancient Tech. Comment A or B to pick the next build.
+3D reconstruction by Ancient Tech. Would you go in? Comment A or B.
 
 Sources: Houdin & Brier, 'The Secret of the Great Pyramid'; ScanPyramids, Nature 2017.
 
 ## Hashtags
 
-#shorts #ancienttech #pyramid #egypt #engineering #history #3danimation #greatpyramid #ancientegypt
+#shorts #ancienttech #pyramid #egypt #engineering #history #3danimation #greatpyramid #mystery
 
 ## Comentariu fixat (pinned)
 
-A = How Rome lifted a 53-TON block onto Trajan's Column 🏛️
-B = Zhang Heng's seismoscope — it detected quakes 600 km away 🐉
-Vote — most votes gets rebuilt next!
+Would YOU enter the sealed 30 m void? A = yes, send me 🔦  B = no way 👇
+Next (if this hits 1K likes): how Rome lifted a 53-TON block onto Trajan's Column 🏛️
 
 ## Script (VO)
 
-- [0.5s] Two point three million blocks... one placed every three minutes, for twenty years.
-- [5.7s] How? The outside ramp theory has a problem.
-- [8.8s] 1.6 KM
-- [15.8s] So one engineer proposed something crazy.
-- [19.1s] The ramp... is inside.
-- [21.2s] A spiral tunnel climbing the edges... with open corners to turn every block.
-- [26.6s] 60 TONS
-- [30.2s] They were lifted by a counterweight... sliding down the Grand Gallery.
-- [34.4s] A sled of stone going down... pulls the beam up.
-- [37.8s] Then, in twenty-seventeen, cosmic ray scanners found a hidden void... right above that gallery.
-- [44.3s] 30 M
-- [48.0s] Should I rebuild the fifty-three ton block of Trajan's Column next... or China's ancient earthquake detector? Comment A or B.
+- [0.1s] The Great Pyramid has a ramp hidden inside it.
+- [3.3s] Two point three million blocks. One every three minutes.
+- [7.1s] 1.6 KM
+- [10.0s] So where is it? Inside.
+- [12.2s] A spiral tunnel in the edges, with open corners to turn each block.
+- [16.8s] The sixty-ton beams? A counterweight, sliding down the Grand Gallery.
+- [21.3s] And in twenty-seventeen, scanners found a hidden void... right above it.
+- [25.8s] 30 M
+- [29.6s] Would you go in? A or B.

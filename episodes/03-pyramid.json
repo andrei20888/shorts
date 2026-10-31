@@ -2,30 +2,38 @@
   "id": "03-pyramid",
   "scene": "pyramid",
   "voice": "bm_george",
-  "speed": 1.04,
-  "cover_t": 1.1,
+  "speed": 1.12,
+  "cover_t": 0.3,
   "hook": {
-    "title": "2.3 MILLION",
-    "sub": "blocks · one every 3 minutes",
-    "tag": "EGYPT · 2560 BC",
-    "end": 2.6,
+    "title": "IT'S INSIDE",
+    "sub": "the pyramid's missing ramp",
+    "tag": "NOBODY FOUND IT",
+    "end": 1.9,
     "y": 760,
-    "size": 140
+    "size": 150
   },
   "params": {
-    "bpm": 84
+    "bpm": 92
   },
   "beats": [
     {
-      "vo": "Two point three million blocks... one placed every three minutes, for twenty years.",
+      "vo": "The Great Pyramid has a ramp hidden inside it.",
       "keys": [
-        "three minutes",
-        "twenty years"
+        "inside"
+      ],
+      "cue": "cold",
+      "sfx": [
+        "hit@1.0"
+      ]
+    },
+    {
+      "vo": "Two point three million blocks. One every three minutes.",
+      "keys": [
+        "three minutes"
       ],
       "cue": "assemble",
       "sfx": [
-        "whoosh@0.0",
-        "hit@3.2"
+        "hit@0.0"
       ],
       "hud": {
         "fig": "FIG. I",
@@ -34,59 +42,34 @@
       }
     },
     {
-      "vo": "How? The outside ramp theory has a problem.",
-      "keys": [
-        "problem"
-      ],
+      "vo": "An outside ramp would be over a mile long.",
+      "number": "1.6 KM",
+      "sub": "an outside ramp — bigger than the pyramid",
       "cue": "ext_ramp",
       "sfx": [
-        "hit@0.0"
-      ]
-    },
-    {
-      "vo": "To reach the top, a ramp would need to be one and a half kilometers long... bigger than the pyramid itself.",
-      "number": "1.6 KM",
-      "sub": "ramp length at 8% slope",
-      "cue": "ramp_problem",
-      "sfx": [
         "hit@0.0",
-        "blip@2.0"
+        "blip@1.2"
       ],
       "y": 1250
     },
     {
-      "vo": "So one engineer proposed something crazy.",
+      "vo": "So where is it? Inside.",
       "keys": [
-        "crazy"
+        "Inside"
       ],
       "cue": "cut",
       "sfx": [
         "riser@0.0",
-        "hit@1.2"
-      ]
-    },
-    {
-      "vo": "The ramp... is inside.",
-      "keys": [
-        "inside"
-      ],
-      "cue": "internal",
-      "sfx": [
-        "boom@0.9"
+        "boom@1.1"
       ],
       "prompt": {
-        "text": "PAUSE — FOLLOW THE RAMP",
+        "text": "FOLLOW THE RAMP ↑",
         "offset": 1.2,
-        "dur": 2.4
-      },
-      "hud": {
-        "fig": "FIG. II",
-        "label": "INTERNAL RAMP THEORY — HOUDIN",
-        "scale": "1:2000"
+        "dur": 2.2
       }
     },
     {
-      "vo": "A spiral tunnel climbing the edges... with open corners to turn every block.",
+      "vo": "A spiral tunnel in the edges, with open corners to turn each block.",
       "keys": [
         "spiral tunnel",
         "open corners"
@@ -95,33 +78,24 @@
       "sfx": [
         "blip@0.8",
         "blip@1.6",
-        "blip@2.4",
-        "blip@3.2"
-      ]
-    },
-    {
-      "vo": "And the heaviest stones? Sixty ton granite beams.",
-      "number": "60 TONS",
-      "count_from": 0,
-      "count_to": 60,
-      "unit": "TONS",
-      "sub": "granite beams, king's chamber",
-      "cue": "beams",
-      "sfx": [
-        "hit@0.0"
+        "blip@2.4"
       ],
-      "y": 1250
+      "hud": {
+        "fig": "FIG. II",
+        "label": "INTERNAL RAMP — HOUDIN THEORY",
+        "scale": "1:2000"
+      }
     },
     {
-      "vo": "They were lifted by a counterweight... sliding down the Grand Gallery.",
+      "vo": "The sixty-ton beams? A counterweight, sliding down the Grand Gallery.",
       "keys": [
-        "counterweight",
-        "Grand Gallery"
+        "sixty-ton",
+        "counterweight"
       ],
       "cue": "counterweight",
       "sfx": [
         "whoosh@0.0",
-        "creak@1.8"
+        "grind@1.4"
       ],
       "hud": {
         "fig": "FIG. III",
@@ -130,26 +104,14 @@
       }
     },
     {
-      "vo": "A sled of stone going down... pulls the beam up.",
-      "keys": [
-        "going down",
-        "up"
-      ],
-      "cue": "cw_motion",
-      "sfx": [
-        "grind@0.0",
-        "hit@2.0"
-      ]
-    },
-    {
-      "vo": "Then, in twenty-seventeen, cosmic ray scanners found a hidden void... right above that gallery.",
+      "vo": "And in twenty-seventeen, scanners found a hidden void... right above it.",
       "keys": [
         "hidden void"
       ],
       "cue": "void",
       "sfx": [
         "riser@0.0",
-        "hit@2.6"
+        "hit@2.2"
       ],
       "hud": {
         "fig": "FIG. IV",
@@ -158,20 +120,21 @@
       }
     },
     {
-      "vo": "Thirty meters long. And nobody has entered it yet.",
+      "vo": "Thirty meters long. Nobody has been inside. Yet.",
       "number": "30 M",
       "count_from": 0,
       "count_to": 30,
       "unit": "M",
-      "sub": "unexplored void",
+      "sub": "sealed for 4,500 years",
       "cue": "hold",
       "sfx": [
-        "hit@0.0"
+        "hit@0.0",
+        "boom@2.0"
       ],
       "y": 1250
     },
     {
-      "vo": "Should I rebuild the fifty-three ton block of Trajan's Column next... or China's ancient earthquake detector? Comment A or B.",
+      "vo": "Would you go in? A or B.",
       "keys": [
         "A",
         "B"
@@ -182,15 +145,15 @@
     }
   ],
   "cta": {
-    "title": "WHICH ONE NEXT?",
-    "a": "Trajan's 53-ton column block",
-    "b": "China's 132 AD quake detector",
+    "title": "WOULD YOU GO IN?",
+    "a": "Yes. Send me.",
+    "b": "No way.",
     "footer": "Comment A or B",
-    "sub": "Follow — the winner gets rebuilt in 3D"
+    "sub": "Follow — next: how Rome lifted 53 tons"
   },
   "metadata": {
-    "title": "The Great Pyramid Has a Ramp HIDDEN INSIDE It 🔺 #AncientTech",
-    "description": "2.3 million blocks, one every 3 minutes. An outside ramp would be 1.6 km long — so engineer Jean-Pierre Houdin proposed an internal spiral ramp and a counterweight in the Grand Gallery for the 60-ton beams. In 2017, ScanPyramids found a 30 m void above that gallery.\n\n3D reconstruction by Ancient Tech. Comment A or B to pick the next build.\n\nSources: Houdin & Brier, 'The Secret of the Great Pyramid'; ScanPyramids, Nature 2017.",
+    "title": "The Great Pyramid Has a Ramp HIDDEN INSIDE It 🔺 Would you go in?",
+    "description": "2.3 million blocks, one every 3 minutes. An outside ramp would be 1.6 km long — so engineer Jean-Pierre Houdin proposed an internal spiral ramp and a counterweight in the Grand Gallery for the 60-ton beams. In 2017, ScanPyramids found a 30 m void right above it. Nobody has been inside.\n\n3D reconstruction by Ancient Tech. Would you go in? Comment A or B.\n\nSources: Houdin & Brier, 'The Secret of the Great Pyramid'; ScanPyramids, Nature 2017.",
     "hashtags": [
       "#shorts",
       "#ancienttech",
@@ -200,8 +163,8 @@
       "#history",
       "#3danimation",
       "#greatpyramid",
-      "#ancientegypt"
+      "#mystery"
     ],
-    "pinned_comment": "A = How Rome lifted a 53-TON block onto Trajan's Column 🏛️\nB = Zhang Heng's seismoscope — it detected quakes 600 km away 🐉\nVote — most votes gets rebuilt next!"
+    "pinned_comment": "Would YOU enter the sealed 30 m void? A = yes, send me 🔦  B = no way 👇\nNext (if this hits 1K likes): how Rome lifted a 53-TON block onto Trajan's Column 🏛️"
   }
 }

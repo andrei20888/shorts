@@ -40,53 +40,51 @@ export function create({ THREE, wire, scene, camera, tl, E }) {
   const applyClip = (g, on) => g.traverse((o) => { if (o.material) o.material.clippingPlanes = on ? [clipPlane] : null; });
   applyClip(pyr, true);
   const rig = new CamRig(camera, tl, THREE).add(
-    { at: 0, pos: [9, 6, 13], look: [0, 2.8, 0], fov: 60, orbit: 0.06 },
-    { at: 'ext_ramp', pos: [14, 7, 17], look: [5, 2.8, 0], fov: 58, orbit: 0.03, dur: 1.3 },
-    { at: 'ramp_problem', pos: [24, 10, 26], look: [10, 2.5, 0], fov: 58, dur: 1.4, drift: [0.6, 0, 0] },
-    { at: 'cut', pos: [4, 6, 18], look: [0, 3.4, 0], fov: 52, dur: 1.4, orbit: 0.0 },
-    { at: 'internal', pos: [2, 5.5, 15], look: [0, 3.2, 0], fov: 50, dur: 1.2, orbit: 0.04 },
-    { at: 'spiral_trace', pos: [7, 6, 13], look: [0, 3.4, 0], fov: 50, dur: 1.3, orbit: 0.07 },
-    { at: 'beams', pos: [-5, 4.5, 11], look: [-1, 2.6, 0], fov: 46, dur: 1.2, orbit: 0.04 },
-    { at: 'counterweight', pos: [1.5, 3.4, 8.5], look: [0.2, 2.4, 0.3], fov: 44, dur: 1.3, orbit: 0.03 },
-    { at: 'cw_motion', pos: [3, 3.2, 8], look: [-0.3, 2.5, 0.3], fov: 44, dur: 1.2, orbit: 0.04 },
-    { at: 'void', pos: [2.5, 5.5, 9.5], look: [0, 3.2, 0.3], fov: 46, dur: 1.3, orbit: 0.05 },
-    { at: 'hold', pos: [6, 6, 13], look: [0, 3.2, 0], fov: 50, dur: 1.4, orbit: 0.06 },
-    { at: 'cta', pos: [11, 8, 17], look: [0, 3, 0], fov: 54, dur: 1.4, orbit: 0.08 });
+    { at: 0, pos: [5, 4.5, 10.5], look: [0, 3.0, 0], fov: 48, orbit: 0.3, dur: 0.01 },
+    { at: 1.0, pos: [-5.5, 6, 9.5], look: [0, 3.2, 0], fov: 50, dur: 0.01, drift: [0.8, 0, -0.8] },
+    { at: 'assemble', pos: [9, 6, 13], look: [0, 2.8, 0], fov: 60, orbit: 0.06, dur: 0.01 },
+    { at: 'ext_ramp', pos: [14, 7, 17], look: [5, 2.8, 0], fov: 58, orbit: 0.03, dur: 0.01, drift: [0.4, 0, 0] },
+    { at: 'cut', pos: [4, 6, 18], look: [0, 3.4, 0], fov: 52, dur: 0.01 },
+    { at: 'spiral_trace', pos: [7, 6, 13], look: [0, 3.4, 0], fov: 50, dur: 0.9, orbit: 0.07 },
+    { at: 'counterweight', pos: [1.5, 3.4, 8.5], look: [0.2, 2.4, 0.3], fov: 44, dur: 0.01, orbit: 0.04 },
+    { at: 'void', pos: [2.5, 5.5, 9.5], look: [0, 3.2, 0.3], fov: 46, dur: 0.9, orbit: 0.05 },
+    { at: 'hold', pos: [6, 6, 13], look: [0, 3.2, 0], fov: 50, dur: 0.01, orbit: 0.06 },
+    { at: 'cta', pos: [5, 4.5, 10.5], look: [0, 3.0, 0], fov: 48, orbit: 0.3, dur: 0.8 });
   let lastT = 0;
   return {
     update(api) {
-      const { t, cue, project, E } = api; rig.apply(t);
-      const rv = E.easeOutCubic(E.win(t, 0, 2.4)); wire.reveal(pyr, rv); ramp.visible = false; notches.visible = false;
+      const { t, cue, project, E } = api; rig.apply(t); const cold = cue('assemble') < 0 || cue('cta') > 0;
+      const rv = cold ? 1 : E.easeOutCubic(E.win(cue('assemble'), 0, 1.2)); wire.reveal(pyr, rv); ramp.visible = false; notches.visible = false;
       const ann = [], readouts = [], scans = [];
-      if (t < 3) scans.push({ t0: 0.4, dur: 1.8, y0: 250, y1: 1250, label: 'SURVEY' });
-      if (cue('assemble') > 0 && cue('cut') < 0) readouts.push({ label: 'blocks', value: Math.round(E.easeOutCubic(E.win(t, 0.6, 3.2)) * 2300000).toLocaleString('en-US') }, { label: 'rate', value: '1 / 3 MIN' });
+      if (cue('assemble') > 0 && cue('assemble') < 1.6) scans.push({ t0: tl.cues.find((c) => c.name === 'assemble').t + 0.1, dur: 1.2, y0: 250, y1: 1250, label: 'SURVEY' });
+      if (cue('assemble') > 0 && cue('cut') < 0) readouts.push({ label: 'blocks', value: Math.round(E.easeOutCubic(E.win(cue('assemble'), 0.2, 2.8)) * 2300000).toLocaleString('en-US') }, { label: 'rate', value: '1 / 3 MIN' });
       // external ramp
       const er = cue('ext_ramp'); ext.visible = er > 0 && cue('cut') < 0;
-      if (ext.visible) { wire.reveal(ext, E.win(er, 0.2, 1.2)); const p = project(V(B / 2 + L * 0.55, Hh * 0.45, 0)); ann.push({ x: p.x, y: p.y - 80, text: cue('ramp_problem') > 0.5 ? 'RAMP · 1.6 KM · 8% SLOPE' : 'EXTERNAL RAMP ?', kind: 'alert', alpha: E.win(er, 0.9, 0.3) }); readouts.push({ label: 'ramp volume', value: cue('ramp_problem') > 1.5 ? '> PYRAMID' : 'CALCULATING…', blink: cue('ramp_problem') > 1.5 }); }
+      if (ext.visible) { wire.reveal(ext, E.win(er, 0.2, 1.2)); const p = project(V(B / 2 + L * 0.55, Hh * 0.45, 0)); ann.push({ x: p.x, y: p.y - 80, text: er > 1.0 ? 'RAMP · 1.6 KM · 8% SLOPE' : 'EXTERNAL RAMP ?', kind: 'alert', alpha: E.win(er, 0.9, 0.3) }); readouts.push({ label: 'ramp volume', value: er > 1.8 ? '> PYRAMID' : 'CALCULATING…', blink: er > 1.8 }); }
       // cut: clip plane sweeps from +z to 0
-      const ct = cue('cut'); clipPlane.constant = ct > 0 ? E.lerp(10, 0.0, E.easeInOutCubic(E.win(ct, 0.3, 1.4))) : 100;
-      if (ct > 0 && ct < 2.2) scans.push({ t0: tl.cues.find((c) => c.name === 'cut').t + 0.3, dur: 1.4, y0: 300, y1: 1200, label: 'SECTION A-A' });
+      const ct = cue('cut'); clipPlane.constant = cold ? 0 : (ct > 0 ? E.lerp(10, 0.0, E.easeInOutCubic(E.win(ct, 0.2, 0.9))) : 100);
+      if (ct > 0 && ct < 2.2) scans.push({ t0: tl.cues.find((c) => c.name === 'cut').t + 0.3, dur: 0.9, y0: 300, y1: 1200, label: 'SECTION A-A' });
       // internal ramp
-      const it = cue('internal');
-      if (it > 0) { ramp.visible = true; wire.reveal(ramp, E.win(it, 0.3, 2.6)); notches.visible = cue('spiral_trace') > 0.5; }
-      const st = cue('spiral_trace'); travelBlock.visible = st > 0 && cue('counterweight') < 0;
-      if (travelBlock.visible) { const u = E.clamp(st / 6.5); const p = curve.getPointAt(u); travelBlock.position.copy(p).add(V(0, 0.12, 0)); const sp = project(p); ann.push({ x: sp.x + 170, y: sp.y - 110, lx: sp.x, ly: sp.y, text: `BLOCK · 2.5 T · ${Math.round(u * 100)}%` }); readouts.push({ label: 'ramp slope', value: '7 %' }, { label: 'corners', value: 'OPEN · TURN' }); }
-      if (it > 0 && cue('beams') < 0) { const a = project(V(0, Hh * 0.5, B / 4)); if (st < 0) ann.push({ x: a.x, y: a.y + 180, text: 'INTERNAL SPIRAL RAMP', alpha: E.win(it, 1.2, 0.3) }); }
+      const it = cold ? 1e3 : cue('cut') - 0.9;
+      if (it > 0) { ramp.visible = true; wire.reveal(ramp, cold ? 1 : E.win(it, 0.0, 1.4)); notches.visible = cold || cue('spiral_trace') > 0.3; }
+      const st = cue('spiral_trace'); travelBlock.visible = cold || (st > 0 && cue('counterweight') < 0);
+      if (travelBlock.visible) { const u = cold ? (t * 0.3) % 1 : E.clamp(st / 4.5); const p = curve.getPointAt(u); travelBlock.position.copy(p).add(V(0, 0.12, 0)); const sp = project(p); if (!cold) ann.push({ x: sp.x + 170, y: sp.y - 110, lx: sp.x, ly: sp.y, text: `BLOCK · 2.5 T · ${Math.round(u * 100)}%` }); readouts.push({ label: 'ramp slope', value: '7 %' }, { label: 'corners', value: 'OPEN · TURN' }); }
+      if (!cold && it > 0 && cue('counterweight') < 0 && st < 0) { const a = project(V(0, Hh * 0.5, B / 4)); ann.push({ x: a.x, y: a.y + 180, text: 'INTERNAL SPIRAL RAMP', alpha: E.win(it, 1.2, 0.3) }); }
       // beams / gallery / counterweight
-      const bm = cue('beams'); const showGal = bm > 0; [gal, chamber, beam, rope].forEach((g) => (g.visible = showGal));
+      const bm = cue('counterweight'); const showGal = bm > 0 && !cold; [gal, chamber, beam, rope].forEach((g) => (g.visible = showGal));
       if (showGal) {
         wire.reveal(gal, E.win(bm, 0.2, 1.2)); wire.reveal(chamber, E.win(bm, 0.0, 1.0));
-        const cw = cue('cw_motion'); const u = cw > 0 ? E.easeInOutCubic(E.win(cw, 0.2, 3.2)) : 0;
+        const cw = bm - 1.0; const u = cw > 0 ? E.easeInOutCubic(E.win(cw, 0.0, 2.8)) : 0;
         sled.position.set(gLen * 0.42 - gLen * 0.84 * u, 0, 0);
         const beamStart = V(-2.6, 0.5, 0.35), beamEnd = V(-2.1, 2.1, 0.35); beam.position.copy(beamStart.clone().lerp(beamEnd, u));
         const top = V(gLen * 0.5, gH * 0.5, 0).applyAxisAngle(V(0, 0, 1), gAng).add(gal.position); const sledW = sled.position.clone().applyAxisAngle(V(0, 0, 1), gAng).add(gal.position);
         const P = rope.children[0].geometry.attributes.position; P.setXYZ(0, sledW.x, sledW.y, sledW.z); P.setXYZ(1, top.x, top.y, top.z); P.setXYZ(2, beam.position.x, beam.position.y, beam.position.z); P.needsUpdate = true;
         if (cue('counterweight') > 0.8 && cue('void') < 0) { const g = project(top); ann.push({ x: g.x + 150, y: g.y - 100, lx: g.x, ly: g.y, text: 'GRAND GALLERY · 47 m', kind: 'cyan' }); const s = project(sledW); ann.push({ x: s.x + 200, y: s.y + 60, lx: s.x, ly: s.y, text: 'COUNTERWEIGHT SLED', alpha: E.win(cue('counterweight'), 1.6, 0.3) }); }
         if (cw > 0 && cue('void') < 0) { const b = project(beam.position); ann.push({ x: b.x - 200, y: b.y - 60, lx: b.x, ly: b.y, text: 'GRANITE BEAM · 60 T' }); readouts.push({ label: 'beam lift', value: Math.round(u * 100) + ' %' }); }
-        if (bm > 0 && cue('counterweight') < 0) readouts.push({ label: 'beam mass', value: '60,000 KG', blink: bm < 1 });
+        if (bm > 0 && bm < 1.0) readouts.push({ label: 'beam mass', value: '60,000 KG', blink: true });
       }
-      const vd = cue('void'); voidBox.visible = vd > 0;
-      if (voidBox.visible) { wire.reveal(voidBox, E.win(vd, 2.4, 0.8)); const p = project(voidBox.position); if (vd > 2.6) ann.push({ x: p.x, y: p.y - 120, lx: p.x, ly: p.y, text: 'BIG VOID · 30 m · 2017', kind: 'cyan' }); readouts.push({ label: 'muon scan', value: vd < 2.6 ? 'SCANNING…' : 'ANOMALY FOUND', blink: vd < 2.6, color: vd >= 2.6 ? wire.cyan.getStyle() : undefined }); if (vd < 2.6) scans.push({ t0: tl.cues.find((c) => c.name === 'void').t + 0.2, dur: 2.2, y0: 300, y1: 1150, label: 'MUON SCAN' }); }
+      const vd = cue('void'); voidBox.visible = vd > 0 && !cold;
+      if (voidBox.visible) { wire.reveal(voidBox, E.win(vd, 2.0, 0.6)); const p = project(voidBox.position); if (vd > 2.2) ann.push({ x: p.x, y: p.y - 120, lx: p.x, ly: p.y, text: 'BIG VOID · 30 m · 2017', kind: 'cyan' }); readouts.push({ label: 'muon scan', value: vd < 2.2 ? 'SCANNING…' : 'ANOMALY FOUND', blink: vd < 2.2, color: vd >= 2.2 ? wire.cyan.getStyle() : undefined }); if (vd < 2.2) scans.push({ t0: tl.cues.find((c) => c.name === 'void').t + 0.2, dur: 2.0, y0: 300, y1: 1150, label: 'MUON SCAN' }); }
       if (cue('hold') > 0) readouts.push({ label: 'explored', value: 'NO', blink: true, color: wire.alert.getStyle() });
       return { annotations: ann, readouts, scans };
     }

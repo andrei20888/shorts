@@ -51,9 +51,9 @@ export class Captions {
     const ctx = this.ctx; const p = win(t, beat.start, 0.35); const sc = 1.6 - 0.6 * easeOutBack(p);
     const fade = 1 - win(t, beat.end + 0.2, 0.25); if (fade <= 0) return;
     let text = beat.text; if (beat.count_to !== undefined) { const k = clamp((t - beat.start) / Math.max(0.3, (beat.end - beat.start) * 0.7)); const v = Math.round((beat.count_from || 0) + (beat.count_to - (beat.count_from || 0)) * (1 - Math.pow(1 - k, 3))); text = v.toLocaleString('en-US') + (beat.unit ? ' ' + beat.unit : ''); }
-    const size = beat.size || 150;
+    let size = beat.size || 150;
     ctx.save(); ctx.translate(this.W / 2, beat.y || this.H * 0.62); ctx.scale(sc, sc); ctx.globalAlpha = fade * clamp(p * 2);
-    ctx.font = `900 ${size}px Cinzel, serif`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.font = `900 ${size}px Cinzel, serif`; const tw0 = ctx.measureText(text).width; if (tw0 > 930) { size = Math.floor(size * 930 / tw0); ctx.font = `900 ${size}px Cinzel, serif`; } ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.lineWidth = size * 0.1; ctx.strokeStyle = 'rgba(8,5,2,0.85)'; ctx.lineJoin = 'round'; ctx.strokeText(text, 0, 0);
     ctx.shadowColor = 'rgba(255,194,74,0.9)'; ctx.shadowBlur = 50; ctx.fillStyle = this.pal.gold; ctx.fillText(text, 0, 0);
     ctx.shadowBlur = 0; ctx.fillStyle = 'rgba(255,246,220,0.6)'; ctx.fillText(text, 0, 0);

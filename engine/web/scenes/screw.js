@@ -26,40 +26,40 @@ export function create({ THREE, wire, scene, camera, tl, E }) {
   const gen = wire.box(1.6, 1.2, 1.2, { opacity: 0.9, fillOpacity: 0.08 }); root.add(gen); gen.visible = false;
   const bolt = wire.polyline([V(0.2, 0.9, 0), V(-0.15, 0.2, 0), V(0.15, 0.2, 0), V(-0.2, -0.6, 0)], { opacity: 1, color: wire.cyan }); gen.add(bolt);
   const rig = new CamRig(camera, tl, THREE).add(
-    { at: 0, pos: [3, 3.5, 15], look: [0, 1.6, 0], fov: 54, orbit: 0.05 },
-    { at: 'reveal', pos: [5, 4, 13], look: [0, 1.8, 0], fov: 52, orbit: 0.06, dur: 1.2 },
-    { at: 'tilt', pos: [0, 2.5, 14], look: [0, 2.2, 0], fov: 50, dur: 1.2, orbit: 0.02 },
-    { at: 'spin', pos: [1.5, 2.6, 9], look: [-1.2, 1.4, 0], fov: 48, dur: 1.2, orbit: 0.05 },
-    { at: 'climb', pos: [3, 3.5, 10], look: [0.5, 2.6, 0], fov: 48, dur: 1.2, drift: [0.15, 0.12, 0] },
-    { at: 'geometry', pos: [2, 4, 13], look: [0, 2.2, 0], fov: 52, dur: 1.2, orbit: 0.05 },
-    { at: 'ship', pos: [2, 4, 26], look: [0, 1.5, 0], fov: 54, dur: 1.4, orbit: 0.03 },
-    { at: 'reverse', pos: [-4, 4, 13], look: [-0.5, 2.4, 0], fov: 52, dur: 1.4, orbit: 0.05 },
-    { at: 'end_number', pos: [3, 3.5, 14], look: [0, 2, 0], fov: 54, dur: 1.4, orbit: 0.06 },
-    { at: 'cta', pos: [4, 5, 15], look: [0, 1.8, 0], fov: 54, dur: 1.4, orbit: 0.08 });
+    { at: 0, pos: [1.2, 3.0, 7.0], look: [-0.6, 2.4, 0], fov: 44, orbit: 0.25, dur: 0.01 },
+    { at: 1.0, pos: [5, 4.2, 8.5], look: [1.8, 2.9, 0], fov: 46, dur: 0.01, drift: [-0.8, 0.1, -0.6] },
+    { at: 'assemble', pos: [3, 3.5, 15], look: [0, 1.6, 0], fov: 54, orbit: 0.05, dur: 0.01 },
+    { at: 'tilt', pos: [0, 2.5, 14], look: [0, 2.2, 0], fov: 50, dur: 0.01, orbit: 0.02 },
+    { at: 'spin', pos: [1.5, 2.6, 9], look: [-1.2, 1.4, 0], fov: 48, dur: 0.01, orbit: 0.05 },
+    { at: 'climb', pos: [3, 3.5, 10], look: [0.5, 2.6, 0], fov: 48, dur: 0.9, drift: [0.15, 0.12, 0] },
+    { at: 'ship', pos: [2, 4, 22], look: [0, 1.5, 0], fov: 54, dur: 0.01, orbit: 0.03 },
+    { at: 'reverse', pos: [-4, 4, 13], look: [-0.5, 2.4, 0], fov: 52, dur: 0.01, orbit: 0.05 },
+    { at: 'end_number', pos: [3, 3.5, 14], look: [0, 2, 0], fov: 54, dur: 0.9, orbit: 0.06 },
+    { at: 'cta', pos: [1.2, 3.0, 7.0], look: [-0.6, 2.4, 0], fov: 44, orbit: 0.25, dur: 0.8 });
   let angle = 0, lastT = 0;
   return {
     update(api) {
-      const { t, cue, project, E } = api; rig.apply(t); const dt = Math.max(0, Math.min(0.1, t - lastT)); lastT = t;
-      wire.reveal(screw, E.easeOutCubic(E.win(t, 0, 2.4))); wire.reveal(trough, E.win(t, 1.0, 1)); wire.reveal(channel, E.win(t, 1.4, 1));
+      const { t, cue, project, E } = api; rig.apply(t); const dt = Math.max(0, Math.min(0.1, t - lastT)); lastT = t; const cold = cue('assemble') < 0 || cue('cta') > 0;
+      const rev0 = cold ? 1 : E.easeOutCubic(E.win(cue('assemble'), 0, 1.2)); wire.reveal(screw, rev0); wire.reveal(trough, rev0); wire.reveal(channel, rev0);
       // tilt: flat until 'tilt', then rotate to 30°
-      const tiltDeg = cue('tilt') > 0 ? E.lerp(8, 30, E.easeInOutCubic(E.win(cue('tilt'), 0.6, 1.6))) : 8; const th = tiltDeg * Math.PI / 180;
+      const tiltDeg = cold ? 30 : (cue('tilt') > 0 ? E.lerp(8, 30, E.easeInOutCubic(E.win(cue('tilt'), 0.3, 1.3))) : 8); const th = tiltDeg * Math.PI / 180;
       screw.rotation.z = th; screw.position.set(0, Lr / 2 * Math.sin(th) + R + 0.2, 0);
       const bottom = V(-Lr / 2, -R, 0).applyAxisAngle(V(0, 0, 1), th).add(screw.position); const top = V(Lr / 2, -R, 0).applyAxisAngle(V(0, 0, 1), th).add(screw.position);
       trough.position.set(bottom.x - 0.6, 0.5, 0); channel.position.set(top.x + 1.2, top.y + 0.4, 0);
       // rotation: slow idle, spin from 'spin', reverse from 'reverse'
-      const rev = cue('reverse') > 0.4; const sp = cue('spin') > 0 ? (rev ? -1.6 : 1.5) : 0.25; angle += sp * dt; rotor.rotation.x = angle;
+      const rev = cue('reverse') > 0.4; const sp = cold ? 2.4 : (cue('spin') > 0 ? (rev ? -1.6 : 1.5) : 0.25); angle += sp * dt; rotor.rotation.x = angle;
       // water pockets: param along axis advances with rotation; sit at the gravity-low side of the tube
-      const pockets = cue('spin') > 0.2; const flow = (angle / (2 * Math.PI)) * pitch; const low = V(0, -1, 0).applyAxisAngle(V(0, 0, 1), -th); // gravity dir in screw frame
+      const pockets = cold || cue('spin') > 0.2; const flow = (angle / (2 * Math.PI)) * pitch; const low = V(0, -1, 0).applyAxisAngle(V(0, 0, 1), -th); // gravity dir in screw frame
       for (let i = 0; i < NP; i++) { const k = i % 12; const lane = Math.floor(i / 12); const x0 = -Lr / 2 + ((k * pitch * 0.5 + flow) % (Lr + 0.4) + (Lr + 0.4)) % (Lr + 0.4) - 0.2; const visible = pockets && x0 > -Lr / 2 + 0.1 && x0 < Lr / 2 - 0.1; const rr = R * (0.55 + 0.25 * (lane % 3) / 2); const jitter = (lane - 2) * 0.16; WP.setXYZ(i, visible ? x0 + jitter : 999, visible ? low.y * rr + 0.12 * ((lane + 1) % 2) : 999, visible ? low.x * rr * 0 + (lane - 2) * 0.22 : 999); }
       WP.needsUpdate = true; water.visible = pockets;
-      figure.visible = cue('spin') > 0 && cue('ship') < 0; figure.position.set(top.x + 1.3, 0, 0.3); figure.walk(angle * 0.8, 0.25); figure.scale.x = -1;
+      figure.visible = !cold && cue('spin') > 0 && cue('ship') < 0; figure.position.set(top.x + 1.3, 0, 0.3); figure.walk(angle * 0.8, 0.25); figure.scale.x = -1;
       const ann = [], readouts = [], scans = [];
-      if (t < 3) scans.push({ t0: 0.4, dur: 1.6, y0: 300, y1: 1200, label: 'SECTION' });
-      if (cue('tilt') > 0 && cue('ship') < 0) { const p = project(bottom.clone().add(V(1.2, -0.3, 0))); ann.push({ x: p.x + 40, y: p.y + 90, lx: p.x, ly: p.y, text: `TILT ${Math.round(tiltDeg)}°`, alpha: E.win(cue('tilt'), 0.5, 0.3) }); readouts.push({ label: 'angle', value: Math.round(tiltDeg) + '°', blink: tiltDeg < 29.5 }); }
-      if (pockets && cue('ship') < 0) { readouts.push({ label: 'rotation', value: (Math.abs(sp) * 9.5).toFixed(0) + ' RPM' }, { label: 'lift', value: (Lr * Math.sin(th) * 0.9).toFixed(1) + ' M' }); const i0 = 5; const p = project(V(WP.getX(i0), WP.getY(i0), WP.getZ(i0)).applyAxisAngle(V(0, 0, 1), th).add(screw.position)); if (WP.getX(i0) < 500) ann.push({ x: p.x + 170, y: p.y - 120, lx: p.x, ly: p.y, text: 'TRAPPED POCKET', kind: 'cyan', alpha: E.win(cue('spin'), 1.8, 0.3) }); }
+      if (cue('assemble') > 0 && cue('assemble') < 1.6) scans.push({ t0: tl.cues.find((c) => c.name === 'assemble').t + 0.1, dur: 1.2, y0: 300, y1: 1200, label: 'SECTION' });
+      if (!cold && cue('tilt') > 0 && cue('ship') < 0) { const p = project(bottom.clone().add(V(1.2, -0.3, 0))); ann.push({ x: p.x + 40, y: p.y + 90, lx: p.x, ly: p.y, text: `TILT ${Math.round(tiltDeg)}°`, alpha: E.win(cue('tilt'), 0.5, 0.3) }); readouts.push({ label: 'angle', value: Math.round(tiltDeg) + '°', blink: tiltDeg < 29.5 }); }
+      if (pockets && !cold && cue('ship') < 0) { readouts.push({ label: 'rotation', value: (Math.abs(sp) * 9.5).toFixed(0) + ' RPM' }, { label: 'lift', value: (Lr * Math.sin(th) * 0.9).toFixed(1) + ' M' }); const i0 = 5; const p = project(V(WP.getX(i0), WP.getY(i0), WP.getZ(i0)).applyAxisAngle(V(0, 0, 1), th).add(screw.position)); if (WP.getX(i0) < 500) ann.push({ x: p.x + 170, y: p.y - 120, lx: p.x, ly: p.y, text: 'TRAPPED POCKET', kind: 'cyan', alpha: E.win(cue('spin'), 1.8, 0.3) }); }
       if (cue('climb') > 0 && cue('geometry') < 0) { const p = project(top); ann.push({ x: p.x - 60, y: p.y - 140, lx: p.x, ly: p.y, text: 'OUT · UPHILL', kind: 'cyan' }); }
       hull.visible = cue('ship') > 0 && cue('reverse') < 0; if (hull.visible) { wire.reveal(hull, E.win(cue('ship'), 0.2, 1.4)); const p = project(V(0, 4.2, -3)); ann.push({ x: p.x, y: p.y - 40, text: 'SYRACUSIA · c. 240 BC · 55 m', alpha: E.win(cue('ship'), 1.2, 0.3) }); readouts.push({ label: 'bilge', value: 'DRAINING', blink: true }); }
-      const rv = cue('reverse'); gen.visible = rv > 0; if (gen.visible) { gen.position.set(top.x + 1.4, top.y + 1.6, 0); wire.reveal(gen, E.win(rv, 0.5, 1)); const kw = Math.round(E.easeOutCubic(E.win(rv, 2.4, 3)) * 250); readouts.push({ label: 'power', value: kw + ' KW', blink: rv > 2.4 && rv < 3.4, color: wire.cyan.getStyle() }); const p = project(gen.position); ann.push({ x: p.x + 40, y: p.y - 120, lx: p.x, ly: p.y, text: 'GENERATOR', kind: 'cyan', alpha: E.win(rv, 2.4, 0.3) }); readouts.push({ label: 'flow', value: rev ? 'DOWN ↓' : 'UP ↑' }); channel.position.y += 0; }
+      const rv = cue('reverse'); gen.visible = rv > 0 && !cold; if (gen.visible) { gen.position.set(top.x + 1.4, top.y + 1.6, 0); wire.reveal(gen, E.win(rv, 0.5, 1)); const kw = Math.round(E.easeOutCubic(E.win(rv, 2.4, 3)) * 250); readouts.push({ label: 'power', value: kw + ' KW', blink: rv > 2.4 && rv < 3.4, color: wire.cyan.getStyle() }); const p = project(gen.position); ann.push({ x: p.x + 40, y: p.y - 120, lx: p.x, ly: p.y, text: 'GENERATOR', kind: 'cyan', alpha: E.win(rv, 2.4, 0.3) }); readouts.push({ label: 'flow', value: rev ? 'DOWN ↓' : 'UP ↑' }); channel.position.y += 0; }
       return { annotations: ann, readouts, scans };
     }
   };

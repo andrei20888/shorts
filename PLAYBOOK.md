@@ -3,29 +3,51 @@
 Reguli de producție pentru clipuri care prind: **triplu hook**, **emoție în fiecare secundă**, **interacțiune**, **buclă**.
 Totul de mai jos e implementat în engine (compositor + build.py); aici e „de ce”-ul și cum scrii scripturi care îl folosesc.
 
-## 1. Triple Hook (0 – 3 s)
+## 1. Triple Hook v2 — „cold open” (0 – 3 s)
 
-Trei cârlige simultane, pe trei canale diferite, în prima secundă:
+Regula de aur pentru doomscrolleri: **în primul cadru se vede deja payoff-ul în mișcare, cu textul-cârlig peste el**. Nimic nu se „construiește” în primele 3 secunde.
 
-| Canal | Ce face | Unde se setează |
+| Secunda | Ce se întâmplă | Cum se setează |
 |---|---|---|
-| **Vizual** | impact + flash + punch-in pe cadru, modelul 3D deja „se construiește” (fără intro, fără logo) | automat: event `impact` la t=0.02, draw-on al scenei |
-| **Text** | card uriaș cu un număr/claim imposibil (`6 TONS`) + sub-claim (`lifted by two men walking`) + tag roșu de context (`ROME · 100 AD`) | `hook` în JSON |
-| **Audio/Voce** | prima propoziție e contradicția: *„Two men… walking… lifted six tons”*; vocea pornește la 0,45 s, după impact | primul `beat` |
+| **0.0** | impact audio + flash; modelul 3D complet, în starea de climax, în mișcare rapidă (blocul urcă pe rampă, șurubul se învârte cu apa, obeliscul se înclină); card mare de text vizibil din primul cadru (`IT'S INSIDE`, `UPHILL`, `455 TONS`) + tag roșu de context | `hook` în JSON; scena tratează `cue('assemble') < 0` ca stare „cold” (model complet, animație de climax) |
+| **0.1** | vocea începe cu o propoziție de ≤ 9 cuvinte, fără pauze, care contrazice ceva: „The Great Pyramid has a ramp hidden inside it.” | primul `beat`, `cue: "cold"`, viteză 1.12 |
+| **1.0** | tăietură dură de cameră (alt unghi) + `hit` | al doilea shot din `CamRig` cu `dur: 0.01`, `sfx: ["hit@1.0"]` |
+| **1.9** | tăietură dură pe planul larg; modelul se „rebobinează” (draw-on rapid, 1,2 s) = începe explicația | `cue: "assemble"` pe al doilea beat, `sfx: ["hit@0.0"]` |
+| **≤ 3.0** | a doua propoziție a vocii = promisiunea / open loop („and here's the trick”) | al doilea beat |
 
-Reguli: numărul din card ≠ textul vocii (două informații, nu una repetată). Cardul dispare la 2,4–2,6 s, exact când subiectul 3D e complet.
+Reguli dure:
+* **Lungime 28–36 s.** Retenția se măsoară procentual; un clip de 55 s cu 30 % = 17 s vizionate; același conținut în 32 s ține 60–70 %. Sub 40 s, fără excepție, până când canalul are retenție medie > 70 %.
+* **O tăietură de cameră la fiecare 2–3 s** (`dur: 0.01` în `CamRig`), nu doar orbit lent. Fiecare tăietură are un `hit`.
+* **Fără „…” în primele două beat-uri.** Pauzele vin după ce spectatorul a decis să rămână.
+* **Cardul de hook nu face fade-in**: e pe ecran la cadrul 0 (alpha 1), se micșorează ușor (1.1 → 1) și iese pe tăietură.
+* **Cover la 0,3 s** (`cover_t`): primul cadru pe care îl vede cineva în feed trebuie să aibă text + subiect luminos.
 
-## 2. Structura de retenție (≈ 55 s)
+## 1b. Emoție, nu informație
+
+Fiecare clip are un singur fir emoțional, ales înainte de script:
+* **Neîncredere → „aha”** (șurubul: apa urcă singură; piramida: rampa e înăuntru)
+* **Frică / miză** (obeliscul: o singură șansă, 3 ani de muncă se pot sparge)
+* **Mister neînchis** (piramida: un gol de 30 m în care nu a intrat nimeni)
+* **Satisfacție** (procesul care „se închide”: buzunarele de apă urcă, blocul ajunge sus)
+Scriptul se termină pe emoția respectivă, nu pe o concluzie.
+
+## 1c. Interacțiune care produce comentarii, nu „care episod vrei”
+
+CTA-ul din clip pune o **întrebare cu miză personală sau o sarcină verificabilă**, cu două răspunsuri scurte:
+* „Would you go in? A = yes, send me / B = no way” (identitate / curaj)
+* „How many pockets did you count? A = 12 or fewer / B = more than 12” (sarcină → re-vizionare → comentariu)
+* „Finish it today? A = raise it with cranes / B = leave it in the rock” (dezbatere)
+Promisiunea pentru episodul următor merge în `cta.sub` și în comentariul fixat, condiționată („next, if this hits 1K likes: …”).
+
+## 2. Structura de retenție (≈ 32 s)
 
 ```
-0–3 s    HOOK triplu + draw-on 3D
-3–9 s    NUMIRE + PROMISIUNE  „This is the X… and it hides a trick”  → scan line, readout-uri pornesc
-9–12 s   OPEN LOOP            „most people never see”  + prompt roșu „CAN YOU SPOT IT?” (interacțiune 1)
-12–24 s  MECANISM pas 1       camera intră în detaliu, adnotări, numărătoare (1/5 → 5/5), card numeric
-24–36 s  MECANISM pas 2       al doilea „secret”, al doilea card numeric, climax (cue `lift` / `reveal`: riser → boom)
-36–46 s  PAYOFF + CONTRAST    „120× stronger”, comparație (ramp vs crane)
-46–51 s  TWIST EMOȚIONAL      „and then it was lost for 1,000 years” → scena pâlpâie, roșu, readout LOST
-51–57 s  CTA interactiv       card A/B + voce „Comment A or B” + follow
+0–2 s    COLD OPEN            payoff în mișcare + card text + prima propoziție (contradicția)
+2–5 s    NUMIRE + PROMISIUNE  tăietură pe larg, draw-on rapid, „here's the trick”
+5–9 s    NUMĂR-ȘOC            card numeric (1.6 KM / 0 PUMPS / 90°) + prompt roșu de sarcină (interacțiune 1)
+9–20 s   MECANISM             2–3 beat-uri, o tăietură la fiecare beat, adnotări, readout-uri care numără
+20–27 s  TWIST EMOȚIONAL      golul neexplorat / fisura / „nothing beats it” + al doilea card numeric
+27–32 s  CTA cu miză          întrebare personală A/B (4,8 s), camera revine la cadrul din cold open → loop
 ```
 Fiecare beat are **un singur gând**. Vocea la viteză 1,04 (ritm de short, dar inteligibil).
 

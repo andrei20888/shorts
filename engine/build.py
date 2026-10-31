@@ -10,9 +10,9 @@ HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 import sfx
 
-PRE_ROLL = 0.45          # VO starts after the opening impact
-DEFAULT_GAP = 0.30       # silence between beats
-CTA_HOLD = 6.2           # end card duration
+PRE_ROLL = 0.12          # VO starts after the opening impact
+DEFAULT_GAP = 0.22       # silence between beats
+CTA_HOLD = 4.8           # end card duration
 FPS = 30
 
 def load_vo(beat_text, voice, speed, lang, cache_dir):
@@ -94,7 +94,7 @@ def build_timeline(ep, work):
     duration = max(cursor, cta_t + CTA_HOLD) + 0.4
     cta = dict(ep.get("cta", {})); cta["t"] = round(cta_t, 3)
     events.append({"t": cta["t"], "kind": "chime"})
-    hook = dict(ep.get("hook", {})); hook.setdefault("start", 0.0); hook.setdefault("end", 2.4)
+    hook = dict(ep.get("hook", {})); hook.setdefault("start", 0.0); hook.setdefault("end", 1.9)
     tl = {"id": ep["id"], "scene": ep["scene"], "fps": FPS, "duration": round(duration, 3), "hook": hook, "beats": beats,
           "cues": cues + [{"name": "cta", "t": cta["t"]}], "events": events, "prompts": prompts, "cta": cta, "params": ep.get("params", {})}
     return tl, vo_clips

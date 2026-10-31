@@ -2,29 +2,40 @@
   "id": "04-archimedes-screw",
   "scene": "screw",
   "voice": "bm_george",
-  "speed": 1.04,
-  "cover_t": 1.1,
+  "speed": 1.12,
+  "cover_t": 0.3,
   "hook": {
-    "title": "2,300 YRS",
-    "sub": "and it still runs today",
-    "tag": "SYRACUSE · 250 BC",
-    "end": 2.6,
+    "title": "UPHILL",
+    "sub": "water climbing — no pump",
+    "tag": "2,300 YEARS OLD",
+    "end": 1.9,
     "y": 760,
-    "size": 150
+    "size": 170
   },
   "params": {
-    "bpm": 90
+    "bpm": 92
   },
   "beats": [
     {
-      "vo": "A tube. A spiral. And water that climbs uphill... by itself.",
+      "vo": "Water, climbing uphill, with no pump.",
       "keys": [
-        "climbs uphill"
+        "uphill",
+        "no pump"
+      ],
+      "cue": "cold",
+      "sfx": [
+        "hit@1.0"
+      ]
+    },
+    {
+      "vo": "The Archimedes screw. Twenty-three centuries old, still running today.",
+      "keys": [
+        "Archimedes screw",
+        "still running"
       ],
       "cue": "assemble",
       "sfx": [
-        "whoosh@0.0",
-        "hit@2.6"
+        "hit@0.0"
       ],
       "hud": {
         "fig": "FIG. I",
@@ -33,59 +44,37 @@
       }
     },
     {
-      "vo": "This is the Archimedes screw. Twenty-three centuries old... and still in use today.",
-      "keys": [
-        "Archimedes screw",
-        "still in use"
-      ],
-      "cue": "reveal",
-      "sfx": [
-        "hit@0.0"
-      ]
-    },
-    {
-      "vo": "Here's the trick. Tilt it to thirty degrees.",
+      "vo": "Tilt it to thirty degrees.",
       "keys": [
         "thirty degrees"
       ],
       "cue": "tilt",
       "sfx": [
-        "creak@0.8",
-        "blip@1.9"
+        "creak@0.3",
+        "blip@1.2"
       ]
     },
     {
-      "vo": "Turn it... and every pocket of water gets trapped between the blades.",
+      "vo": "Turn it, and every pocket of water gets trapped between the blades.",
       "keys": [
         "trapped"
       ],
       "cue": "spin",
       "sfx": [
         "grind@0.0",
-        "blip@2.0"
+        "blip@1.6"
       ],
       "prompt": {
-        "text": "WATCH ONE POCKET",
-        "offset": 0.6,
+        "text": "COUNT THE WATER POCKETS",
+        "offset": 0.4,
         "dur": 2.6
       }
     },
     {
-      "vo": "The screw turns. The pocket can't fall back... so it climbs.",
-      "keys": [
-        "can't fall back",
-        "climbs"
-      ],
-      "cue": "climb",
-      "sfx": [
-        "hit@0.0"
-      ]
-    },
-    {
-      "vo": "No pump. No pressure. Just geometry.",
+      "vo": "It can't fall back. So it climbs.",
       "number": "0 PUMPS",
-      "sub": "just geometry",
-      "cue": "geometry",
+      "sub": "it can't fall back — so it climbs",
+      "cue": "climb",
       "sfx": [
         "hit@0.0"
       ],
@@ -99,7 +88,7 @@
       "cue": "ship",
       "sfx": [
         "whoosh@0.0",
-        "hit@1.5"
+        "hit@1.3"
       ],
       "hud": {
         "fig": "FIG. II",
@@ -108,16 +97,16 @@
       }
     },
     {
-      "vo": "And today, cities run it in reverse. Water flows down... and the screw makes electricity.",
+      "vo": "Today, cities run it backwards. Water falls, and it makes electricity.",
       "keys": [
-        "in reverse",
+        "backwards",
         "electricity"
       ],
       "cue": "reverse",
       "sfx": [
         "riser@0.0",
-        "boom@2.4",
-        "blip@3.4"
+        "boom@1.9",
+        "blip@2.8"
       ],
       "hud": {
         "fig": "FIG. III",
@@ -126,7 +115,7 @@
       }
     },
     {
-      "vo": "Twenty-three centuries... and we never found anything better.",
+      "vo": "Twenty-three centuries. Nothing beats it.",
       "number": "2,300 YEARS",
       "count_from": 0,
       "count_to": 2300,
@@ -139,7 +128,7 @@
       "y": 1250
     },
     {
-      "vo": "Should I rebuild the Roman fire pump next... or the aqueduct that pushed water uphill? Comment A or B.",
+      "vo": "How many pockets did you count? A or B.",
       "keys": [
         "A",
         "B"
@@ -150,15 +139,15 @@
     }
   ],
   "cta": {
-    "title": "WHICH ONE NEXT?",
-    "a": "the Roman fire pump",
-    "b": "the uphill aqueduct of Lyon",
+    "title": "HOW MANY POCKETS?",
+    "a": "12 or fewer",
+    "b": "More than 12",
     "footer": "Comment A or B",
-    "sub": "Follow — the winner gets rebuilt in 3D"
+    "sub": "Rewatch and count — answer pinned tomorrow"
   },
   "metadata": {
-    "title": "This 2,300-Year-Old Machine Still Powers Cities 🌀 #AncientTech",
-    "description": "The Archimedes screw: tilt a spiral to ~30°, turn it, and every pocket of water is trapped and forced uphill — no pump, no pressure, just geometry. Today it runs in reverse as a hydro turbine.\n\n3D reconstruction by Ancient Tech. Comment A or B to pick the next build.\n\nSources: Vitruvius X.6; Rorres, 'The Turn of the Screw' (2000).",
+    "title": "This 2,300-Year-Old Machine Makes Water Climb UPHILL 🌀 How many pockets?",
+    "description": "The Archimedes screw: tilt a spiral to ~30°, turn it, and every pocket of water is trapped and forced uphill — no pump, no pressure, just geometry. Today cities run it backwards as a hydro turbine.\n\n3D reconstruction by Ancient Tech. How many water pockets did you count? Comment A or B.\n\nSources: Vitruvius X.6; Rorres, 'The Turn of the Screw' (2000).",
     "hashtags": [
       "#shorts",
       "#ancienttech",
@@ -167,9 +156,9 @@
       "#history",
       "#3danimation",
       "#physics",
-      "#mechanism",
+      "#satisfying",
       "#ancientgreece"
     ],
-    "pinned_comment": "A = Ctesibius' fire pump — a Roman fire hose 🔥\nB = The Lyon inverted siphon — water climbing a valley 💧\nVote — most votes gets rebuilt next!"
+    "pinned_comment": "How many water pockets did you count inside the tube? A = 12 or fewer, B = more than 12 👇\nAnswer pinned tomorrow. Next: the Roman fire pump 🔥"
   }
 }

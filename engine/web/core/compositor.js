@@ -73,7 +73,7 @@ export class Compositor {
     const ctaOn = tl.cta && t >= tl.cta.t;
     this.captions.draw(tl, t, { hidden: r.hideCaptions || ctaOn });
     this.hud.hookCard(tl.hook, t);
-    if (ctaOn) { ctx.save(); ctx.globalAlpha = 0.45 * E.win(t, tl.cta.t, 0.4); ctx.fillStyle = '#0a0703'; ctx.fillRect(0, 0, W, H); ctx.restore(); }
+    if (ctaOn) { ctx.save(); ctx.globalAlpha = 0.3 * E.win(t, tl.cta.t, 0.4); ctx.fillStyle = '#0a0703'; ctx.fillRect(0, 0, W, H); ctx.restore(); }
     this.hud.ctaCard(tl.cta, t, tl.duration);
     this.hud.flash(fx.flash + (r.flash || 0));
     ctx.restore();
