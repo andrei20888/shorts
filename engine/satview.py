@@ -175,6 +175,8 @@ class SceneSpec:
     street_spacing: Optional[float] = None   # px; default width/150
     lake_center: tuple = (0.5, 0.47)
     lake_size: float = 1.0
+    sea_rise: Optional[dict] = None     # {"t0","t1","amount"} coast floods over time
+    circles: Optional[dict] = None      # pivot-irrigation circles {"x","y","rx","ry","n","r","t0","t1","fade_t0","fade_t1"}
 
 
 # --------------------------------------------------------------------------
@@ -326,6 +328,28 @@ class Scene:
         # --- fishbone deforestation ----------------------------------------
         self.fish = self._build_fishbone() if s.fishbone else None
 
+        # --- pivot irrigation circles --------------------------------------
+        self.circle_list = None
+        if s.circles:
+            c = s.circles
+            crng = np.random.default_rng(s.seed + 7)
+            n = c.get("n", 70)
+            lst = []
+            # jittered grid: real pivots sit in rows along access roads
+            cols = int(math.sqrt(n * (c["rx"] / c["ry"]) * (w / h))) + 1
+            rows = int(n / cols) + 1
+            cells = [(i, j) for i in range(cols) for j in range(rows)]
+            crng.shuffle(cells)
+            for (i, j) in cells[:n]:
+                cx = (c["x"] - c["rx"] + (i + 0.5 + crng.uniform(-0.2, 0.2)) * 2 * c["rx"] / cols) * w
+                cy = (c["y"] - c["ry"] + (j + 0.5 + crng.uniform(-0.2, 0.2)) * 2 * c["ry"] / rows) * h
+                r = c.get("r", 0.02) * w * crng.uniform(0.8, 1.15)
+                a = crng.uniform(c["t0"], c["t1"])
+                d = crng.uniform(c.get("fade_t0", 2.0), c.get("fade_t1", 3.0))
+                lst.append((int(cx), int(cy), int(r), a, d, crng.uniform(0.0, 1.0)))
+            self.circle_list = lst
+            self.crop_day = ramp(np.clip(fine * 0.8 + 0.1, 0, 1), [(0.0, "#2f7d33"), (0.5, "#4f9a3b"), (1.0, "#86b54a")]).astype(np.float32)
+
         # --- clouds --------------------------------------------------------
         self.cloud_big = fbm(h * 2, w, rng, cells=s.cloud_scale, octaves=6, persistence=0.55, aniso=1.7)
         self.cloud_fine = fbm(h * 2, w, rng, cells=s.cloud_scale * 7, octaves=3, persistence=0.5, aniso=2.5)
@@ -431,6 +455,9 @@ class Scene:
             ls = s.lake_shrink
             k = smoothstep(ls["t0"], ls["t1"], t)
             level = self.sea_level0 - ls.get("amount", 0.22) * k
+        if s.sea_rise:
+            sr = s.sea_rise
+            level = level + sr.get("amount", 0.06) * smoothstep(sr["t0"], sr["t1"], t)
         return (self.elev < level) | (self.river_mask > 0.5), level
 
     def land_mask_extra(self, t: float) -> np.ndarray:
@@ -511,6 +538,20 @@ class Scene:
             cleared_total = cleared
             roads_total = roads
 
+        # ---------------- pivot irrigation circles ------------------------
+        circ = None
+        if self.circle_list:
+            m = np.zeros((h, w), dtype=np.float32)
+            for (cx_, cy_, r_, a, d, ph) in self.circle_list:
+                alpha = float(smoothstep(a, a + 0.05, t) * (1 - smoothstep(d, d + 0.08, t)))
+                if alpha <= 0.01:
+                    continue
+                cv2.circle(m, (cx_, cy_), r_, float(alpha), -1, lineType=cv2.LINE_AA)
+            # pivot arm: slightly darker wedge texture via fine noise
+            circ = cv2.GaussianBlur(m, (0, 0), 1.0) * (0.8 + 0.2 * self.fine)
+            c3 = circ[..., None]
+            img = img * (1 - c3) + self.crop_day * c3
+
         # ---------------- cities ------------------------------------------
         # extent grows with t: threshold falls from 1.15 (nothing) to ~0.18
         growth = ease_in_out(t)
@@ -575,6 +616,8 @@ class Scene:
                 bloom3 = gauss(light_rgb, 44.0)
                 glow = light_rgb * 0.8 + bloom1 * 0.45 + bloom2 * 0.28 + bloom3 * 0.2
                 dusk += glow * night * (1.0 - 0.6 * cloud_soft)[..., None]
+            if circ is not None:
+                dusk += (circ * 0.02 * night)[..., None] * hexc("#9ff6ff")
             if cleared_total is not None:
                 # settlements and burning edges glow warm along the clearings
                 pts = (self.flicker > 0.994).astype(np.float32) * smoothstep(0.15, 0.7, cleared_total) * 1.4

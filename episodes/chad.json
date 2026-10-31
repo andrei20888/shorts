@@ -1,0 +1,33 @@
+{
+  "id": "lake_chad_1963_2024",
+  "title": "Four countries share this lake. Watch it vanish.",
+  "years": [1963, 2024],
+  "coords": "13.00° N   14.50° E",
+  "voice": "am_michael", "voice_speed": 1.05, "bpm": 86, "seed": 13,
+  "lead_in": 0.15, "tail": 1.0, "rewind": 0.8,
+  "scene": {
+    "kind": "lake", "seed": 13, "palette": "savanna", "sea_side": "none", "mountains": 0.15, "cloud_cover": 0.04,
+    "lake_center": [0.5, 0.45], "lake_size": 1.05,
+    "lake_shrink": {"t0": 0.1, "t1": 0.85, "amount": 0.25}, "cities": [[0.2, 0.8, 0.07, 0.5, 0.0, 12], [0.8, 0.2, 0.05, 0.4, 0.2, 40]]
+  },
+  "beats": [
+    {"vo": "Four countries share this lake. Watch it vanish.", "caption": "Four countries share this lake. Watch it vanish.", "style": "hook", "year": 1963, "fx": ["punch"], "pad": 0.3},
+    {"vo": "1963. It's the size of a small country.", "caption": "1963: the size of a small country", "style": "hook", "year": 1963, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.03, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Thirty million people drink from it.", "style": "beat", "year": 1975, "pad": 0.2},
+    {"vo": "Then the rains fail. And the pumps don't stop.", "style": "beat", "year": 1985, "fx": ["scan"], "pad": 0.2},
+    {"vo": "The lake splits in two.", "style": "beat", "year": 1995, "pad": 0.2, "cam": {"scale": 1.12, "cx": 0.5, "cy": 0.47}},
+    {"vo": "Fishermen walk out to where the boats used to float.", "caption": "Fishermen walk to where boats used to float", "style": "beat", "year": 2005, "fx": ["punch"], "pad": 0.2},
+    {"vo": "Ninety percent of the water is gone.", "style": "beat", "year": 2015, "pad": 0.25, "cam": {"scale": 1.2, "cx": 0.48, "cy": 0.47}},
+    {"vo": "What's left is a maze of reeds and sand.", "caption": "What's left is a maze of reeds and sand", "style": "hook", "year": 2024, "night": 0.25, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "Sixty years. Ninety percent gone.", "caption": "60 years. 90% gone.", "style": "stat", "year": 2024, "fx": ["punch"], "pad": 0.4, "cam": {"scale": 1.3, "cx": 0.47, "cy": 0.47}},
+    {"vo": "It is the only water for hundreds of kilometres.", "caption": "The only water for hundreds of kilometres", "style": "quiet", "year": 2024, "pad": 0.5},
+    {"vo": "Type WATER if the world should help.", "caption": "Type WATER if the world should help", "style": "cta", "year": 2024, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Next: can you guess the city? Follow.", "caption": "Next: can you guess the city? Follow.", "style": "interact", "year": 2024, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Four countries share this lake. It's 90% gone 🛰️ #shorts",
+    "description": "Lake Chad, shared by Chad, Niger, Nigeria and Cameroon, has lost about 90% of its surface since the 1960s. Failed rains and heavy irrigation split it in two and turned open water into a maze of reeds and sand that around 30 million people depend on.\n\nWatch our planet change in seconds. Accelerated geographic shifts, urban growth and climate overviews from a clean satellite perspective.\n\n📍 Lake Chad, Central Africa · 1963 → 2024\n🎬 Stylized satellite reconstruction based on real-world change.\n\nType WATER if the world should help 👇\n\n#LakeChad #Timelapse #Earth #Satellite #Climate #Africa #Shorts",
+    "hashtags": ["#Shorts", "#LakeChad", "#Timelapse", "#Earth", "#Satellite", "#Climate", "#Africa"],
+    "pinned_comment": "WATER 💧 — type it if you think the world should help restore Lake Chad."
+  }
+}

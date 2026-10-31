@@ -1,0 +1,33 @@
+{
+  "id": "saudi_circles_1987_2024",
+  "title": "Green circles in the desert",
+  "years": [1987, 2024],
+  "coords": "30.40° N   38.50° E",
+  "voice": "am_michael", "voice_speed": 1.07, "bpm": 92, "seed": 91,
+  "lead_in": 0.15, "tail": 1.0, "rewind": 0.8,
+  "scene": {
+    "kind": "inland", "seed": 91, "palette": "desert", "sea_side": "none", "mountains": 0.3, "cloud_cover": 0.02,
+    "circles": {"x": 0.5, "y": 0.5, "rx": 0.38, "ry": 0.36, "n": 96, "r": 0.023, "t0": 0.04, "t1": 0.62, "fade_t0": 0.72, "fade_t1": 0.98},
+    "cities": [[0.5, 0.5, 0.07, 0.6, 0.0, 0]], "city_max": 0.5, "light_warmth": 0.7
+  },
+  "beats": [
+    {"vo": "Green circles are appearing in the middle of the desert.", "caption": "Green circles are appearing in the desert", "style": "hook", "year": 1987, "fx": ["punch"], "pad": 0.3},
+    {"vo": "Watch where they come from. And watch them die.", "caption": "Watch where they come from. And watch them die.", "style": "hook", "year": 1987, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.04, "cx": 0.5, "cy": 0.5}},
+    {"vo": "1987. Farmers drill into an aquifer older than the pyramids.", "caption": "Farmers drill into water older than the pyramids", "style": "beat", "year": 1993, "fx": ["scan"], "pad": 0.2},
+    {"vo": "Each circle is one kilometre wide. One sprinkler, turning for days.", "caption": "Each circle is 1 km wide. One sprinkler, turning.", "style": "beat", "year": 1999, "pad": 0.2, "cam": {"scale": 1.25, "cx": 0.45, "cy": 0.45}},
+    {"vo": "Thousands of them. Wheat, in the Arabian desert.", "style": "beat", "year": 2006, "pad": 0.2, "cam": {"scale": 1.05, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Then the water underground starts running out.", "style": "beat", "year": 2012, "fx": ["punch"], "pad": 0.2},
+    {"vo": "2016. The kingdom stops growing wheat.", "caption": "2016: the kingdom stops growing wheat", "style": "beat", "year": 2018, "pad": 0.25},
+    {"vo": "And the circles go dark, one by one.", "caption": "And the circles go dark, one by one", "style": "hook", "year": 2024, "night": 0.55, "night_fast": 1.6, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "Water that took twenty thousand years to collect. Used in thirty.", "caption": "20,000 years to collect. Used in 30.", "style": "stat", "year": 2024, "fx": ["punch"], "pad": 0.4, "cam": {"scale": 1.3, "cx": 0.5, "cy": 0.5}},
+    {"vo": "The desert is taking the circles back.", "caption": "The desert is taking the circles back", "style": "quiet", "year": 2024, "pad": 0.5},
+    {"vo": "Was it worth it? Yes or no.", "caption": "Was it worth it? Yes or no", "style": "cta", "year": 2024, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Next: the lake that four countries are losing. Follow.", "caption": "Next: the lake four countries are losing. Follow.", "style": "interact", "year": 2024, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Green circles appeared in the Saudi desert. Then they died 🛰️ #shorts",
+    "description": "From the late 1980s, centre-pivot farms pumped fossil water from an aquifer thousands of years old to grow wheat in the Arabian desert. From orbit they look like green coins. When the water ran low, Saudi Arabia phased out wheat farming and the circles began to fade.\n\nWatch our planet change in seconds. Accelerated geographic shifts, urban growth and climate overviews from a clean satellite perspective.\n\n📍 Wadi As-Sirhan, Saudi Arabia · 1987 → 2024\n🎬 Stylized satellite reconstruction based on real-world change.\n\nWas it worth it? Yes or no 👇\n\n#SaudiArabia #Desert #Timelapse #Earth #Satellite #Water #Shorts",
+    "hashtags": ["#Shorts", "#SaudiArabia", "#Desert", "#Timelapse", "#Earth", "#Satellite", "#Water"],
+    "pinned_comment": "Yes or no: was growing wheat in the desert worth 20,000 years of water? 👇"
+  }
+}

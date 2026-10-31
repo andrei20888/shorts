@@ -1,0 +1,35 @@
+{
+  "id": "jakarta_1990_2050",
+  "title": "This city of 11 million is sinking",
+  "years": [1990, 2050],
+  "coords": "6.21° S   106.85° E",
+  "voice": "am_michael", "voice_speed": 1.07, "bpm": 96, "seed": 57,
+  "lead_in": 0.15, "tail": 1.0, "rewind": 0.8,
+  "scene": {
+    "kind": "coastal", "seed": 57, "palette": "lush", "sea_side": "top", "sea_fraction": 0.26, "coast_rough": 0.9, "mountains": 0.12,
+    "river": [[0.35, 0.95], [0.45, 0.6], [0.5, 0.3], [0.55, 0.05]], "river_width": 0.012,
+    "cities": [[0.5, 0.42, 0.28, 1.0, 0.0, 5], [0.25, 0.55, 0.15, 0.8, 0.3, 30], [0.78, 0.5, 0.14, 0.7, 0.4, 20]],
+    "coast_affinity": 1.2, "cloud_cover": 0.14, "light_warmth": 0.5,
+    "sea_rise": {"t0": 0.33, "t1": 1.0, "amount": 0.08}
+  },
+  "beats": [
+    {"vo": "This city of eleven million is sinking.", "caption": "This city of 11 million is sinking", "style": "hook", "year": 1990, "fx": ["punch"], "pad": 0.3},
+    {"vo": "Watch the sea come in.", "caption": "Watch the sea come in", "style": "hook", "year": 1990, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.04, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Jakarta, 1990. The coast is dry land.", "style": "beat", "year": 1996, "pad": 0.2},
+    {"vo": "The city pumps its drinking water from the ground.", "style": "beat", "year": 2003, "fx": ["scan"], "pad": 0.2},
+    {"vo": "The ground gives way. Up to twenty five centimetres a year.", "caption": "The ground gives way. Up to 25 cm a year.", "style": "beat", "year": 2010, "pad": 0.2, "cam": {"scale": 1.15, "cx": 0.5, "cy": 0.4}},
+    {"vo": "Forty percent of the city is now below sea level.", "caption": "40% of the city is now below sea level", "style": "beat", "year": 2018, "fx": ["punch"], "pad": 0.2},
+    {"vo": "Indonesia decides to move its capital.", "style": "beat", "year": 2024, "pad": 0.25, "cam": {"scale": 1.06, "cx": 0.5, "cy": 0.45}},
+    {"vo": "By 2050, this is what the models show.", "caption": "By 2050, this is what the models show", "style": "hook", "year": 2050, "night": 1.0, "night_fast": 1.5, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "Four metres. That's how far parts of the city have already dropped.", "caption": "4 metres. Parts of the city have already dropped.", "style": "stat", "year": 2050, "fx": ["punch"], "pad": 0.4, "cam": {"scale": 1.35, "cx": 0.5, "cy": 0.4}},
+    {"vo": "Ten million people live on ground that is still going down.", "caption": "10 million people live on ground still going down", "style": "quiet", "year": 2050, "pad": 0.5},
+    {"vo": "Comment the city you think is next.", "caption": "Comment the city you think is next", "style": "cta", "year": 2050, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Next: green circles in the desert. Follow.", "caption": "Next: green circles in the desert. Follow.", "style": "interact", "year": 2050, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Jakarta is sinking. This is what 2050 looks like from space 🛰️ #shorts",
+    "description": "Jakarta pumps much of its water from the ground, and the ground is giving way, up to 25 cm a year in the north. About 40% of the city already sits below sea level, and Indonesia is moving its capital. The final seconds show a projection for 2050.\n\nWatch our planet change in seconds. Accelerated urban growth, geographic shifts and climate overviews from a clean satellite perspective.\n\n📍 Jakarta, Indonesia · 1990 → 2024, projection to 2050\n🎬 Stylized satellite reconstruction; the 2050 segment is a projection, not a measurement.\n\nWhich city is next? 👇\n\n#Jakarta #SeaLevel #Timelapse #Earth #Satellite #Climate #Shorts",
+    "hashtags": ["#Shorts", "#Jakarta", "#SeaLevel", "#Timelapse", "#Earth", "#Satellite", "#Climate"],
+    "pinned_comment": "Which coastal city do you think is next? 👇 Most-mentioned city gets the next episode."
+  }
+}

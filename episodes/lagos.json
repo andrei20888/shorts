@@ -1,0 +1,34 @@
+{
+  "id": "guess_the_city_lagos_1984_2024",
+  "title": "Guess the city",
+  "years": [1984, 2024],
+  "coords": "6.52° N   3.38° E",
+  "voice": "am_michael", "voice_speed": 1.07, "bpm": 102, "seed": 45,
+  "lead_in": 0.15, "tail": 1.0, "rewind": 0.8,
+  "scene": {
+    "kind": "coastal", "seed": 45, "palette": "lush", "sea_side": "bottom", "sea_fraction": 0.34, "coast_rough": 1.3, "mountains": 0.08,
+    "river": [[0.15, 0.05], [0.3, 0.35], [0.5, 0.5], [0.6, 0.7]], "river_width": 0.016,
+    "cities": [[0.5, 0.55, 0.27, 1.0, 0.0, 15], [0.72, 0.5, 0.16, 0.85, 0.35, 40], [0.28, 0.45, 0.15, 0.8, 0.45, 70]],
+    "coast_affinity": 1.4, "cloud_cover": 0.13, "light_warmth": 0.55
+  },
+  "beats": [
+    {"vo": "Can you guess this city before the reveal?", "caption": "Guess the city before the reveal", "style": "hook", "year": 1984, "fx": ["punch"], "pad": 0.3},
+    {"vo": "1984. Three million people. Watch.", "caption": "1984: 3 million people. Watch.", "style": "hook", "year": 1984, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.04, "cx": 0.5, "cy": 0.5}},
+    {"vo": "It sits on a lagoon on the Atlantic coast.", "style": "beat", "year": 1990, "pad": 0.2},
+    {"vo": "Every hour, about eighty new people move in.", "caption": "Every hour, about 80 new people move in", "style": "beat", "year": 1998, "fx": ["scan"], "pad": 0.2},
+    {"vo": "The city spills across the water onto islands.", "style": "beat", "year": 2006, "pad": 0.2, "cam": {"scale": 1.12, "cx": 0.5, "cy": 0.55}},
+    {"vo": "It builds a new district on land taken from the sea.", "style": "beat", "year": 2014, "fx": ["punch"], "pad": 0.2},
+    {"vo": "Africa's biggest city. And it's not slowing down.", "style": "beat", "year": 2022, "pad": 0.25, "cam": {"scale": 1.06, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Lights on. Did you guess it?", "caption": "Lights on. Did you guess it?", "style": "hook", "year": 2024, "night": 1.0, "night_fast": 1.1, "fx": ["flash", "shake"], "climax": true, "pad": 0.5},
+    {"vo": "Lagos, Nigeria. Three million to sixteen million.", "caption": "Lagos, Nigeria. 3 million to 16 million.", "style": "stat", "year": 2024, "fx": ["punch", "scan"], "pad": 0.4, "cam": {"scale": 1.4, "cx": 0.5, "cy": 0.55}},
+    {"vo": "By 2100, it could be the largest city on Earth.", "caption": "By 2100 it could be the largest city on Earth", "style": "quiet", "year": 2024, "pad": 0.5},
+    {"vo": "Did you guess it? Comment your answer.", "caption": "Did you guess it? Comment your answer", "style": "cta", "year": 2024, "fx": ["punch"], "pad": 0.3, "cam": {"scale": 1.1, "cx": 0.5, "cy": 0.5}},
+    {"vo": "Next: Tokyo or Mumbai? You decide. Follow.", "caption": "Next: Tokyo or Mumbai? You decide. Follow.", "style": "interact", "year": 2024, "pad": 0.4}
+  ],
+  "meta": {
+    "title": "Can you guess this city before the reveal? 🛰️ #shorts",
+    "description": "In 1984 it had about 3 million people. Today it is Africa's biggest city, with roughly 16 million, spilling across a lagoon onto islands and even onto land reclaimed from the Atlantic. Some projections say it could be the largest city on Earth by 2100.\n\nWatch our planet change in seconds. Accelerated urban growth, geographic shifts and climate overviews from a clean satellite perspective.\n\n📍 Lagos, Nigeria · 1984 → 2024\n🎬 Stylized satellite reconstruction based on real-world growth patterns.\n\nDid you guess it? Comment your answer 👇\n\n#Lagos #Nigeria #Timelapse #Earth #Satellite #Megacity #Shorts",
+    "hashtags": ["#Shorts", "#Lagos", "#Nigeria", "#Timelapse", "#Earth", "#Satellite", "#Megacity"],
+    "pinned_comment": "No peeking 👀 Comment your guess BEFORE the reveal, then tell us if you got it."
+  }
+}
