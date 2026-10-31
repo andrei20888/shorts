@@ -1,22 +1,22 @@
 import React from 'react';
 import {Composition, Still} from 'remotion';
 import {FPS, H, W} from './theme';
-import {FRAMES_15, FRAMES_28, Thumbnail, Video15, Video28} from './Videos';
+import {Thumbnail, TIMING_LONG, TIMING_SHORT, VideoLong, VideoShort} from './Videos';
 
 export const Root: React.FC = () => (
   <>
     <Composition
-      id="AbsForReal28"
-      component={Video28}
-      durationInFrames={FRAMES_28}
+      id="AbsForRealLong"
+      component={VideoLong}
+      durationInFrames={TIMING_LONG.frames}
       fps={FPS}
       width={W}
       height={H}
     />
     <Composition
-      id="AbsForReal15"
-      component={Video15}
-      durationInFrames={FRAMES_15}
+      id="AbsForRealShort"
+      component={VideoShort}
+      durationInFrames={TIMING_SHORT.frames}
       fps={FPS}
       width={W}
       height={H}

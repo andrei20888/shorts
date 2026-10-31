@@ -5,10 +5,11 @@
   "description": "Abs For Real presale TikTok (Remotion): 29s + 15s vertical videos and thumbnail",
   "scripts": {
     "studio": "remotion studio src/index.ts",
-    "render:28": "remotion render src/index.ts AbsForReal28 out/abs-for-real-28s.mp4 --codec h264",
-    "render:15": "remotion render src/index.ts AbsForReal15 out/abs-for-real-15s.mp4 --codec h264",
+    "audio": "python3 audio/build_audio.py",
+    "render:long": "remotion render src/index.ts AbsForRealLong out/abs-for-real-long.mp4 --codec h264",
+    "render:short": "remotion render src/index.ts AbsForRealShort out/abs-for-real-short.mp4 --codec h264",
     "render:thumb": "remotion still src/index.ts Thumbnail out/thumbnail.png",
-    "render:all": "npm run render:28 && npm run render:15 && npm run render:thumb"
+    "render:all": "npm run render:long && npm run render:short && npm run render:thumb"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.539",

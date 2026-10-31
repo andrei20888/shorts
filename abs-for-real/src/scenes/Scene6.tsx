@@ -3,18 +3,14 @@ import {AbsoluteFill, useCurrentFrame} from 'remotion';
 import {Bg, Move, Plate, Safe, Txt} from '../components';
 import {lin, pulse, punch, slam} from '../anim';
 import {Logo} from '../Logo';
+import type {SceneProps} from '../timing/types';
 
-export type Scene6Timing = {dur: number; linkAt: number; urlAt: number; pulses: number[]};
-export const SCENE6_28: Scene6Timing = {dur: 90, linkAt: 3, urlAt: 18, pulses: [42, 66]};
-export const SCENE6_15: Scene6Timing = {dur: 72, linkAt: 3, urlAt: 15, pulses: [36, 57]};
-
-/** CTA: small logo on top, "Link in bio", absforreal.com on a lime plate that pulses twice, fade to black. */
-export const Scene6: React.FC<{t: Scene6Timing}> = ({t}) => {
+/** CTA: small logo on top, "Link in bio" on the voice, absforreal.com pops and pulses twice, fade out. */
+export const Scene6: React.FC<SceneProps> = ({c, dur}) => {
   const f = useCurrentFrame();
-  const link = slam(f, t.linkAt);
-  const url = punch(f, t.urlAt, 9);
-  let p = 1;
-  for (const at of t.pulses) p *= pulse(f, at, 10, 0.07);
+  const link = slam(f, 2);
+  const url = punch(f, c.url, 9);
+  const p = pulse(f, c.pulse0, 10, 0.07) * pulse(f, c.pulse1, 10, 0.07);
   return (
     <Bg>
       <Safe>
@@ -28,7 +24,7 @@ export const Scene6: React.FC<{t: Scene6Timing}> = ({t}) => {
           </Txt>
         </Move>
       </Safe>
-      <AbsoluteFill style={{backgroundColor: '#000', opacity: lin(f, t.dur - 9, 9)}} />
+      <AbsoluteFill style={{backgroundColor: '#000', opacity: lin(f, dur - 9, 9)}} />
     </Bg>
   );
 };

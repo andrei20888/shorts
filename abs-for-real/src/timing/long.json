@@ -1,0 +1,108 @@
+{
+  "fps": 30,
+  "frames": 848,
+  "bpm": 130.0,
+  "anchorFrame": 59,
+  "audio": "audio/long.wav",
+  "scenes": [
+    {
+      "id": "hook",
+      "from": 0,
+      "dur": 128,
+      "cues": {
+        "h2": 59,
+        "h3": 82,
+        "reset": 99
+      },
+      "pump": true
+    },
+    {
+      "id": "s2a",
+      "from": 128,
+      "dur": 84,
+      "cues": {
+        "line2": 25,
+        "strike": 33
+      },
+      "pump": true
+    },
+    {
+      "id": "s2b",
+      "from": 212,
+      "dur": 69,
+      "cues": {
+        "line2": 24,
+        "kick": 53
+      },
+      "pump": true
+    },
+    {
+      "id": "s3",
+      "from": 281,
+      "dur": 152,
+      "cues": {
+        "can": 18,
+        "item0": 44,
+        "item1": 73,
+        "item2": 105,
+        "pulse": 138
+      },
+      "pump": true
+    },
+    {
+      "id": "s4",
+      "from": 433,
+      "dur": 125,
+      "cues": {
+        "w0": 3,
+        "w1": 8,
+        "w2": 14,
+        "w3": 30,
+        "w4": 34,
+        "w5": 44,
+        "logo": 58,
+        "sq0": 58,
+        "sq1": 62,
+        "sq2": 67,
+        "sq3": 71,
+        "sq4": 76,
+        "lime": 84,
+        "check": 93,
+        "pulse": 105
+      },
+      "pump": false
+    },
+    {
+      "id": "s5a",
+      "from": 558,
+      "dur": 124,
+      "cues": {
+        "price": 32,
+        "access": 67,
+        "underline": 83
+      },
+      "pump": true
+    },
+    {
+      "id": "s5b",
+      "from": 682,
+      "dur": 83,
+      "cues": {
+        "date": 34,
+        "pulse": 64
+      },
+      "pump": true
+    },
+    {
+      "id": "s6",
+      "from": 765,
+      "dur": 83,
+      "cues": {
+        "url": 28,
+        "pulse0": 43,
+        "pulse1": 61
+      },
+      "pump": true
+    }
+  ]
+}

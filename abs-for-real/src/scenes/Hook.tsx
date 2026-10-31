@@ -3,21 +3,22 @@ import {Sequence, useCurrentFrame} from 'remotion';
 import {Bg, Flash, Move, Plate, Safe, Strike, Txt} from '../components';
 import {drift, impact, lin, prog, pulse, punch, shake, slam} from '../anim';
 import {LIME, ON_LIME} from '../theme';
+import type {SceneProps} from '../timing/types';
 
-/** H1 (0.0–0.9s): full lime screen, black text slams in, "30 days" gets struck through. */
-export const HookH1: React.FC = () => {
+/** H1: full lime screen, black text slams in while the voice reads the line; "30 days" gets struck. */
+export const HookH1: React.FC<{strikeAt?: number}> = ({strikeAt = 20}) => {
   const f = useCurrentFrame();
   const s = slam(f);
   const sh = shake(f, 0, 3, 16, 'h1');
   return (
     <Bg color={LIME}>
       <Safe>
-        <Move scale={s.scale} x={sh.x} y={sh.y}>
+        <Move scale={s.scale * drift(f, 60, 1.05)} x={sh.x} y={sh.y}>
           <Txt size={150} color={ON_LIME}>
             <div>Every ‘abs</div>
             <div>
               in{' '}
-              <Strike progress={prog(f, 15, 8)} color={ON_LIME} thickness={0.12}>
+              <Strike progress={prog(f, strikeAt, 8)} color={ON_LIME} thickness={0.12}>
                 30 days
               </Strike>
               ’
@@ -30,13 +31,13 @@ export const HookH1: React.FC = () => {
   );
 };
 
-/** H2 (0.9–1.9s): hard cut, white impact frame, "is LYING" fills the width, letters jitter then lock. */
+/** H2: hard cut on the music drop, white impact frame, "is LYING" fills the width, letters jitter then lock. */
 export const HookH2: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <Bg>
       <Safe>
-        <Move scale={drift(f, 30, 1.06)}>
+        <Move scale={drift(f, 24, 1.07)}>
           <Txt size={140}>is</Txt>
           <Txt size={330} style={{letterSpacing: '-0.04em', marginTop: -10}}>
             {'LYING'.split('').map((ch, i) => {
@@ -58,15 +59,15 @@ export const HookH2: React.FC = () => {
   );
 };
 
-/** H3 (1.9–3.0s): "to you." — "you" pops on a lime plate, whole line pulses once. */
+/** H3: "to you." — "you" pops on a lime plate as it is spoken, line pulses once. */
 export const HookH3: React.FC = () => {
   const f = useCurrentFrame();
   const s = slam(f);
-  const p = punch(f, 6, 8, 1.2);
+  const p = punch(f, 3, 7, 1.2);
   return (
     <Bg>
       <Safe>
-        <Move scale={s.scale * pulse(f, 21, 8, 0.08)}>
+        <Move scale={s.scale * pulse(f, 10, 8, 0.08)}>
           <Txt size={240}>
             to{' '}
             <Plate scale={p.scale} opacity={p.opacity}>
@@ -80,13 +81,13 @@ export const HookH3: React.FC = () => {
   );
 };
 
-/** Reset (3.0–3.6s): the whole hook sentence, small, so it can be read in one piece. */
+/** Reset: the whole hook sentence, small, readable in one piece. */
 export const HookReset: React.FC = () => {
   const f = useCurrentFrame();
   return (
     <Bg>
       <Safe>
-        <Move opacity={lin(f, 0, 3)} scale={drift(f, 18, 1.02)}>
+        <Move opacity={lin(f, 0, 3)} scale={drift(f, 30, 1.03)}>
           <Txt size={72}>
             <div>Every ‘abs in 30 days’</div>
             <div>
@@ -100,20 +101,19 @@ export const HookReset: React.FC = () => {
   );
 };
 
-/** Triple hook, 3.6s = 108 frames. */
-export const HOOK_FRAMES = 108;
-export const Hook: React.FC = () => (
+/** Triple hook: voice reads the line, the visual cuts follow the words, the music drops on "LYING". */
+export const Hook: React.FC<SceneProps> = ({c, dur}) => (
   <>
-    <Sequence from={0} durationInFrames={27}>
+    <Sequence from={0} durationInFrames={c.h2}>
       <HookH1 />
     </Sequence>
-    <Sequence from={27} durationInFrames={30}>
+    <Sequence from={c.h2} durationInFrames={c.h3 - c.h2}>
       <HookH2 />
     </Sequence>
-    <Sequence from={57} durationInFrames={33}>
+    <Sequence from={c.h3} durationInFrames={c.reset - c.h3}>
       <HookH3 />
     </Sequence>
-    <Sequence from={90} durationInFrames={18}>
+    <Sequence from={c.reset} durationInFrames={dur - c.reset}>
       <HookReset />
     </Sequence>
   </>

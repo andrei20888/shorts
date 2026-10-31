@@ -1,0 +1,75 @@
+{
+  "fps": 30,
+  "frames": 486,
+  "bpm": 130.0,
+  "anchorFrame": 57,
+  "audio": "audio/short.wav",
+  "scenes": [
+    {
+      "id": "hook",
+      "from": 0,
+      "dur": 112,
+      "cues": {
+        "h2": 57,
+        "h3": 79,
+        "reset": 95
+      },
+      "pump": true
+    },
+    {
+      "id": "s4",
+      "from": 112,
+      "dur": 111,
+      "cues": {
+        "w0": 3,
+        "w1": 8,
+        "w2": 14,
+        "w3": 30,
+        "w4": 34,
+        "w5": 43,
+        "logo": 56,
+        "sq0": 56,
+        "sq1": 60,
+        "sq2": 63,
+        "sq3": 66,
+        "sq4": 69,
+        "lime": 76,
+        "check": 85,
+        "pulse": 98
+      },
+      "pump": false
+    },
+    {
+      "id": "s5a",
+      "from": 223,
+      "dur": 111,
+      "cues": {
+        "price": 30,
+        "access": 64,
+        "underline": 79
+      },
+      "pump": true
+    },
+    {
+      "id": "s5b",
+      "from": 334,
+      "dur": 83,
+      "cues": {
+        "date": 33,
+        "pulse": 61
+      },
+      "pump": true
+    },
+    {
+      "id": "s6",
+      "from": 417,
+      "dur": 69,
+      "cues": {
+        "url": 28,
+        "pulse0": 43,
+        "pulse1": 61
+      },
+      "pump": true
+    }
+  ]
+}
