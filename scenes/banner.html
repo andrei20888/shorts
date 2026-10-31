@@ -1,0 +1,192 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Orbitron;font-weight:900;src:url(/node_modules/@fontsource/orbitron/files/orbitron-latin-900-normal.woff2)}
+@font-face{font-family:Orbitron;font-weight:700;src:url(/node_modules/@fontsource/orbitron/files/orbitron-latin-700-normal.woff2)}
+@font-face{font-family:'Chakra Petch';font-weight:600;src:url(/node_modules/@fontsource/chakra-petch/files/chakra-petch-latin-600-normal.woff2)}
+@font-face{font-family:'Chakra Petch';font-weight:700;src:url(/node_modules/@fontsource/chakra-petch/files/chakra-petch-latin-700-normal.woff2)}
+html,body{margin:0;width:2560px;height:1440px;background:#0c0e11;overflow:hidden}
+canvas{position:absolute;left:0;top:0;width:2560px;height:1440px}
+#ui{position:absolute;inset:0;font-family:'Chakra Petch',sans-serif}
+.safe{position:absolute;left:507px;top:508px;width:1546px;height:423px}
+#text{position:absolute;left:452px;top:50%;transform:translateY(-50%)}
+#label{font:500 21px 'JetBrains Mono',monospace;color:rgba(0,229,255,.75);letter-spacing:.18em;margin-bottom:14px;white-space:nowrap}
+#label b{color:#ff6a13;font-weight:700}
+#word{font:900 92px/1 Orbitron,sans-serif;letter-spacing:.02em;color:#f4f8fb;white-space:nowrap;
+  text-shadow:0 0 18px rgba(0,229,255,.35),0 0 2px rgba(255,255,255,.6)}
+#word span{color:#ff6a13;text-shadow:0 0 22px rgba(255,106,19,.65),0 0 3px rgba(255,200,160,.7)}
+#word,#tag{width:max-content}
+#tag{font-weight:600;color:#9fe9ff;white-space:nowrap;margin-top:18px;letter-spacing:.2em}
+#tag i{font-style:normal;color:#ff6a13;padding:0 .35em}
+#row{display:flex;align-items:center;gap:26px;margin-top:26px}
+#chip{display:flex;align-items:center;gap:14px;background:#ff6a13;color:#121417;font:700 30px Orbitron,sans-serif;letter-spacing:.08em;
+  padding:13px 28px 13px 22px;clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);
+  box-shadow:0 0 30px rgba(255,106,19,.5)}
+#chip svg{width:26px;height:26px}
+#handle{font:600 26px 'JetBrains Mono',monospace;color:rgba(230,240,245,.7);letter-spacing:.06em}
+.hud{position:absolute;font:500 17px 'JetBrains Mono',monospace;color:rgba(0,229,255,.45);letter-spacing:.14em;white-space:nowrap}
+.bracket{position:absolute;width:46px;height:46px;border-color:rgba(0,229,255,.6);border-style:solid;border-width:0}
+</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<div id="ui">
+  <div class="safe">
+    <div class="bracket" style="left:410px;top:22px;border-left-width:3px;border-top-width:3px"></div>
+    <div class="bracket" style="right:8px;bottom:22px;border-right-width:3px;border-bottom-width:3px;border-color:rgba(255,106,19,.7)"></div>
+    <div id="text">
+      <div id="label">// SIM_LAB <b>●</b> ONLINE &nbsp;—&nbsp; g = 9.81 m/s²</div>
+      <div id="word">PHYSICS <span>SANDBOX</span></div>
+      <div id="tag">DESTRUCTION TESTS<i>•</i>GRAVITY CHAOS<i>•</i>SATISFYING SIMS</div>
+      <div id="row">
+        <div id="chip"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z" fill="#121417"/></svg>NEW SHORTS DAILY</div>
+        <div id="handle">@PhysicsSandbox3D</div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { BRAND, params, makeRenderer, makeComposer, envMap, edgeTexture, emissiveEdgeTexture, gridPlane, rng } from './lib/lab.js';
+import { makeMark, markLights } from './lib/mark.js';
+
+await document.fonts.ready;
+// fit the tagline to the wordmark width
+const word = document.getElementById('word'), tag = document.getElementById('tag');
+let fs = 40; tag.style.fontSize = fs + 'px';
+while (tag.scrollWidth > word.scrollWidth && fs > 10) { fs -= 0.5; tag.style.fontSize = fs + 'px'; }
+
+const DPR = +(params.dpr || 1);
+const BW = 2560, BH = 1440, RW = BW * DPR, RH = BH * DPR;
+const renderer = makeRenderer(RW, RH);
+document.body.insertBefore(renderer.domElement, document.getElementById('ui'));
+const env = envMap(renderer);
+const R = rng(42);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0b0d10);
+scene.fog = new THREE.Fog(0x0b0d10, 14, 46);
+scene.environment = env;
+
+// floor + grid
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshStandardMaterial({ color: 0x0f1115, metalness: 0.6, roughness: 0.36, envMapIntensity: 0.22 }));
+floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+const grid = gridPlane({ size: 200, minor: 1, major: 5, opacity: 0.55, fade: 40 }); grid.position.y = 0.005; scene.add(grid);
+
+// lights
+scene.add(new THREE.HemisphereLight(0x8aa4c0, 0x0b0d10, 0.35));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(-4, 12, 8); key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048); Object.assign(key.shadow.camera, { left: -16, right: 16, top: 10, bottom: -6, near: 1, far: 40 }); key.shadow.bias = -0.0004;
+scene.add(key);
+const orangeL = new THREE.PointLight(BRAND.orange, 60, 14, 1.6); orangeL.position.set(-8.9, 2.7, -1.6); scene.add(orangeL);
+const cyanL = new THREE.PointLight(BRAND.cyan, 40, 12, 1.6); cyanL.position.set(9.2, 1.9, 0.2); scene.add(cyanL);
+
+// materials
+const blockMat = new THREE.MeshStandardMaterial({ map: edgeTexture({ face: '#1f2329', glow: BRAND.cyanHex, edge: 0.05 }), emissiveMap: emissiveEdgeTexture({ glow: BRAND.cyanHex, edge: 0.05 }),
+  emissive: 0xffffff, emissiveIntensity: 0.7, metalness: 0.65, roughness: 0.32 });
+const hotMat = new THREE.MeshStandardMaterial({ map: edgeTexture({ face: '#ff6a13', glow: '#ffd0a8', edge: 0.06, inner: false }), emissiveMap: edgeTexture({ face: '#6a2200', glow: '#ffa060', edge: 0.06, inner: false }),
+  emissive: 0xffffff, emissiveIntensity: 0.9, roughness: 0.4 });
+const sparkO = new THREE.MeshBasicMaterial({ color: new THREE.Color(BRAND.orange).multiplyScalar(3) });
+const sparkC = new THREE.MeshBasicMaterial({ color: new THREE.Color(BRAND.cyan).multiplyScalar(2.5) });
+const box = new THREE.BoxGeometry(1, 1, 1);
+
+function addBlock(pos, size, rot, mat = blockMat) {
+  if (inSafe(pos)) return null;
+  const m = new THREE.Mesh(box, mat); m.position.copy(pos); m.scale.setScalar(size); m.rotation.copy(rot);
+  m.castShadow = m.receiveShadow = true; scene.add(m); return m;
+}
+function addSpark(pos, dir, len, mat) {
+  if (inSafe(pos)) return;
+  const m = new THREE.Mesh(box, mat); m.position.copy(pos); m.scale.set(0.035, 0.035, len);
+  m.lookAt(pos.clone().add(dir)); scene.add(m);
+}
+const rr = (a, b) => a + R() * (b - a);
+const cam = new THREE.PerspectiveCamera(34, BW / BH, 0.1, 200);
+cam.position.set(0, 1.7, 16); cam.lookAt(0, 2.0, 0); cam.updateMatrixWorld();
+// keep the mobile safe area (centre band) free of geometry so the text stays clean
+const inSafe = p => { const v = p.clone().project(cam); return v.z < 1 && Math.abs(v.x) < 0.66 && Math.abs(v.y) < 0.4; };
+
+// LEFT: tower blasted apart (frozen at the moment of explosion)
+{
+  const base = new THREE.Vector3(-9.2, 0, -2.6), s = 0.56, blast = new THREE.Vector3(-8.85, 2.45, -2.0);
+  for (let y = 0; y < 9; y++) for (let x = -1; x <= 1; x++) for (let z = -1; z <= 1; z++) {
+    const p = new THREE.Vector3(base.x + x * s, s / 2 + y * s, base.z + z * s);
+    const d = p.distanceTo(blast);
+    if (y < 3) { addBlock(p, s * 0.98, new THREE.Euler()); continue; }
+    const push = Math.max(0, 3.2 - d) * 1.5 + (y - 3) * 0.12;
+    const dir = p.clone().sub(blast).normalize();
+    dir.x += rr(-0.4, 0.6); dir.y += rr(-0.1, 0.5); dir.z += rr(0, 0.9); dir.normalize();
+    const q = p.clone().addScaledVector(dir, push * rr(0.8, 1.9));
+    addBlock(q, s * 0.98, new THREE.Euler(rr(-1, 1) * push * 0.5, rr(-1, 1) * push * 0.5, rr(-1, 1) * push * 0.5), d < 1.0 ? hotMat : blockMat);
+  }
+  // small debris flying toward the centre of the banner
+  for (let i = 0; i < 70; i++) {
+    const dir = new THREE.Vector3(rr(-0.6, 1.0), rr(-0.2, 1.1), rr(-0.2, 1.2)).normalize();
+    const p = blast.clone().addScaledVector(dir, rr(1.2, 5.6));
+    addBlock(p, rr(0.07, 0.22), new THREE.Euler(rr(0, 6), rr(0, 6), rr(0, 6)), R() < 0.3 ? hotMat : blockMat);
+  }
+  for (let i = 0; i < 90; i++) {
+    const dir = new THREE.Vector3(rr(-1, 1.4), rr(-0.4, 1), rr(-0.6, 1.2)).normalize();
+    addSpark(blast.clone().addScaledVector(dir, rr(0.6, 4.2)), dir, rr(0.15, 0.6), R() < 0.8 ? sparkO : sparkC);
+  }
+  const core = new THREE.Mesh(new THREE.SphereGeometry(0.36, 32, 16), new THREE.MeshBasicMaterial({ color: new THREE.Color(1.0, 0.55, 0.22).multiplyScalar(3.2) }));
+  core.position.copy(blast); scene.add(core);
+  const wave = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.025, 8, 160), new THREE.MeshBasicMaterial({ color: new THREE.Color(BRAND.orange).multiplyScalar(3) }));
+  wave.position.copy(blast); wave.rotation.set(Math.PI / 2 - 0.3, 0.4, 0); scene.add(wave);
+  const wave2 = wave.clone(); wave2.scale.setScalar(1.6); wave2.material = wave.material.clone(); wave2.material.color.multiplyScalar(0.45); scene.add(wave2);
+}
+
+// RIGHT: chrome wrecking ball punching through a block wall
+{
+  const s = 0.5, hole = new THREE.Vector3(9.5, 1.8, -2.0);
+  for (let y = 0; y < 8; y++) for (let x = 0; x < 9; x++) {
+    const p = new THREE.Vector3(7.8 + x * s + (y % 2) * s * 0.5, s / 2 + y * s, -2.3);
+    const d = Math.hypot(p.x - hole.x, p.y - hole.y);
+    if (d > 1.35) { addBlock(p, s * 0.97, new THREE.Euler()); continue; }
+    const dir = new THREE.Vector3(p.x - hole.x + rr(-0.6, 0.2), p.y - hole.y + rr(0, 0.6), rr(1.2, 2.6)).normalize();
+    addBlock(p.clone().addScaledVector(dir, rr(1.2, 4.2)), s * 0.97, new THREE.Euler(rr(0, 3), rr(0, 3), rr(0, 3)), R() < 0.15 ? hotMat : blockMat);
+  }
+  for (let i = 0; i < 45; i++) {
+    const dir = new THREE.Vector3(rr(-1.4, 0.4), rr(-0.3, 1), rr(0.5, 1.5)).normalize();
+    addBlock(hole.clone().addScaledVector(dir, rr(1.0, 5.0)), rr(0.06, 0.18), new THREE.Euler(rr(0, 6), rr(0, 6), rr(0, 6)), R() < 0.2 ? hotMat : blockMat);
+  }
+  for (let i = 0; i < 70; i++) {
+    const dir = new THREE.Vector3(rr(-1.3, 0.6), rr(-0.4, 1), rr(0.2, 1.4)).normalize();
+    addSpark(hole.clone().addScaledVector(dir, rr(0.8, 3.8)), dir, rr(0.15, 0.55), R() < 0.75 ? sparkC : sparkO);
+  }
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.95, 64, 32), new THREE.MeshStandardMaterial({ color: 0xdfe8f0, metalness: 1, roughness: 0.12, envMapIntensity: 1.4 }));
+  ball.position.set(9.25, 1.85, -1.15); ball.castShadow = true; scene.add(ball);
+  const band = new THREE.Mesh(new THREE.TorusGeometry(0.97, 0.03, 8, 120), new THREE.MeshBasicMaterial({ color: new THREE.Color(BRAND.cyan).multiplyScalar(2.6) }));
+  band.position.copy(ball.position); band.rotation.set(0.3, 1.1, 0); scene.add(band);
+  // chain going up out of frame
+  for (let i = 0; i < 14; i++) {
+    const l = new THREE.Mesh(new THREE.TorusGeometry(0.16, 0.045, 8, 24), new THREE.MeshStandardMaterial({ color: 0x8a939e, metalness: 1, roughness: 0.3 }));
+    l.position.set(9.25 + 0.38 + i * 0.36, 2.8 + i * 0.55, -1.15 - i * 0.05); l.rotation.set(0, (i % 2) * Math.PI / 2, -0.58); scene.add(l);
+  }
+}
+
+// distant floating blocks for depth
+for (let i = 0; i < 60; i++) {
+  const p = new THREE.Vector3(rr(-26, 26), rr(0.5, 11), rr(-30, -9));
+  if (Math.abs(p.x) < 6 && p.y < 6) continue;
+  addBlock(p, rr(0.3, 1.1), new THREE.Euler(rr(0, 6), rr(0, 6), rr(0, 6)), R() < 0.12 ? hotMat : blockMat);
+}
+
+// the mark, rendered by its own camera into the banner's safe area
+const markScene = new THREE.Scene(); markScene.environment = null;
+markScene.add(makeMark({ env })); markLights(markScene);
+const markCam = new THREE.PerspectiveCamera(22, BW / BH, 0.1, 100);
+markCam.position.set(6.2, 4.6, 6.2).multiplyScalar(1.44); markCam.lookAt(0.2, 0.15, 0);
+markCam.updateProjectionMatrix();
+const k = 0.33, mx = 735 / BW * 2 - 1, my = 1 - 719 / BH * 2;
+markCam.projectionMatrix.premultiply(new THREE.Matrix4().makeScale(k, k, 1)).premultiply(new THREE.Matrix4().makeTranslation(mx, my, 0));
+markCam.projectionMatrixInverse.copy(markCam.projectionMatrix).invert();
+
+const { composer, bloomPass, finishPass } = makeComposer(renderer, scene, cam, { w: RW, h: RH, bloom: 0.5, radius: 0.5, threshold: 0.9 });
+const mp = new RenderPass(markScene, markCam); mp.clear = false; mp.clearDepth = true;
+composer.insertPass(mp, 1);
+finishPass.uniforms.uGrain.value = 0.018; finishPass.uniforms.uCA.value = 0.0006; finishPass.uniforms.uVig.value = 0.75;
+composer.render();
+window.__done = true;
+</script>
+</body></html>

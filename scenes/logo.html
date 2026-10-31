@@ -1,0 +1,58 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#0c0e11;overflow:hidden} canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+</head><body>
+<script type="module">
+import * as THREE from 'three';
+import { BRAND, params, makeRenderer, makeComposer, envMap } from './lib/lab.js';
+import { makeMark, markLights } from './lib/mark.js';
+
+const S = +params.w * +(params.dpr || 1);
+const renderer = makeRenderer(S, S);
+renderer.domElement.style.width = params.w + 'px';
+renderer.domElement.style.height = params.h + 'px';
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene();
+
+// background: charcoal radial gradient + faint hex lattice + thin badge rings
+const bg = document.createElement('canvas'); bg.width = bg.height = 2048;
+const g = bg.getContext('2d');
+const rad = g.createRadialGradient(1024, 980, 60, 1024, 1024, 1100);
+rad.addColorStop(0, '#2a2f37'); rad.addColorStop(0.45, '#1a1d22'); rad.addColorStop(1, '#090a0c');
+g.fillStyle = rad; g.fillRect(0, 0, 2048, 2048);
+g.strokeStyle = 'rgba(0,229,255,0.07)'; g.lineWidth = 3;
+const hx = 64, hy = hx * Math.sqrt(3) / 2;
+for (let row = -1; row < 2048 / hy + 1; row++) for (let col = -1; col < 2048 / (hx * 1.5) + 1; col++) {
+  const cx = col * hx * 1.5, cy = row * hy * 2 + (col % 2 ? hy : 0);
+  g.beginPath();
+  for (let k = 0; k < 6; k++) { const a = k * Math.PI / 3; g.lineTo(cx + Math.cos(a) * hx * 0.5, cy + Math.sin(a) * hx * 0.5); }
+  g.closePath(); g.stroke();
+}
+// fade lattice toward the edge
+const fade = g.createRadialGradient(1024, 1024, 300, 1024, 1024, 1024);
+fade.addColorStop(0, 'rgba(9,10,12,0)'); fade.addColorStop(1, 'rgba(9,10,12,0.9)');
+g.fillStyle = fade; g.fillRect(0, 0, 2048, 2048);
+// badge ring just inside the YouTube circle crop
+g.strokeStyle = 'rgba(255,106,19,0.42)'; g.lineWidth = 7;
+g.beginPath(); g.arc(1024, 1024, 960, -Math.PI * 0.82, -Math.PI * 0.18); g.stroke();
+g.strokeStyle = 'rgba(0,229,255,0.42)';
+g.beginPath(); g.arc(1024, 1024, 960, Math.PI * 0.18, Math.PI * 0.82); g.stroke();
+const bgTex = new THREE.CanvasTexture(bg); bgTex.colorSpace = THREE.SRGBColorSpace;
+scene.background = bgTex;
+
+const env = envMap(renderer);
+const mark = makeMark({ env });
+mark.rotation.set(0.0, 0, 0);
+scene.add(mark);
+markLights(scene);
+
+const cam = new THREE.PerspectiveCamera(22, 1, 0.1, 100);
+cam.position.set(6.2, 4.6, 6.2).multiplyScalar(1.44);
+cam.lookAt(0.2, 0.15, 0);
+const { composer, finishPass } = makeComposer(renderer, scene, cam, { w: S, h: S, bloom: 0.42, radius: 0.45, threshold: 0.92 });
+finishPass.uniforms.uGrain.value = 0.0; finishPass.uniforms.uVig.value = 0.0; finishPass.uniforms.uCA.value = 0.0;
+composer.render();
+window.__done = true;
+</script>
+</body></html>
