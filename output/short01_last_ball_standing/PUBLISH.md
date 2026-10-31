@@ -1,6 +1,6 @@
 # Short #01: LAST BALL STANDING
 
-**Fișier:** `short01_last_ball_standing.mp4` (1080×1920, 60fps, ~24s, cu sunet)
+**Fișier:** `short01_last_ball_standing.mp4` (1080×1920, 30fps, 23.9s, sunet stereo -14 LUFS) + `thumbnail.jpg`
 
 ## Titlu (alege unul)
 1. `Pick a Color 👇 Only 1 Survives 😱 #shorts`
