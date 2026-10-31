@@ -1,0 +1,30 @@
+{
+  "id": "02-antikythera", "scene": "antikythera", "voice": "bm_george", "speed": 1.04, "cover_t": 1.1,
+  "hook": {"title": "2,100 YRS", "sub": "a computer in a shipwreck", "tag": "GREECE · 100 BC", "end": 2.6, "y": 760, "size": 150},
+  "params": {"bpm": 84},
+  "beats": [
+    {"vo": "A shipwreck. A lump of corroded bronze. And inside it... the oldest computer on Earth.", "keys": ["shipwreck", "oldest computer"], "cue": "assemble", "sfx": ["whoosh@0.0", "hit@3.6"],
+     "hud": {"fig": "FIG. I", "label": "ANTIKYTHERA — GEAR TRAIN", "scale": "2:1"}},
+    {"vo": "This is the Antikythera mechanism. Thirty bronze gears, built twenty-one hundred years ago.", "keys": ["Antikythera", "thirty bronze gears"], "cue": "reveal", "sfx": ["hit@0.0"]},
+    {"vo": "Turn the crank... and the sky moves.", "keys": ["sky moves"], "cue": "crank", "sfx": ["grind@0.0", "blip@1.6"]},
+    {"vo": "One gear has two hundred and twenty-three teeth.", "number": "223 TEETH", "count_from": 0, "count_to": 223, "unit": "TEETH", "sub": "on a single bronze wheel", "cue": "g223", "sfx": ["hit@0.0"], "y": 1250},
+    {"vo": "Exactly the number of months between eclipses.", "keys": ["months between eclipses"], "cue": "saros", "sfx": ["blip@0.6"],
+     "hud": {"fig": "FIG. II", "label": "SAROS CYCLE — 223 MONTHS", "scale": "2:1"}},
+    {"vo": "So it predicted eclipses... decades in advance.", "keys": ["predicted eclipses"], "cue": "predict", "sfx": ["hit@0.0"], "prompt": {"text": "PAUSE — COUNT THE GEARS", "offset": 0.2, "dur": 2.6}},
+    {"vo": "But the real genius is hidden right here.", "keys": ["real genius"], "cue": "focus_pin", "sfx": ["riser@0.0", "hit@1.3"]},
+    {"vo": "Two gears, slightly off-center... with a pin sliding inside a slot.", "keys": ["off-center", "pin", "slot"], "cue": "pinslot", "sfx": ["whoosh@0.0", "blip@2.4"],
+     "hud": {"fig": "FIG. III", "label": "PIN-AND-SLOT — LUNAR ANOMALY", "scale": "8:1"}},
+    {"vo": "That makes the Moon speed up and slow down... exactly like the real one.", "keys": ["speed up", "slow down"], "cue": "moon_speed", "sfx": ["blip@1.0", "blip@2.6"]},
+    {"vo": "Nothing this complex appears again... for fourteen hundred years.", "number": "1,400 YEARS", "count_from": 0, "count_to": 1400, "unit": "YEARS", "sub": "until the first astronomical clocks", "cue": "lost", "sfx": ["hit@0.0", "boom@2.4"], "y": 1250},
+    {"vo": "Who built it? Nobody knows.", "keys": ["nobody knows"], "cue": "mystery", "sfx": ["hit@0.0"],
+     "hud": {"fig": "STATUS", "label": "BUILDER — UNKNOWN", "scale": null}},
+    {"vo": "Should I rebuild the eclipse dial next... or the Roman crane? Comment A or B.", "keys": ["A", "B"], "cta_here": true, "cue": "end", "gap": 0.1}
+  ],
+  "cta": {"title": "WHICH ONE NEXT?", "a": "the eclipse dial, in full", "b": "the Roman 6-ton crane", "footer": "Comment A or B", "sub": "Follow — the winner gets rebuilt in 3D"},
+  "metadata": {
+    "title": "A 2,100-Year-Old Computer Found in a Shipwreck ⚙️ #AncientTech",
+    "description": "The Antikythera mechanism: 30+ bronze gears that predicted eclipses with a 223-tooth gear, and a pin-and-slot trick that reproduces the Moon's changing speed. Nothing this complex appears again for ~1,400 years.\n\n3D reconstruction by Ancient Tech. Comment A or B to pick the next machine.\n\nSources: Freeth et al., Nature 2006/2008; Antikythera Mechanism Research Project.",
+    "hashtags": ["#shorts", "#ancienttech", "#antikythera", "#ancientgreece", "#engineering", "#history", "#3danimation", "#mechanism", "#astronomy"],
+    "pinned_comment": "A = the full eclipse dial of the Antikythera mechanism 🌘\nB = the Roman crane that lifted 6 tons with two men 🏗️\nMost votes wins!"
+  }
+}

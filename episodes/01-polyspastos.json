@@ -1,0 +1,36 @@
+{
+  "id": "01-polyspastos",
+  "scene": "polyspastos",
+  "voice": "bm_george",
+  "speed": 1.04,
+  "cover_t": 1.1,
+  "hook": {"title": "6 TONS", "sub": "lifted by two men walking", "tag": "ROME · 100 AD", "end": 2.6, "y": 760},
+  "params": {"bpm": 86},
+  "beats": [
+    {"vo": "Two men... walking... lifted six tons of marble into the sky.", "keys": ["two men", "six tons"], "cue": "assemble", "sfx": ["whoosh@0.0"],
+     "hud": {"fig": "FIG. I", "label": "POLYSPASTOS — SECTION A-A", "scale": "1:40"}},
+    {"vo": "This is the polyspastos. The Roman crane that built an empire.", "keys": ["polyspastos", "built an empire"], "cue": "reveal", "sfx": ["hit@0.0"]},
+    {"vo": "And it hides a trick most people never see.", "keys": ["trick"], "cue": "focus_pulleys", "sfx": ["riser@0.0", "hit@0.9"],
+     "prompt": {"text": "CAN YOU SPOT THE TRICK?", "offset": 0.3, "dur": 2.4}},
+    {"vo": "Look at the rope. It doesn't go up once... it goes up five times.", "keys": ["rope", "five times"], "cue": "rope_trace", "sfx": ["blip@1.9", "blip@2.3", "blip@2.7", "blip@3.1", "blip@3.5"]},
+    {"vo": "Every pass through a pulley splits the weight again.", "keys": ["splits the weight"], "cue": "divide", "sfx": ["hit@0.0"]},
+    {"vo": "Six thousand kilos... becomes twelve hundred.", "number": "6,000 KG", "count_from": 6000, "count_to": 1200, "unit": "KG", "sub": "load on the rope", "cue": "number1", "sfx": ["hit@0.0"], "y": 1250},
+    {"vo": "Then comes the treadwheel. Four and a half meters wide.", "keys": ["treadwheel"], "cue": "wheel_focus", "sfx": ["whoosh@0.0", "creak@1.6"],
+     "hud": {"fig": "FIG. II", "label": "TREADWHEEL — Ø 4.5 m", "scale": "1:40"}},
+    {"vo": "A man walking inside it gains another thirty to one.", "keys": ["thirty to one"], "cue": "gain", "sfx": ["blip@2.2"]},
+    {"vo": "So fifty kilos of footsteps... becomes six thousand kilos of lift.", "number": "6,000 KG", "count_from": 50, "count_to": 6000, "unit": "KG", "sub": "lifting force", "cue": "lift", "sfx": ["riser@0.0", "boom@2.4", "grind@2.6"], "y": 1250},
+    {"vo": "That is a hundred and twenty times stronger than a man pulling a rope.", "keys": ["hundred and twenty times"], "cue": "lift2", "sfx": ["hit@0.0"]},
+    {"vo": "Egypt needed ramps and thousands of workers. Rome needed two men... and a wheel.", "keys": ["thousands of workers", "two men", "a wheel"], "cue": "compare", "sfx": ["whoosh@0.0", "hit@3.2"],
+     "hud": {"fig": "FIG. III", "label": "RAMP vs CRANE — WORKFORCE", "scale": "1:400"}},
+    {"vo": "And when Rome fell... Europe forgot how to build this. For a thousand years.", "keys": ["forgot", "thousand years"], "cue": "lost", "sfx": ["hit@0.0", "boom@1.6"],
+     "hud": {"fig": "STATUS", "label": "KNOWLEDGE LOST — 476 TO 1400 AD", "scale": null}},
+    {"vo": "Which lost machine should I rebuild next? Comment A... or B.", "keys": ["A", "B"], "cta_here": true, "cue": "end", "gap": 0.1}
+  ],
+  "cta": {"title": "WHICH ONE NEXT?", "a": "the 2,000-year-old computer", "b": "how Rome lifted 53 tons", "footer": "Comment A or B", "sub": "Follow — the winner gets rebuilt in 3D"},
+  "metadata": {
+    "title": "Two Men Lifted 6 TONS With This Roman Crane 🏗️ #AncientTech",
+    "description": "The Roman polyspastos: 5 pulleys + a 4.5 m treadwheel turned two men walking into 6,000 kg of lift — 120× stronger than a man pulling a rope. Then Europe forgot how to build it for 1,000 years.\n\n3D reconstruction by Ancient Tech. Comment A or B to pick the next machine we rebuild.\n\nSources: Vitruvius, De Architectura X; Roman crane studies (Lancaster, O'Connor).",
+    "hashtags": ["#shorts", "#ancienttech", "#rome", "#engineering", "#history", "#3danimation", "#ancientengineering", "#crane", "#mechanism"],
+    "pinned_comment": "A = Antikythera, the 2,000-year-old computer 🧮\nB = How Rome lifted a 53-TON block onto Trajan's Column 🏛️\nMost votes wins. Which one?"
+  }
+}

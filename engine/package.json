@@ -1,0 +1,14 @@
+{
+  "name": "ancient-tech-shorts-engine",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Renders Ancient Tech YouTube Shorts: Three.js wireframe scenes in headless Chromium -> ffmpeg",
+  "scripts": {
+    "preview": "node render.js --preview 1,10,20,30,40 --timeline",
+    "render": "node render.js --timeline"
+  },
+  "dependencies": {
+    "playwright": "1.63.0",
+    "three": "0.160.0"
+  }
+}

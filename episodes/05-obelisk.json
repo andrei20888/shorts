@@ -1,0 +1,28 @@
+{
+  "id": "05-obelisk", "scene": "obelisk", "voice": "bm_george", "speed": 1.04, "cover_t": 1.1,
+  "hook": {"title": "455 TONS", "sub": "stood up with sand", "tag": "EGYPT · 1400 BC", "end": 2.6, "y": 760},
+  "params": {"bpm": 86},
+  "beats": [
+    {"vo": "Four hundred and fifty-five tons of solid granite... standing on its end. No crane. No engine.", "keys": ["no crane", "no engine"], "cue": "assemble", "sfx": ["whoosh@0.0", "hit@3.4"],
+     "hud": {"fig": "FIG. I", "label": "OBELISK RAISING — SAND PIT", "scale": "1:200"}},
+    {"vo": "How do you stand up a thirty-two meter needle?", "keys": ["thirty-two meter"], "cue": "measure", "sfx": ["blip@1.2"]},
+    {"vo": "First, you drag it up a ramp... to the edge of a pit full of sand.", "keys": ["pit full of sand"], "cue": "drag", "sfx": ["grind@0.3", "hit@2.6"]},
+    {"vo": "Then you do the unexpected. You let the sand out.", "keys": ["let the sand out"], "cue": "sand_out", "sfx": ["hit@0.0", "riser@1.4"], "prompt": {"text": "WATCH THE SAND LEVEL", "offset": 1.6, "dur": 2.4}},
+    {"vo": "Grain by grain the pit empties... and the obelisk tilts, slowly, under its own weight.", "keys": ["tilts", "own weight"], "cue": "tilt", "sfx": ["grind@0.0", "creak@2.4", "grind@3.6"]},
+    {"vo": "Gravity does the lifting. Sand does the braking.", "number": "90°", "count_from": 5, "count_to": 90, "unit": "°", "sub": "tilt, controlled by sand", "cue": "angle", "sfx": ["hit@0.0"], "y": 1250},
+    {"vo": "The last few degrees? Ropes, hundreds of men... and one chance to get it right.", "keys": ["hundreds of men", "one chance"], "cue": "pull", "sfx": ["whoosh@0.0", "creak@1.6", "boom@3.4"],
+     "hud": {"fig": "FIG. II", "label": "FINAL PULL — ROPE TEAMS", "scale": "1:200"}},
+    {"vo": "Get it wrong, and three years of carving... shatters.", "number": "3 YEARS", "sub": "of carving, one mistake", "cue": "risk", "sfx": ["hit@0.0"], "y": 1250},
+    {"vo": "The biggest one ever attempted never left the quarry.", "keys": ["never left the quarry"], "cue": "aswan", "sfx": ["whoosh@0.0", "hit@1.2"],
+     "hud": {"fig": "FIG. III", "label": "ASWAN — UNFINISHED OBELISK", "scale": "1:300"}},
+    {"vo": "One thousand and ninety tons... cracked, before it could stand.", "number": "1,090 TONS", "count_from": 0, "count_to": 1090, "unit": "TONS", "sub": "still lying in the quarry", "cue": "crack", "sfx": ["boom@1.9"], "y": 1250},
+    {"vo": "Should I rebuild the pyramid's hidden ramp next... or the Roman crane? Comment A or B.", "keys": ["A", "B"], "cta_here": true, "cue": "end", "gap": 0.1}
+  ],
+  "cta": {"title": "WHICH ONE NEXT?", "a": "the pyramid's hidden ramp", "b": "the Roman 6-ton crane", "footer": "Comment A or B", "sub": "Follow — the winner gets rebuilt in 3D"},
+  "metadata": {
+    "title": "How Egypt Stood Up a 455-TON Obelisk… With Sand 🏛️ #AncientTech",
+    "description": "No crane, no engine: drag the obelisk to a sand-filled pit, let the sand out slowly, and gravity tilts 455 tons of granite onto its pedestal. The biggest one ever attempted (1,090 t) cracked and still lies in the Aswan quarry.\n\n3D reconstruction by Ancient Tech. Comment A or B to pick the next build.\n\nSources: Engelbach, 'The Problem of the Obelisks' (1923); NOVA 'Secrets of Lost Empires'.",
+    "hashtags": ["#shorts", "#ancienttech", "#obelisk", "#egypt", "#engineering", "#history", "#3danimation", "#ancientegypt", "#construction"],
+    "pinned_comment": "A = the ramp hidden INSIDE the Great Pyramid 🔺\nB = the Roman crane that lifted 6 tons with 2 men 🏗️\nMost votes wins the next 3D rebuild!"
+  }
+}

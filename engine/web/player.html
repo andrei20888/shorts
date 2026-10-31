@@ -1,0 +1,33 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Cinzel';font-weight:400;src:url('../../brand/fonts/Cinzel-Regular.ttf')}
+@font-face{font-family:'Cinzel';font-weight:700;src:url('../../brand/fonts/Cinzel-Bold.ttf')}
+@font-face{font-family:'Cinzel';font-weight:900;src:url('../../brand/fonts/Cinzel-Black.ttf')}
+@font-face{font-family:'Cinzel Decorative';font-weight:700;src:url('../../brand/fonts/CinzelDecorative-Bold.ttf')}
+@font-face{font-family:'Cinzel Decorative';font-weight:900;src:url('../../brand/fonts/CinzelDecorative-Black.ttf')}
+@font-face{font-family:'Inter';font-weight:600;src:url('../../brand/fonts/Inter-SemiBold.otf')}
+@font-face{font-family:'Inter';font-weight:700;src:url('../../brand/fonts/Inter-Bold.otf')}
+@font-face{font-family:'Inter';font-weight:800;src:url('../../brand/fonts/Inter-ExtraBold.otf')}
+@font-face{font-family:'Inter';font-weight:900;src:url('../../brand/fonts/Inter-Black.otf')}
+@font-face{font-family:'JetBrains Mono';font-weight:400;src:url('../../brand/fonts/JetBrainsMono-Regular.ttf')}
+@font-face{font-family:'JetBrains Mono';font-weight:500;src:url('../../brand/fonts/JetBrainsMono-Medium.ttf')}
+@font-face{font-family:'JetBrains Mono';font-weight:700;src:url('../../brand/fonts/JetBrainsMono-Bold.ttf')}
+html,body{margin:0;background:#000;overflow:hidden}
+canvas{display:block}
+</style></head>
+<body>
+<script type="module">
+import { Compositor } from './core/compositor.js';
+const comp = new Compositor(1080, 1920);
+window.__setup = async (tl, pal) => {
+  const fonts = ['900 10px Cinzel', '700 10px Cinzel', '400 10px Cinzel', '900 10px "Cinzel Decorative"', '900 10px Inter', '800 10px Inter', '700 10px Inter', '600 10px Inter', '500 10px "JetBrains Mono"', '700 10px "JetBrains Mono"', '400 10px "JetBrains Mono"'];
+  await Promise.all(fonts.map((f) => document.fonts.load(f).catch(() => null)));
+  await document.fonts.ready;
+  await comp.load(tl, pal);
+  return true;
+};
+window.__renderAt = (t) => comp.renderAt(t);
+window.__ready = true;
+</script>
+</body></html>

@@ -1,0 +1,23 @@
+{
+  "name": "Ancient Tech — Blueprint Gold",
+  "bg_deep": "#0d0a06",
+  "bg_stone": "#1a1510",
+  "bg_stone_light": "#2a2217",
+  "grid_minor": "#3a2d16",
+  "grid_major": "#5a4520",
+  "gold": "#ffc24a",
+  "gold_bright": "#ffe3a0",
+  "gold_core": "#fff6dc",
+  "gold_dim": "#8a6a2a",
+  "bronze": "#b07a2a",
+  "accent_alert": "#ff4d2e",
+  "accent_cyan": "#5ad7ff",
+  "text": "#f5e9cf",
+  "text_muted": "#b9a681",
+  "fonts": {
+    "title": "Cinzel",
+    "display": "Cinzel Decorative",
+    "caption": "Inter",
+    "mono": "JetBrains Mono"
+  }
+}

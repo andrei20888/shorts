@@ -1,0 +1,10 @@
+# heavy, re-downloadable
+engine/models/*.onnx
+engine/models/*.bin
+engine/node_modules/
+# intermediates
+work/
+*.wav
+__pycache__/
+*.pyc
+.cache/
