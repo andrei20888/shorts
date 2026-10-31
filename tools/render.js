@@ -64,7 +64,7 @@ const server = http.createServer((req, res) => {
   page.on('console', m => { if (m.type() === 'error' || m.type() === 'warning' || args.verbose) console.log('[console]', m.type(), m.text()); });
   page.on('pageerror', e => console.log('[pageerror]', e.message));
   const q = `w=${W}&h=${H}&dpr=${DPR}&fps=${FPS}&mode=${args.video ? 'video' : 'still'}` + (args.q ? '&' + args.q : '');
-  await page.goto(`http://127.0.0.1:${port}/${args.page}?${q}`);
+  await page.goto(`http://127.0.0.1:${port}/${args.page}?${q}`, { timeout: 0, waitUntil: 'commit' });
   await page.waitForFunction(() => window.__done === true || window.__error, null, { timeout: 0, polling: 500 });
   const err = await page.evaluate(() => window.__error);
   if (err) { console.error('Page error:', err); process.exitCode = 1; }
