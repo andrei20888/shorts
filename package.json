@@ -1,0 +1,16 @@
+{
+  "name": "techbreakdown-shorts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Tech Breakdown (@TechBreakdown3D) — 3D isometric explainer Shorts pipeline",
+  "type": "module",
+  "scripts": {
+    "brand": "node engine/render-still.mjs",
+    "build": "python3 engine/build.py"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.0",
+    "three": "^0.170.0"
+  }
+}

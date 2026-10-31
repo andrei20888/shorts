@@ -1,0 +1,29 @@
+{
+  "id": "01-microchip",
+  "voice": "af_heart",
+  "speed": 1.1,
+  "lead": 0.25,
+  "beats": [
+    { "id": "hook",     "say": "Nearly twenty billion tiny switches are flipping inside your phone. Right now.",
+      "caption": "Nearly 20 billion tiny switches are flipping inside your phone. Right now." },
+    { "id": "hook2",    "say": "But they have zero moving parts. So how do they switch?",
+      "caption": "But they have ZERO moving parts. So how do they switch?" },
+    { "id": "zoom",     "say": "Zoom in. Past the metal lid. Into the silicon.", "pause": 0.3 },
+    { "id": "size",     "say": "Each switch is a transistor. Over a thousand could line up across one human hair.",
+      "caption": "Each switch is a transistor. Over 1,000 could line up across one human hair." },
+    { "id": "parts",    "say": "It has three parts. A source. A drain. And a gate." },
+    { "id": "off",      "say": "No voltage on the gate? Electrons can't cross. That's a zero.", "hold": 0.2 },
+    { "id": "on",       "say": "Now add voltage. A channel opens, and electrons rush through. That's a one!", "hold": 0.2 },
+    { "id": "question", "say": "Quick, guess. How many times per second can it flip? Comment your number.", "hold": 1.0 },
+    { "id": "answer",   "say": "Up to about three billion.", "caption": "Up to about 3 BILLION.", "pre": 0.2, "hold": 0.5 },
+    { "id": "scale",    "say": "Wire a few together and you get logic. Logic becomes math. And math becomes every photo, every game, every message you've ever sent." },
+    { "id": "loop",     "say": "It's all just...", "pause": 0.05 }
+  ],
+  "tail": 0.35,
+  "meta": {
+    "title": "20 Billion Switches Are Flipping In Your Pocket Right Now 🤯 #shorts",
+    "description": "Your phone's chip packs nearly 20 billion transistors — switches with zero moving parts that flip billions of times per second. Here's how one actually works, in 3D.\n\nHow many times per second did YOU guess? 👇\n\n#microchip #transistor #howitworks #tech #engineering #3danimation #science #shorts",
+    "pinned_comment": "Be honest — what was your guess before the answer? 🤔 (Next breakdown: how a rocket nozzle makes gas go FASTER when the pipe gets wider.)",
+    "tags": ["microchip", "transistor", "how a transistor works", "how chips work", "semiconductor", "cpu", "3d animation", "tech explained", "engineering", "shorts"]
+  }
+}
