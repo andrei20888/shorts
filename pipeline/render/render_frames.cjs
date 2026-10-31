@@ -82,14 +82,12 @@ const server = http.createServer((req, res) => {
   else if (every) { frames = []; for (let i = 0; i < TOTAL; i += Number(every)) frames.push(i); }
   else { frames = [...Array(limit ? Math.min(TOTAL, Number(limit)) : TOTAL).keys()]; }
 
+  const outFile = path.join(outDir, 'video_only.mp4'); const tmpFile = path.join(outDir, 'frames_lossless.mkv');
   if (!previewList && !every) {
-    const outFile = path.join(outDir, 'video_only.mp4');
-    ff = spawn('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error', '-stats',
+    // Stage 1: lossless, ultrafast intermediate (keeps CPU free for the software GL renderer).
+    ff = spawn('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error',
       '-f', 'rawvideo', '-pix_fmt', 'rgba', '-s', `${W}x${H}`, '-r', String(FPS), '-i', 'pipe:0',
-      '-vf', 'vflip,format=yuv420p',
-      '-c:v', 'libx264', '-preset', preset, '-crf', crf, '-profile:v', 'high', '-level', '4.2',
-      '-x264-params', 'aq-mode=3:aq-strength=1.1:deblock=-1,-1:ref=4:bframes=5',
-      '-g', String(FPS * 2), '-movflags', '+faststart', outFile], { stdio: ['pipe', 'inherit', 'inherit'] });
+      '-vf', 'vflip,format=rgb24', '-c:v', 'libx264rgb', '-preset', 'ultrafast', '-qp', '0', '-threads', '1', tmpFile], { stdio: ['pipe', 'inherit', 'inherit'] });
     ffDone = new Promise((res, rej) => ff.on('close', (c) => (c === 0 ? res() : rej(new Error('ffmpeg exit ' + c)))));
   }
 
@@ -114,6 +112,17 @@ const server = http.createServer((req, res) => {
     }
   }
   await browser.close();
-  if (ff) { ff.stdin.end(); await ffDone; console.log('[render] wrote', path.join(outDir, 'video_only.mp4')); }
+  if (ff) {
+    ff.stdin.end(); await ffDone;
+    // Stage 2: final high-quality encode with all cores.
+    console.log('[render] encoding final video...');
+    const { spawnSync } = require('child_process');
+    const r = spawnSync('ffmpeg', ['-y', '-hide_banner', '-loglevel', 'error', '-stats', '-i', tmpFile, '-vf', 'format=yuv420p',
+      '-c:v', 'libx264', '-preset', preset, '-crf', crf, '-profile:v', 'high', '-level', '4.2',
+      '-x264-params', 'aq-mode=3:aq-strength=1.1:deblock=-1,-1:ref=4:bframes=5', '-g', String(FPS * 2), '-movflags', '+faststart', outFile], { stdio: 'inherit' });
+    if (r.status !== 0) throw new Error('final encode failed');
+    if (!args.includes('--keep-lossless')) fs.unlinkSync(tmpFile);
+    console.log('[render] wrote', outFile);
+  }
   server.close();
 })().catch((e) => { console.error(e); process.exit(1); });
