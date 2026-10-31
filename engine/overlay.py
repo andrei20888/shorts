@@ -144,7 +144,7 @@ STYLE = {
     "stat": dict(size=96, kind="black", max_w=900, y=800, upper=True, hl=YELLOW),
     "quiet": dict(size=60, kind="semibold", max_w=860, y=1180, upper=False, hl=CYAN),
     "cta": dict(size=78, kind="black", max_w=880, y=1050, upper=True, hl=YELLOW),
-    "interact": dict(size=58, kind="display", max_w=820, y=1330, upper=False, hl=YELLOW),
+    "interact": dict(size=58, kind="display", max_w=820, y=1225, upper=False, hl=YELLOW),
 }
 
 

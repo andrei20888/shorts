@@ -509,6 +509,7 @@ class Scene:
             rd = roads[..., None]
             img = img * (1 - rd * 0.8) + hexc("#d8c9a6") * rd * 0.8
             cleared_total = cleared
+            roads_total = roads
 
         # ---------------- cities ------------------------------------------
         # extent grows with t: threshold falls from 1.15 (nothing) to ~0.18
@@ -575,9 +576,11 @@ class Scene:
                 glow = light_rgb * 0.8 + bloom1 * 0.45 + bloom2 * 0.28 + bloom3 * 0.2
                 dusk += glow * night * (1.0 - 0.6 * cloud_soft)[..., None]
             if cleared_total is not None:
-                # settlements along the roads glow faintly
-                roads_glow = gauss(cleared_total * 0.08, 8.0)
-                dusk += (roads_glow * night)[..., None] * hexc("#ffcf8a")
+                # settlements and burning edges glow warm along the clearings
+                pts = (self.flicker > 0.994).astype(np.float32) * smoothstep(0.15, 0.7, cleared_total) * 1.4
+                lamp = pts + roads_total * 0.35 + smoothstep(0.3, 0.9, cleared_total) * 0.06
+                glow = lamp + gauss(lamp, 3.0) * 0.8 + gauss(lamp, 14.0) * 0.6 + gauss(lamp, 40.0) * 0.4
+                dusk += (glow * night)[..., None] * hexc("#ffb866")
             # filmic soft knee so the bloom never blows out to flat white
             img = np.where(dusk < 0.6, dusk, 0.6 + 0.4 * (1 - np.exp(-(dusk - 0.6) / 0.4)))
 
