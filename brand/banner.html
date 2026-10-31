@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tech Breakdown banner</title>
+<script type="importmap">{"imports":{"three":"/engine/node_modules/three/build/three.module.js","three/addons/":"/engine/node_modules/three/examples/jsm/"}}</script>
+<style>
+  @font-face { font-family: 'Sora'; src: url(/brand/fonts/Sora-800.ttf); font-weight: 800; }
+  @font-face { font-family: 'Space Grotesk'; src: url(/brand/fonts/SpaceGrotesk-500.ttf); font-weight: 500; }
+  @font-face { font-family: 'JetBrains Mono'; src: url(/brand/fonts/JetBrainsMono-700.ttf); font-weight: 700; }
+  @font-face { font-family: 'JetBrains Mono'; src: url(/brand/fonts/JetBrainsMono-500.ttf); font-weight: 500; }
+  html, body { margin: 0; width: 2560px; height: 1440px; overflow: hidden; background: #040a17; }
+  #c { position: absolute; inset: 0; width: 2560px; height: 1440px; }
+  svg { position: absolute; inset: 0; }
+  /* Title block sits inside YouTube's 1546x423 all-device safe area (x 507-2053, y 508-931). */
+  .title { position: absolute; left: 0; right: 0; top: 572px; text-align: center; }
+  .kicker { font: 700 26px 'JetBrains Mono'; letter-spacing: 0.32em; color: #19e3c1; margin-left: 0.32em; }
+  .kicker b { color: #8dfff0; }
+  h1 { margin: 14px 0 0; font: 800 90px/1 'Sora'; letter-spacing: 0.03em;
+       background: linear-gradient(180deg, #ffffff 0%, #dfe7ef 45%, #93a3b6 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+       filter: drop-shadow(0 6px 18px rgba(0,0,0,0.55)); }
+  h1 span { background: linear-gradient(180deg, #b9fff4 0%, #19e3c1 60%, #0fae96 100%); -webkit-background-clip: text; background-clip: text; }
+  .tag { margin-top: 18px; font: 500 31px 'Space Grotesk'; color: #c4cfdb; letter-spacing: 0.01em; }
+  .rule { display: inline-block; width: 48px; height: 2px; background: #19e3c1; vertical-align: middle; margin: 0 22px; opacity: 0.8; }
+  .label { font: 500 17px 'JetBrains Mono'; fill: #c4cfdb; letter-spacing: 0.08em; }
+  .label.t { fill: #19e3c1; font-weight: 700; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<svg id="ov" width="2560" height="1440" viewBox="0 0 2560 1440">
+  <defs>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="55%" stop-color="#040a17" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#040a17" stop-opacity="0.9"/>
+    </radialGradient>
+    <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#19e3c1" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#19e3c1" stop-opacity="0.07"/>
+      <stop offset="1" stop-color="#19e3c1" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="470" width="2560" height="500" fill="url(#haze)"/>
+  <rect width="2560" height="1440" fill="url(#vig)"/>
+  <g id="callouts" fill="none" stroke="#19e3c1" stroke-width="1.6"></g>
+</svg>
+<div class="title">
+  <div class="kicker">◆ 3D VISUAL <b>BREAKDOWNS</b> ◆</div>
+  <h1>TECH <span>BREAKDOWN</span></h1>
+  <div class="tag">How machines actually work<span class="rule"></span>Microchips · Rockets · Servers</div>
+</div>
+<script type="module">
+import { THREE, createStage, makeMaterials, makeGrid, shadowCatcher, PAL, radialBackground } from '/engine/lib/core.js';
+import { makeChip, makeRocket, makeServerRack, makeGear } from '/engine/lib/models.js';
+
+await document.fonts.ready;
+const W = 2560, H = 1440;
+const stage = createStage({
+  canvas: document.getElementById('c'), width: W, height: H,
+  background: radialBackground(0x10295a, PAL.navy0, 0.5, 0.5), shadowExtent: 30,
+});
+stage.iso({ target: [0, 0, 0], view: 24 });
+const S = stage.scene, M = makeMaterials();
+const grid = makeGrid({ cell: 1, major: 4, opacity: 0.17, fade: 24 });
+S.add(grid, shadowCatcher(200, 0.4));
+
+// Place an object so its base lands at a pixel position.
+const place = (obj, px, py) => { const p = stage.groundAt(px, py); obj.position.set(p.x, 0, p.z); S.add(obj); return p; };
+
+// Exploded CPU, left of title
+const chip = makeChip(M);
+chip.lid.position.y = chip.lidRest + 1.9;
+chip.die.position.y += 0.75;
+chip.balls.position.y = -0.0;
+chip.substrate.position.y += 0.35; chip.caps.position.y += 0.35;
+chip.group.rotation.y = 0;
+chip.group.scale.setScalar(0.8);
+place(chip.group, 668, 925);
+
+// Rocket, right of title, stages separated
+const rocket = makeRocket(M, { scale: 0.62 });
+rocket.layout(0.55);
+rocket.group.position.y = 0.7;
+const rp = place(rocket.group, 1915, 935);
+rocket.group.position.y = 1.1;
+
+// Server rack, far right (desktop width)
+const rack = makeServerRack(M, { units: 8 });
+rack.hero.position.z += 1.0;
+rack.group.rotation.y = 0;
+place(rack.group, 2330, 870);
+
+// Gears, far left (desktop width)
+const g1 = makeGear(M, { teeth: 18, r: 1.25, hole: 0.18 }); const g2 = makeGear(M, { teeth: 12, r: 0.82, hole: 0.14, mat: M.gunmetal });
+const gp = stage.groundAt(260, 860);
+g1.group.position.set(gp.x, 0.35, gp.z); g1.group.rotation.y = 0.1;
+g2.group.position.set(gp.x + 1.6, 0.35, gp.z + 1.6); g2.group.rotation.y = 0.3;
+S.add(g1.group, g2.group);
+
+// Teal energy line between rocket stages and under the chip lid
+const glowMat = new THREE.MeshBasicMaterial({ color: PAL.tealHot, toneMapped: false, transparent: true, opacity: 0.9 });
+const ring = new THREE.Mesh(new THREE.TorusGeometry(2.9, 0.025, 8, 96), glowMat);
+ring.rotation.x = Math.PI / 2; ring.position.y = 0.02; chip.group.add(ring);
+
+stage.render();
+
+// Schematic callouts, projected from 3D anchor points.
+const ov = document.getElementById('callouts');
+const NS = 'http://www.w3.org/2000/svg';
+const wp = (o, x, y, z) => o.localToWorld(new THREE.Vector3(x, y, z));
+function callout(anchor, dx, dy, text, sub) {
+  const [x, y] = stage.toScreen(anchor);
+  const ex = x + dx, ey = y + dy, hx = ex + (dx > 0 ? 120 : -120);
+  const path = document.createElementNS(NS, 'polyline');
+  path.setAttribute('points', `${x},${y} ${ex},${ey} ${hx},${ey}`); ov.appendChild(path);
+  const dot = document.createElementNS(NS, 'circle'); dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', 4); dot.setAttribute('fill', '#8dfff0'); ov.appendChild(dot);
+  const t = document.createElementNS(NS, 'text'); t.setAttribute('class', 'label t');
+  t.setAttribute('x', dx > 0 ? ex + 4 : hx); t.setAttribute('y', ey - 10); t.textContent = text; ov.appendChild(t);
+  if (sub) { const s = document.createElementNS(NS, 'text'); s.setAttribute('class', 'label'); s.setAttribute('x', dx > 0 ? ex + 4 : hx); s.setAttribute('y', ey + 24); s.textContent = sub; ov.appendChild(s); }
+}
+chip.group.updateMatrixWorld(true); rocket.group.updateMatrixWorld(true); rack.group.updateMatrixWorld(true);
+callout(wp(chip.lid, -1.84, 0, 0), -70, -60, 'IHS', 'HEAT SPREADER');
+callout(wp(chip.die, -1.12, 0, 0), -150, 10, 'DIE', '15.2B TRANSISTORS');
+callout(wp(rocket.fairing, 0, 0.9, 0), 70, -40, 'FAIRING');
+callout(wp(rocket.stage2, 0.42, 0.75, 0), 90, 30, 'STAGE 2', 'VACUUM ENGINE');
+callout(wp(rack.hero, 0.9, 0.2, 0.8), 70, -110, 'SLED 05', '2× CPU · 4× FAN');
+window.__ready = true;
+</script>
+</body>
+</html>

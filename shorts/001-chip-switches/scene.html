@@ -1,0 +1,342 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>001 — 15 billion switches</title>
+<script type="importmap">{"imports":{"three":"/engine/node_modules/three/build/three.module.js","three/addons/":"/engine/node_modules/three/examples/jsm/"}}</script>
+<link rel="stylesheet" href="/engine/lib/overlay.css">
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="ov">
+  <div id="vig"></div>
+  <div id="dim"></div>
+  <div id="brand"><img src="/brand/logo-800.png" alt=""><span>TECH BREAKDOWN</span></div>
+
+  <div id="counter" class="hide"><div class="lbl">SWITCHES INSIDE YOUR PHONE</div><div class="num">0</div></div>
+
+  <div id="quiz" class="hide">
+    <div class="q-title">HOW SMALL IS ONE?</div>
+    <div class="cards">
+      <div class="card" id="qa"><div class="letter">A</div>
+        <svg viewBox="0 0 100 100"><path d="M18 82 C 30 60, 40 70, 50 50 S 70 30, 84 16" /><path d="M24 86 C 36 64, 46 74, 56 54 S 76 34, 88 22" opacity=".5"/></svg>
+        <div class="name">HAIR</div></div>
+      <div class="card" id="qb"><div class="letter">B</div>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="34"/><ellipse cx="50" cy="50" rx="17" ry="12" opacity=".6"/></svg>
+        <div class="name">BLOOD CELL</div></div>
+      <div class="card" id="qc"><div class="letter">C</div>
+        <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="22"/><g id="spk"></g></svg>
+        <div class="name">VIRUS</div></div>
+    </div>
+    <div id="timer"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" class="bg"/><circle cx="60" cy="60" r="50" class="fg" id="timerArc"/></svg><span id="timerTxt">3</span></div>
+    <div id="lock" class="hide"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>LOCKED IN?</div>
+  </div>
+
+  <div id="ruler" class="hide"><div class="track"></div><div id="ticks"></div><div id="marker"><span id="markerTxt">1 cm</span></div></div>
+
+  <div id="tag" class="hide"><b id="tagName"></b><span id="tagSize"></span></div>
+  <div id="stamp" class="hide"></div>
+  <div id="digit" class="hide"></div>
+
+  <div id="icons" class="hide">
+    <div class="ic" id="icMath"><svg viewBox="0 0 48 48"><path d="M34 10H14l12 14-12 14h20"/></svg><span>MATH</span></div>
+    <div class="ic" id="icMusic"><svg viewBox="0 0 48 48"><path d="M18 34V12l20-4v22"/><circle cx="13" cy="34" r="5"/><circle cx="33" cy="30" r="5"/></svg><span>MUSIC</span></div>
+    <div class="ic" id="icPhone"><svg viewBox="0 0 48 48"><rect x="14" y="5" width="20" height="38" rx="4"/><path d="M21 37h6"/></svg><span>YOUR PHONE</span></div>
+  </div>
+
+  <div id="hz" class="hide"><div class="num">0</div><div class="lbl">SWITCHES FLIPPED / SECOND</div></div>
+
+  <div id="cta" class="hide">
+    <div class="ttl">WHAT SHOULD I<br><em>BREAK DOWN</em> NEXT?</div>
+    <div class="opts">
+      <div class="opt" id="o1"><svg viewBox="0 0 48 48"><path d="M24 4c7 6 10 14 10 22l-4 8H18l-4-8c0-8 3-16 10-22z"/><circle cx="24" cy="20" r="4"/><path d="M18 34l-6 8M30 34l6 8M24 36v8"/></svg>ROCKET ENGINE</div>
+      <div class="opt" id="o2"><svg viewBox="0 0 48 48"><rect x="8" y="6" width="32" height="10" rx="2"/><rect x="8" y="19" width="32" height="10" rx="2"/><rect x="8" y="32" width="32" height="10" rx="2"/><path d="M14 11h2M14 24h2M14 37h2"/></svg>DATA CENTER</div>
+      <div class="opt" id="o3"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="8"/><path d="M24 4v8M24 36v8M4 24h8M36 24h8M10 10l6 6M32 32l6 6M10 38l6-6M32 16l6-6"/></svg>CAR ENGINE</div>
+    </div>
+    <div class="cm">COMMENT BELOW <span class="arrow">↓</span></div>
+  </div>
+
+  <div id="cap"></div>
+  <div id="flash"></div>
+</div>
+<script type="module">
+import { THREE, createStage, makeMaterials, makeGrid, shadowCatcher, PAL, radialBackground, seg, clamp, lerp, ease, rng } from '/engine/lib/core.js';
+import { makeChip, makePCB } from '/engine/lib/models.js';
+import { makeCellArray, makeFinFETArray, makeElectrons, makeHair, makeBloodCell, makeVirus } from '/engine/lib/micro.js';
+import { Captions, popIn, setShow, fmtInt } from '/engine/lib/overlay.js';
+
+const W = 1080, H = 1920;
+await document.fonts.ready;
+const TL = await (await fetch('timeline.json')).json();
+const L = Object.fromEntries(TL.lines.map((l) => [l.id, l]));
+const Wd = (id, i) => L[id].words[i < 0 ? L[id].words.length + i : i].start;
+const DUR = TL.duration;
+
+// ---------------- stage + levels ----------------
+const stage = createStage({ canvas: document.getElementById('c'), width: W, height: H, background: radialBackground(0x12305f, PAL.navy0, 0.5, 0.42), shadowExtent: 14 });
+const S = stage.scene, M = makeMaterials();
+
+const A = new THREE.Group(), B = new THREE.Group(), C = new THREE.Group();
+S.add(A, B, C);
+// Level A: chip on a board
+const pcb = makePCB(M); A.add(pcb.group);
+const chip = makeChip(M); A.add(chip.group);
+const shock = new THREE.Mesh(new THREE.RingGeometry(0.96, 1, 96), new THREE.MeshBasicMaterial({ color: PAL.tealHot, transparent: true, toneMapped: false, side: THREE.DoubleSide, depthWrite: false }));
+shock.rotation.x = -Math.PI / 2; shock.position.y = 0.05; A.add(shock);
+// Level B: interconnect field + hair + blood cell
+const cells = makeCellArray(M); B.add(cells.group);
+const hair = makeHair({ radius: 4.2, length: 90 }); hair.group.position.y = 4.8; B.add(hair.group);
+const rbc = makeBloodCell({ radius: 1.7 }); B.add(rbc.group);
+// Level C: FinFET array + virus + electrons
+const fins = makeFinFETArray(M, { nx: 5, nz: 5, px: 2.7, pz: 2.2 }); C.add(fins.group);
+C.add(makeGrid({ cell: 0.5, major: 4, opacity: 0.25, fade: 14, y: -0.26 }));
+const virus = makeVirus({ radius: 1.05 }); C.add(virus.group);
+const electrons = makeElectrons(56); fins.center.group.add(electrons.mesh);
+S.add(shadowCatcher(200, 0.3));
+
+// ---------------- timing ----------------
+const T = {
+  lid: 0.32, countA: 0.45, countB: L.hook.end - 0.15,
+  qa: Wd('quiz', 6), qb: Wd('quiz', 8), qc: Wd('quiz', 11),
+  timerA: L.quiz.end - 0.05, timerB: L.zoom.start,
+  lock: L.zoom.start, dive: Wd('zoom', 3), toB: L.hair.start - 0.04,
+  hairIn: L.hair.start, hairStamp: Wd('hair', 3),
+  toCell: L.cell.start - 0.2, cellStamp: Wd('cell', 3),
+  toC: L.virus.start - 0.06, virusStamp: Wd('virus', 2),
+  smaller: L.smaller.start, smallerStamp: Wd('smaller', 5),
+  name: L.name.start,
+  on: Wd('on', 0), flow: Wd('on', 4), one: Wd('on', -1),
+  off: Wd('off', 0), stop: Wd('off', 5), zero: Wd('off', -1),
+  pull: L.scale.start, toB2: Wd('scale', 5), toA2: Wd('scale', 12),
+  icMath: Wd('scale', 9), icMusic: Wd('scale', 11), icPhone: Wd('scale', 16),
+  close: L.now.start + 0.05, hz: Wd('now', 4),
+  cta: L.cta.start - 0.1,
+};
+// Sound cues for the mixer (read by the renderer).
+window.__cues = [
+  { t: 0, type: 'riser_short' }, { t: T.lid, type: 'impact' }, { t: T.countA, type: 'count', d: T.countB - T.countA },
+  { t: T.qa, type: 'pop' }, { t: T.qb, type: 'pop' }, { t: T.qc, type: 'pop' },
+  { t: T.timerA, type: 'ticks', d: T.timerB - T.timerA }, { t: T.lock, type: 'lock' },
+  { t: T.dive - 0.1, type: 'riser', d: T.toB - T.dive + 0.1 }, { t: T.toB, type: 'whoosh_hit' },
+  { t: T.hairIn, type: 'whoosh' }, { t: T.hairStamp, type: 'stamp' },
+  { t: T.toCell, type: 'whoosh' }, { t: T.cellStamp, type: 'stamp' },
+  { t: T.toC, type: 'whoosh_hit' }, { t: T.virusStamp, type: 'stamp_soft' },
+  { t: T.smaller, type: 'riser', d: 1.0 }, { t: T.smallerStamp, type: 'reveal' },
+  { t: T.name, type: 'pop' }, { t: T.name + 0.25, type: 'pop' }, { t: T.name + 0.5, type: 'pop' },
+  { t: T.on, type: 'charge' }, { t: T.flow, type: 'flow', d: T.stop - T.flow }, { t: T.one, type: 'digit' },
+  { t: T.off, type: 'discharge' }, { t: T.zero, type: 'digit' },
+  { t: T.pull, type: 'whoosh' }, { t: T.toB2, type: 'whoosh_hit' }, { t: T.toA2, type: 'whoosh_hit' },
+  { t: T.icMath, type: 'pop' }, { t: T.icMusic, type: 'pop' }, { t: T.icPhone, type: 'pop' },
+  { t: T.close - 0.25, type: 'whoosh' }, { t: T.close + 0.3, type: 'impact' }, { t: T.hz, type: 'count', d: 1.6 },
+  { t: T.cta, type: 'pop' }, { t: T.cta + 0.5, type: 'pop' }, { t: T.cta + 0.7, type: 'pop' }, { t: T.cta + 0.9, type: 'pop' },
+];
+window.__duration = DUR;
+window.__drops = [T.lid, T.toB, T.toC, T.smallerStamp, T.one, T.toA2, T.close + 0.3];
+
+// ---------------- overlay ----------------
+const $ = (id) => document.getElementById(id);
+const spk = $('spk');
+for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; const l = document.createElementNS('http://www.w3.org/2000/svg', 'path'); l.setAttribute('d', `M${50 + Math.cos(a) * 22} ${50 + Math.sin(a) * 22} L${50 + Math.cos(a) * 34} ${50 + Math.sin(a) * 34}`); spk.appendChild(l); }
+const RUNGS = ['1 cm', '1 mm', '100 µm', '10 µm', '1 µm', '100 nm', '10 nm'];
+const ticks = $('ticks');
+RUNGS.forEach((r, i) => { const d = document.createElement('div'); d.className = 'tk'; d.style.top = `${(i / (RUNGS.length - 1)) * 100}%`; d.innerHTML = `<i></i><span>${r}</span>`; ticks.appendChild(d); });
+const caps = new Captions($('cap'), TL.lines);
+
+// ---------------- helpers ----------------
+const R = rng(99);
+const shakeNoise = Array.from({ length: 64 }, () => [R() - 0.5, R() - 0.5]);
+function shake(t, t0, amp, dur = 0.45) {
+  const k = seg(t, t0, t0 + dur); if (k <= 0 || k >= 1) return [0, 0];
+  const n = shakeNoise[Math.floor(t * 60) % 64]; const a = amp * (1 - k) * (1 - k);
+  return [n[0] * a, n[1] * a];
+}
+const flashAt = (t, times, dur = 0.22) => times.reduce((m, t0) => Math.max(m, t >= t0 && t < t0 + dur ? 1 - (t - t0) / dur : 0), 0);
+function stampText(t) {
+  const list = [[T.hairStamp, T.toCell, 'TOO BIG', 'x'], [T.cellStamp, T.toC, 'STILL HUGE', 'x'], [T.virusStamp, T.smaller + 0.2, 'CLOSER…', 'm'], [T.smallerStamp, T.name, 'EVEN SMALLER', 'ok']];
+  for (const [a, b, txt, cls] of list) if (t >= a && t < b) return [txt, cls, t - a];
+  return null;
+}
+function tagFor(t) {
+  if (t >= T.hairIn + 0.2 && t < T.toCell) return ['HUMAN HAIR', '≈ 80 µm wide', t - T.hairIn - 0.2];
+  if (t >= T.toCell + 0.4 && t < T.toC) return ['RED BLOOD CELL', '≈ 7 µm wide', t - T.toCell - 0.4];
+  if (t >= T.toC + 0.3 && t < T.smaller + 0.4) return ['VIRUS', '≈ 100 nm wide', t - T.toC - 0.3];
+  if (t >= T.smallerStamp && t < T.name) return ['ONE TRANSISTOR', '≈ 20 nm features', t - T.smallerStamp];
+  return null;
+}
+// log-scale ruler position (0 = 1 cm, 6 = 10 nm)
+function rulerPos(t) {
+  const keys = [[0, 0], [T.dive, 0.4], [T.toB, 1.7], [T.hairIn + 0.4, 2], [T.toCell, 2.2], [T.toCell + 0.6, 3], [T.toC, 3.6], [T.toC + 0.4, 5], [T.smaller, 5.1], [T.smaller + 1.2, 5.7], [T.pull, 5.7], [T.toB2, 4], [T.toA2, 1.5], [T.toA2 + 1.2, 0.2]];
+  for (let i = 1; i < keys.length; i++) if (t < keys[i][0]) { const [a, va] = keys[i - 1], [b, vb] = keys[i]; return lerp(va, vb, ease.inOutCubic(seg(t, a, b))); }
+  return keys[keys.length - 1][1];
+}
+function rulerLabel(p) {
+  const exp = -2 - p; // metres, 10^exp
+  const m = Math.pow(10, exp);
+  if (m >= 1e-3) return `${+(m * 1000).toPrecision(2)} mm`.replace('10 mm', '1 cm');
+  if (m >= 1e-6) return `${+(m * 1e6).toPrecision(2)} µm`;
+  return `${+(m * 1e9).toPrecision(2)} nm`;
+}
+
+// ---------------- frame ----------------
+window.renderAt = async (t) => {
+  // which level
+  const lvl = t < T.toB ? 'A' : t < T.toC ? 'B' : t < T.toB2 ? 'C' : t < T.toA2 ? 'B' : 'A';
+  A.visible = lvl === 'A'; B.visible = lvl === 'B'; C.visible = lvl === 'C';
+
+  // ---- level A animation ----
+  const lidUp = ease.outCubic(seg(t, T.lid, T.lid + 0.55));
+  const lidDown = ease.inCubic(seg(t, T.close - 0.25, T.close + 0.3));
+  const lidK = t < T.close - 0.25 ? lidUp : 1 - lidDown;
+  chip.lid.position.y = chip.lidRest + lidK * 12;
+  chip.lid.rotation.z = lidK * 0.5; chip.lid.rotation.x = -lidK * 0.25;
+  const shockK = Math.max(seg(t, T.lid, T.lid + 0.8) * (t < T.lid + 0.8 ? 1 : 0), seg(t, T.close + 0.3, T.close + 1.1) * (t < T.close + 1.1 && t > T.close + 0.3 ? 1 : 0));
+  shock.visible = shockK > 0 && shockK < 1;
+  shock.scale.setScalar(2.5 + ease.outCubic(shockK) * 9); shock.material.opacity = (1 - shockK) * 0.9;
+  const pulse = 0.5 + 0.5 * Math.sin(t * 7);
+  chip.dieTop.emissiveIntensity = 0.5 + lidUp * (0.6 + 0.4 * pulse) + (t > T.toA2 ? 0.8 : 0);
+  const tracePulse = t > T.close + 0.3 ? 0.35 + 1.4 * (0.5 + 0.5 * Math.sin((t - T.close) * 12)) : 0.25 + 0.3 * lidUp;
+  pcb.topMat.emissiveIntensity = tracePulse;
+
+  // ---- level B animation ----
+  const hairX = lerp(-26, 0, ease.outCubic(seg(t, T.hairIn - 0.1, T.hairIn + 0.55))) + lerp(0, 34, ease.inCubic(seg(t, T.toCell, T.toCell + 0.45)));
+  hair.group.position.x = hairX; hair.mesh.rotation.y = -hairX * 0.12;
+  hair.group.visible = t < T.toCell + 0.5;
+  const cellDrop = ease.outBack(seg(t, T.toCell + 0.25, T.toCell + 0.8), 1.3);
+  rbc.group.visible = t > T.toCell + 0.2 && lvl === 'B' && t < T.toC;
+  rbc.group.position.set(0, lerp(9, 1.4, cellDrop), 0);
+  rbc.group.rotation.set(0.25 + Math.sin(t * 1.3) * 0.08, t * 0.4, 0.15);
+  cells.lightVias(t, t > T.toB2 ? 1 : 0.35 + 0.2 * Math.sin(t * 3));
+
+  // ---- level C animation ----
+  const vIn = ease.outCubic(seg(t, T.toC, T.toC + 0.7));
+  const vOut = ease.inCubic(seg(t, T.smaller, T.smaller + 0.9));
+  virus.group.position.set(lerp(-1.2, 0.2, vIn) - vOut * 6, lerp(5, 1.65, vIn) + vOut * 4 + Math.sin(t * 2) * 0.06, lerp(-2.5, 0.9, vIn) - vOut * 3);
+  virus.group.rotation.set(t * 0.3, t * 0.5, 0);
+  virus.group.visible = t < T.smaller + 0.9;
+  const gateOn = clamp(ease.outCubic(seg(t, T.on, T.on + 0.35)) - ease.inCubic(seg(t, T.off, T.off + 0.4)));
+  const flow = clamp(seg(t, T.flow - 0.3, T.flow + 0.3) - seg(t, T.off + 0.2, T.stop));
+  fins.items.forEach((f, idx) => {
+    let g = 0;
+    if (f === fins.center) g = gateOn;
+    if (t > T.pull) { const w = Math.sin((f.i * 1.7 + f.j * 2.3) + t * 11) > 0.2 ? 1 : 0; g = Math.max(g * (1 - seg(t, T.pull, T.pull + 0.5)), w); }
+    f.gateMat.emissiveIntensity = g * 0.85; f.finMat.emissiveIntensity = g * 0.2;
+  });
+  electrons.update(t, flow);
+  electrons.mesh.visible = flow > 0.001;
+
+  // ---- camera ----
+  let cam;
+  if (lvl === 'A' && t < T.toB) {
+    const push = lerp(13, 11.2, ease.outCubic(seg(t, 0, 0.6)));
+    const diveK = ease.inExpo(seg(t, T.dive, T.toB));
+    const view = lerp(push, 0.55, diveK);
+    const az = 45 + 9 * ease.inOutCubic(seg(t, 0.6, T.dive)) - 9 * diveK;
+    cam = { target: [0, 0.5 + diveK * 0.1, 0], view, azimuth: az, shake: shake(t, T.lid, 0.35) };
+  } else if (lvl === 'B') {
+    if (t < T.toC) {
+      const inK = ease.outExpo(seg(t, T.toB, T.toB + 0.5));
+      const cellZoom = ease.inOutCubic(seg(t, T.toCell, T.toCell + 0.6));
+      const view = lerp(lerp(60, 34, inK), 9.5, cellZoom) - (t - T.toB) * 0.4;
+      cam = { target: [0, 0.6, 0], view, azimuth: 45 + (t - T.toB) * 2.5, shake: shake(t, T.toCell + 0.8, 0.12) };
+    } else {
+      const k = seg(t, T.toB2, T.toA2);
+      cam = { target: [0, 0.3, 0], view: lerp(6, 40, ease.outCubic(k)), azimuth: 45 + k * 10 };
+    }
+  } else if (lvl === 'C') {
+    const inK = ease.outExpo(seg(t, T.toC, T.toC + 0.5));
+    const zoomK = ease.inOutCubic(seg(t, T.smaller, T.smaller + 1.2));
+    const pullK = ease.inOutCubic(seg(t, T.pull, T.toB2));
+    let view = lerp(lerp(24, 13, inK), 6.4, zoomK);
+    view = lerp(view, 19, pullK);
+    const az = 45 + Math.sin(t * 0.6) * 4;
+    cam = { target: [0, 0.35 + zoomK * 0.05, 0], view: view - (t - T.toC) * 0.03, azimuth: az, shake: shake(t, T.one, 0.08, 0.3) };
+  } else {
+    // back to the chip after the zoom-out; ends on the opening framing so the loop is seamless
+    const outK = ease.outCubic(seg(t, T.toA2, T.toA2 + 1.1));
+    const ctaK = ease.inOutCubic(seg(t, T.cta, DUR));
+    let view = lerp(1.2, 10.4, outK);
+    view = lerp(view, 13, ctaK);
+    cam = { target: [0, 0.5, 0], view, azimuth: lerp(57, 45, ease.inOutCubic(seg(t, T.toA2, DUR))), shake: shake(t, T.close + 0.3, 0.3) };
+  }
+  const [sx, sy] = cam.shake || [0, 0];
+  stage.iso({ target: cam.target, view: cam.view, azimuth: cam.azimuth, shift: [sx * cam.view * 0.04, sy * cam.view * 0.04] });
+
+  stage.bloomPass.strength = 0.7 + 0.5 * flashAt(t, window.__drops, 0.35);
+  stage.render();
+
+  // ---------------- overlay ----------------
+  // counter
+  setShow($('counter'), t >= T.countA - 0.05 && t < L.quiz.start + 0.1);
+  popIn($('counter'), t, T.countA - 0.05);
+  $('counter').querySelector('.num').textContent = fmtInt(15e9 * ease.outExpo(seg(t, T.countA, T.countB)));
+  // quiz
+  setShow($('quiz'), t >= T.qa - 0.15 && t < T.dive + 0.15);
+  $('quiz').style.transform = `translateY(${-ease.inCubic(seg(t, T.dive - 0.1, T.dive + 0.15)) * 900}px)`;
+  [['qa', T.qa], ['qb', T.qb], ['qc', T.qc]].forEach(([id, t0]) => popIn($(id), t, t0));
+  const tk = seg(t, T.timerA, T.timerB);
+  setShow($('timer'), t >= T.timerA && t < T.lock + 0.4);
+  $('timerArc').style.strokeDashoffset = `${314 * tk}`;
+  $('timerTxt').textContent = Math.max(1, 3 - Math.floor(tk * 3));
+  setShow($('lock'), t >= T.lock); popIn($('lock'), t, T.lock);
+  // ruler
+  setShow($('ruler'), t >= T.dive - 0.2 && t < T.toA2 + 1.3);
+  const rp = rulerPos(t);
+  $('marker').style.top = `${(rp / 6) * 100}%`;
+  $('markerTxt').textContent = rulerLabel(rp);
+  // tag + stamp
+  const tg = tagFor(t);
+  setShow($('tag'), !!tg);
+  if (tg) { $('tagName').textContent = tg[0]; $('tagSize').textContent = tg[1]; popIn($('tag'), tg[2], 0); }
+  const st = stampText(t);
+  setShow($('stamp'), !!st);
+  if (st) { $('stamp').textContent = st[0]; $('stamp').className = st[1]; const k = ease.outBack(clamp(st[2] / 0.18), 2.2); $('stamp').style.transform = `translateX(-50%) rotate(-6deg) scale(${lerp(2.2, 1, clamp(st[2] / 0.12))})`; $('stamp').style.opacity = clamp(st[2] / 0.06); }
+  // transistor callouts drawn as tags anchored to 3D
+  // big digits
+  const dg = t >= T.one && t < T.off ? ['1', t - T.one] : t >= T.zero && t < T.pull ? ['0', t - T.zero] : null;
+  setShow($('digit'), !!dg);
+  if (dg) { $('digit').textContent = dg[0]; $('digit').className = dg[0] === '1' ? 'on' : 'off'; $('digit').style.transform = `translateX(-50%) scale(${lerp(1.6, 1, ease.outBack(clamp(dg[1] / 0.25), 1.8))})`; $('digit').style.opacity = clamp(dg[1] / 0.08); }
+  // part labels on the transistor
+  updateCallouts(t);
+  // icons
+  setShow($('icons'), t >= T.icMath - 0.05 && t < L.now.start + 0.3);
+  [['icMath', T.icMath], ['icMusic', T.icMusic], ['icPhone', T.icPhone]].forEach(([id, t0]) => popIn($(id), t, t0));
+  // switches per second
+  setShow($('hz'), t >= T.hz - 0.05 && t < T.cta);
+  popIn($('hz'), t, T.hz - 0.05);
+  $('hz').querySelector('.num').textContent = fmtInt(3e9 * ease.outExpo(seg(t, T.hz, T.hz + 1.6))) + '+';
+  // CTA
+  setShow($('cta'), t >= T.cta && t < DUR - 0.12);
+  $('cta').style.opacity = 1 - seg(t, DUR - 0.45, DUR - 0.12);
+  popIn($('cta'), t, T.cta);
+  [['o1', T.cta + 0.5], ['o2', T.cta + 0.7], ['o3', T.cta + 0.9]].forEach(([id, t0]) => popIn($(id), t, t0));
+  $('cta').querySelector('.arrow').style.transform = `translateY(${Math.abs(Math.sin(t * 6)) * 14}px)`;
+  $('dim').style.opacity = Math.max(seg(t, T.cta - 0.1, T.cta + 0.25) * (1 - seg(t, DUR - 0.45, DUR - 0.12)), 0.55 * seg(t, T.qa - 0.2, T.qa + 0.1) * (1 - seg(t, T.dive - 0.1, T.dive + 0.1)));
+  // captions + flash
+  caps.update(t);
+  $('flash').style.opacity = 0.85 * flashAt(t, [T.lid, T.toB, T.toC, T.toB2, T.toA2, T.close + 0.3], 0.2);
+};
+
+// SOURCE / GATE / DRAIN callouts projected from the centre transistor
+const callEls = ['source', 'gate', 'drain'].map((k, i) => {
+  const d = document.createElement('div'); d.className = 'callout'; d.innerHTML = `<i></i><b>${k.toUpperCase()}</b>`; $('ov').appendChild(d);
+  return { k, el: d, t0: T.name + i * 0.25 };
+});
+function updateCallouts(t) {
+  const show = t >= T.name && t < T.pull;
+  for (const c of callEls) {
+    setShow(c.el, show && t >= c.t0);
+    if (!show) continue;
+    fins.center.group.updateMatrixWorld(true);
+    const p = fins.center.group.localToWorld(new THREE.Vector3(...fins.center.anchors[c.k]));
+    const [x, y] = stage.toScreen(p);
+    const up = c.k === 'gate' ? 330 : 190;
+    c.el.style.left = `${x}px`; c.el.style.top = `${y - up}px`; c.el.style.setProperty('--h', `${up}px`);
+    popIn(c.el, t, c.t0);
+  }
+}
+
+await window.renderAt(0);
+window.__ready = true;
+</script>
+</body>
+</html>

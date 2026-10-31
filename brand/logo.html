@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Tech Breakdown logo</title>
+<script type="importmap">{"imports":{"three":"/engine/node_modules/three/build/three.module.js","three/addons/":"/engine/node_modules/three/examples/jsm/"}}</script>
+<style>
+  @font-face { font-family: 'JetBrains Mono'; src: url(/brand/fonts/JetBrainsMono-700.ttf); font-weight: 700; }
+  html, body { margin: 0; width: 800px; height: 800px; overflow: hidden; background: #040a17; }
+  #c { position: absolute; inset: 0; width: 800px; height: 800px; }
+  svg { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<svg width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <radialGradient id="vig" cx="50%" cy="50%" r="50%">
+      <stop offset="62%" stop-color="#040a17" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#040a17" stop-opacity="0.85"/>
+    </radialGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8dfff0"/><stop offset="0.5" stop-color="#19e3c1"/><stop offset="1" stop-color="#0b8c7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#vig)"/>
+  <!-- precision dial: ring + ticks, sized to survive YouTube's circular crop -->
+  <g id="dial" fill="none" stroke="url(#ring)">
+    <circle cx="400" cy="400" r="338" stroke-width="5" opacity="0.95"/>
+    <circle cx="400" cy="400" r="318" stroke-width="1.5" opacity="0.35"/>
+  </g>
+</svg>
+<script type="module">
+import { THREE, createStage, makeMaterials, PAL, radialBackground } from '/engine/lib/core.js';
+import { makeBrandCube } from '/engine/lib/models.js';
+
+const scale = +(new URLSearchParams(location.search).get('scale') || 1);
+const W = 800 * scale, H = 800 * scale;
+await document.fonts.ready;
+
+// tick marks around the dial (every 6deg, longer every 30deg)
+const dial = document.getElementById('dial');
+for (let i = 0; i < 60; i++) {
+  const a = (i / 60) * Math.PI * 2, major = i % 5 === 0;
+  const r1 = 318, r2 = major ? 300 : 309;
+  const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  l.setAttribute('x1', 400 + Math.cos(a) * r1); l.setAttribute('y1', 400 + Math.sin(a) * r1);
+  l.setAttribute('x2', 400 + Math.cos(a) * r2); l.setAttribute('y2', 400 + Math.sin(a) * r2);
+  l.setAttribute('stroke-width', major ? 3 : 1.5); l.setAttribute('opacity', major ? 0.9 : 0.4);
+  dial.appendChild(l);
+}
+
+const stage = createStage({
+  canvas: document.getElementById('c'), width: W, height: H,
+  background: radialBackground(0x15336a, PAL.navy0, 0.5, 0.48),
+  bloom: { strength: 0.7, radius: 0.55, threshold: 0.96 }, exposure: 1.0, envIntensity: 0.1,
+});
+const M = makeMaterials();
+M.silver.color.set(0xd2dae4); M.silver.metalness = 0.35; M.silver.roughness = 0.4;
+const cube = makeBrandCube(M, { unit: 1, gap: 0.08, lift: 0 });
+cube.parts.RTF.position.add(new THREE.Vector3(0.38, 0.62, -0.12));
+cube.group.position.y = -0.18;
+stage.scene.add(cube.group);
+// teal light spill from the opened core
+const coreLight = new THREE.PointLight(PAL.teal, 4, 3, 2);
+coreLight.position.set(0.55, 0.45, 0.55); cube.group.add(coreLight);
+stage.key.position.set(-1.5, 14, 2.5);
+stage.key.intensity = 2.3;
+stage.rim.intensity = 0.45;
+stage.rim.position.set(10, 3, -3);
+stage.hemi.intensity = 0.1;
+stage.iso({ target: [0.1, 0.3, 0], view: 5.6 });
+stage.render();
+window.__ready = true;
+</script>
+</body>
+</html>

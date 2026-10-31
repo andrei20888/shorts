@@ -1,0 +1,675 @@
+{
+ "title": "Your phone hides 15 billion switches",
+ "duration": 37.165,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Your phone is hiding over fifteen billion tiny switches.",
+   "start": 0.12,
+   "end": 3.028,
+   "words": [
+    {
+     "w": "Your",
+     "start": 0.12,
+     "end": 0.304
+    },
+    {
+     "w": "phone",
+     "start": 0.304,
+     "end": 0.637
+    },
+    {
+     "w": "is",
+     "start": 0.637,
+     "end": 0.797
+    },
+    {
+     "w": "hiding",
+     "start": 0.797,
+     "end": 1.142
+    },
+    {
+     "w": "over",
+     "start": 1.142,
+     "end": 1.462
+    },
+    {
+     "w": "fifteen",
+     "start": 1.462,
+     "end": 1.819
+    },
+    {
+     "w": "billion",
+     "start": 1.819,
+     "end": 2.175
+    },
+    {
+     "w": "tiny",
+     "start": 2.175,
+     "end": 2.496
+    },
+    {
+     "w": "switches.",
+     "start": 2.496,
+     "end": 3.028
+    }
+   ]
+  },
+  {
+   "id": "quiz",
+   "text": "Guess how small one is. A hair? A blood cell? A virus?",
+   "start": 3.228,
+   "end": 6.287,
+   "words": [
+    {
+     "w": "Guess",
+     "start": 3.228,
+     "end": 3.426
+    },
+    {
+     "w": "how",
+     "start": 3.426,
+     "end": 3.6
+    },
+    {
+     "w": "small",
+     "start": 3.6,
+     "end": 3.798
+    },
+    {
+     "w": "one",
+     "start": 3.798,
+     "end": 4.109
+    },
+    {
+     "w": "is.",
+     "start": 4.109,
+     "end": 4.436
+    },
+    {
+     "w": "A",
+     "start": 4.436,
+     "end": 4.586
+    },
+    {
+     "w": "hair?",
+     "start": 4.586,
+     "end": 4.937
+    },
+    {
+     "w": "A",
+     "start": 4.937,
+     "end": 5.087
+    },
+    {
+     "w": "blood",
+     "start": 5.087,
+     "end": 5.285
+    },
+    {
+     "w": "cell?",
+     "start": 5.285,
+     "end": 5.636
+    },
+    {
+     "w": "A",
+     "start": 5.636,
+     "end": 5.786
+    },
+    {
+     "w": "virus?",
+     "start": 5.786,
+     "end": 6.287
+    }
+   ]
+  },
+  {
+   "id": "zoom",
+   "text": "Lock it in. Let's zoom.",
+   "start": 7.187,
+   "end": 8.686,
+   "words": [
+    {
+     "w": "Lock",
+     "start": 7.187,
+     "end": 7.415
+    },
+    {
+     "w": "it",
+     "start": 7.415,
+     "end": 7.613
+    },
+    {
+     "w": "in.",
+     "start": 7.613,
+     "end": 8.013
+    },
+    {
+     "w": "Let's",
+     "start": 8.013,
+     "end": 8.256
+    },
+    {
+     "w": "zoom.",
+     "start": 8.256,
+     "end": 8.686
+    }
+   ]
+  },
+  {
+   "id": "hair",
+   "text": "A human hair? Way too big.",
+   "start": 9.036,
+   "end": 10.628,
+   "words": [
+    {
+     "w": "A",
+     "start": 9.036,
+     "end": 9.192
+    },
+    {
+     "w": "human",
+     "start": 9.192,
+     "end": 9.543
+    },
+    {
+     "w": "hair?",
+     "start": 9.543,
+     "end": 9.91
+    },
+    {
+     "w": "Way",
+     "start": 9.91,
+     "end": 10.092
+    },
+    {
+     "w": "too",
+     "start": 10.092,
+     "end": 10.274
+    },
+    {
+     "w": "big.",
+     "start": 10.274,
+     "end": 10.628
+    }
+   ]
+  },
+  {
+   "id": "cell",
+   "text": "A blood cell? Still huge.",
+   "start": 10.878,
+   "end": 12.451,
+   "words": [
+    {
+     "w": "A",
+     "start": 10.878,
+     "end": 11.048
+    },
+    {
+     "w": "blood",
+     "start": 11.048,
+     "end": 11.273
+    },
+    {
+     "w": "cell?",
+     "start": 11.273,
+     "end": 11.671
+    },
+    {
+     "w": "Still",
+     "start": 11.671,
+     "end": 11.896
+    },
+    {
+     "w": "huge.",
+     "start": 11.896,
+     "end": 12.451
+    }
+   ]
+  },
+  {
+   "id": "virus",
+   "text": "A virus? Closer...",
+   "start": 12.701,
+   "end": 13.976,
+   "words": [
+    {
+     "w": "A",
+     "start": 12.701,
+     "end": 12.865
+    },
+    {
+     "w": "virus?",
+     "start": 12.865,
+     "end": 13.414
+    },
+    {
+     "w": "Closer...",
+     "start": 13.414,
+     "end": 13.976
+    }
+   ]
+  },
+  {
+   "id": "smaller",
+   "text": "But the switch is even smaller.",
+   "start": 14.176,
+   "end": 15.596,
+   "words": [
+    {
+     "w": "But",
+     "start": 14.176,
+     "end": 14.334
+    },
+    {
+     "w": "the",
+     "start": 14.334,
+     "end": 14.491
+    },
+    {
+     "w": "switch",
+     "start": 14.491,
+     "end": 14.681
+    },
+    {
+     "w": "is",
+     "start": 14.681,
+     "end": 14.828
+    },
+    {
+     "w": "even",
+     "start": 14.828,
+     "end": 15.121
+    },
+    {
+     "w": "smaller.",
+     "start": 15.121,
+     "end": 15.596
+    }
+   ]
+  },
+  {
+   "id": "name",
+   "text": "It's called a transistor.",
+   "start": 15.946,
+   "end": 17.205,
+   "words": [
+    {
+     "w": "It's",
+     "start": 15.946,
+     "end": 16.116
+    },
+    {
+     "w": "called",
+     "start": 16.116,
+     "end": 16.432
+    },
+    {
+     "w": "a",
+     "start": 16.432,
+     "end": 16.569
+    },
+    {
+     "w": "transistor.",
+     "start": 16.569,
+     "end": 17.205
+    }
+   ]
+  },
+  {
+   "id": "on",
+   "text": "Charge the gate, and electrons rush through. That's a one.",
+   "start": 17.405,
+   "end": 20.388,
+   "words": [
+    {
+     "w": "Charge",
+     "start": 17.405,
+     "end": 17.738
+    },
+    {
+     "w": "the",
+     "start": 17.738,
+     "end": 17.904
+    },
+    {
+     "w": "gate,",
+     "start": 17.904,
+     "end": 18.372
+    },
+    {
+     "w": "and",
+     "start": 18.372,
+     "end": 18.539
+    },
+    {
+     "w": "electrons",
+     "start": 18.539,
+     "end": 19.038
+    },
+    {
+     "w": "rush",
+     "start": 19.038,
+     "end": 19.216
+    },
+    {
+     "w": "through.",
+     "start": 19.216,
+     "end": 19.587
+    },
+    {
+     "w": "That's",
+     "start": 19.587,
+     "end": 19.788
+    },
+    {
+     "w": "a",
+     "start": 19.788,
+     "end": 19.932
+    },
+    {
+     "w": "one.",
+     "start": 19.932,
+     "end": 20.388
+    }
+   ]
+  },
+  {
+   "id": "off",
+   "text": "Cut the charge, and they stop. That's a zero.",
+   "start": 20.638,
+   "end": 23.039,
+   "words": [
+    {
+     "w": "Cut",
+     "start": 20.638,
+     "end": 20.811
+    },
+    {
+     "w": "the",
+     "start": 20.811,
+     "end": 20.983
+    },
+    {
+     "w": "charge,",
+     "start": 20.983,
+     "end": 21.492
+    },
+    {
+     "w": "and",
+     "start": 21.492,
+     "end": 21.664
+    },
+    {
+     "w": "they",
+     "start": 21.664,
+     "end": 21.849
+    },
+    {
+     "w": "stop.",
+     "start": 21.849,
+     "end": 22.197
+    },
+    {
+     "w": "That's",
+     "start": 22.197,
+     "end": 22.405
+    },
+    {
+     "w": "a",
+     "start": 22.405,
+     "end": 22.554
+    },
+    {
+     "w": "zero.",
+     "start": 22.554,
+     "end": 23.039
+    }
+   ]
+  },
+  {
+   "id": "scale",
+   "text": "Wire billions of them together, and they can do math, play music, and run your entire phone.",
+   "start": 23.389,
+   "end": 28.268,
+   "words": [
+    {
+     "w": "Wire",
+     "start": 23.389,
+     "end": 23.706
+    },
+    {
+     "w": "billions",
+     "start": 23.706,
+     "end": 24.071
+    },
+    {
+     "w": "of",
+     "start": 24.071,
+     "end": 24.23
+    },
+    {
+     "w": "them",
+     "start": 24.23,
+     "end": 24.413
+    },
+    {
+     "w": "together,",
+     "start": 24.413,
+     "end": 25.075
+    },
+    {
+     "w": "and",
+     "start": 25.075,
+     "end": 25.245
+    },
+    {
+     "w": "they",
+     "start": 25.245,
+     "end": 25.428
+    },
+    {
+     "w": "can",
+     "start": 25.428,
+     "end": 25.598
+    },
+    {
+     "w": "do",
+     "start": 25.598,
+     "end": 25.757
+    },
+    {
+     "w": "math,",
+     "start": 25.757,
+     "end": 26.102
+    },
+    {
+     "w": "play",
+     "start": 26.102,
+     "end": 26.284
+    },
+    {
+     "w": "music,",
+     "start": 26.284,
+     "end": 26.776
+    },
+    {
+     "w": "and",
+     "start": 26.776,
+     "end": 26.947
+    },
+    {
+     "w": "run",
+     "start": 26.947,
+     "end": 27.117
+    },
+    {
+     "w": "your",
+     "start": 27.117,
+     "end": 27.3
+    },
+    {
+     "w": "entire",
+     "start": 27.3,
+     "end": 27.776
+    },
+    {
+     "w": "phone.",
+     "start": 27.776,
+     "end": 28.268
+    }
+   ]
+  },
+  {
+   "id": "now",
+   "text": "Right now, they're flipping billions of times a second, just so you can watch this.",
+   "start": 28.518,
+   "end": 32.489,
+   "words": [
+    {
+     "w": "Right",
+     "start": 28.518,
+     "end": 28.712
+    },
+    {
+     "w": "now,",
+     "start": 28.712,
+     "end": 29.045
+    },
+    {
+     "w": "they're",
+     "start": 29.045,
+     "end": 29.398
+    },
+    {
+     "w": "flipping",
+     "start": 29.398,
+     "end": 29.763
+    },
+    {
+     "w": "billions",
+     "start": 29.763,
+     "end": 30.128
+    },
+    {
+     "w": "of",
+     "start": 30.128,
+     "end": 30.287
+    },
+    {
+     "w": "times",
+     "start": 30.287,
+     "end": 30.617
+    },
+    {
+     "w": "a",
+     "start": 30.617,
+     "end": 30.764
+    },
+    {
+     "w": "second,",
+     "start": 30.764,
+     "end": 31.267
+    },
+    {
+     "w": "just",
+     "start": 31.267,
+     "end": 31.45
+    },
+    {
+     "w": "so",
+     "start": 31.45,
+     "end": 31.609
+    },
+    {
+     "w": "you",
+     "start": 31.609,
+     "end": 31.779
+    },
+    {
+     "w": "can",
+     "start": 31.779,
+     "end": 31.95
+    },
+    {
+     "w": "watch",
+     "start": 31.95,
+     "end": 32.144
+    },
+    {
+     "w": "this.",
+     "start": 32.144,
+     "end": 32.489
+    }
+   ]
+  },
+  {
+   "id": "cta",
+   "text": "So what should I break down next? Tell me in the comments.",
+   "start": 32.839,
+   "end": 35.565,
+   "words": [
+    {
+     "w": "So",
+     "start": 32.839,
+     "end": 33.005
+    },
+    {
+     "w": "what",
+     "start": 33.005,
+     "end": 33.195
+    },
+    {
+     "w": "should",
+     "start": 33.195,
+     "end": 33.41
+    },
+    {
+     "w": "I",
+     "start": 33.41,
+     "end": 33.563
+    },
+    {
+     "w": "break",
+     "start": 33.563,
+     "end": 33.766
+    },
+    {
+     "w": "down",
+     "start": 33.766,
+     "end": 33.956
+    },
+    {
+     "w": "next?",
+     "start": 33.956,
+     "end": 34.316
+    },
+    {
+     "w": "Tell",
+     "start": 34.316,
+     "end": 34.506
+    },
+    {
+     "w": "me",
+     "start": 34.506,
+     "end": 34.672
+    },
+    {
+     "w": "in",
+     "start": 34.672,
+     "end": 34.837
+    },
+    {
+     "w": "the",
+     "start": 34.837,
+     "end": 35.015
+    },
+    {
+     "w": "comments.",
+     "start": 35.015,
+     "end": 35.565
+    }
+   ]
+  }
+ ]
+}

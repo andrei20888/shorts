@@ -1,0 +1,6 @@
+node_modules/
+engine/tts/*.onnx
+engine/tts/*.bin
+**/frames/
+**/_work/
+__pycache__/

@@ -1,0 +1,22 @@
+{
+  "title": "Your phone hides 15 billion switches",
+  "voice": "af_heart",
+  "speed": 1.08,
+  "lead": 0.12,
+  "tail": 1.6,
+  "lines": [
+    {"id": "hook",    "text": "Your phone is hiding over fifteen billion tiny switches.", "gap": 0.2},
+    {"id": "quiz",    "text": "Guess how small one is. A hair? A blood cell? A virus?", "gap": 0.9},
+    {"id": "zoom",    "text": "Lock it in. Let's zoom.", "gap": 0.35},
+    {"id": "hair",    "text": "A human hair? Way too big.", "gap": 0.25},
+    {"id": "cell",    "text": "A blood cell? Still huge.", "gap": 0.25},
+    {"id": "virus",   "text": "A virus? Closer...", "gap": 0.2},
+    {"id": "smaller", "text": "But the switch is even smaller.", "gap": 0.35},
+    {"id": "name",    "text": "It's called a transistor.", "gap": 0.2},
+    {"id": "on",      "text": "Charge the gate, and electrons rush through. That's a one.", "gap": 0.25},
+    {"id": "off",     "text": "Cut the charge, and they stop. That's a zero.", "gap": 0.35},
+    {"id": "scale",   "text": "Wire billions of them together, and they can do math, play music, and run your entire phone.", "gap": 0.25},
+    {"id": "now",     "text": "Right now, they're flipping billions of times a second, just so you can watch this.", "gap": 0.35},
+    {"id": "cta",     "text": "So what should I break down next? Tell me in the comments.", "gap": 0.0}
+  ]
+}
