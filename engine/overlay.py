@@ -178,7 +178,7 @@ def draw_caption(layer: Image.Image, text: str, style: str, progress: float, age
     cur_idx = int(np.searchsorted(cum, min(progress, 0.999), side="right"))
     cur_idx = min(cur_idx, n - 1)
 
-    if group_mode and style in ("beat", "quiet", "interact"):
+    if group_mode and style in ("beat", "quiet"):
         groups = caption_groups(" ".join(words), 3 if style == "beat" else 4)
         # find the group containing cur_idx
         gi, start = 0, 0
