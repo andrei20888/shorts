@@ -10,6 +10,17 @@ Every "abs in 30 days" app is lying. I'm building the honest one. Founder spots:
 
 (122 characters)
 
+## First comment (pin it right after posting)
+Honest version, no fine print: no app gives you visible abs in 30 days, and I won't promise that either. What Abs For Real is built to do in 30 days: a stronger core, a smaller waist, habits that actually stick. Founder spots: 29 € one-time, lifetime access. Program starts Nov 7, link in bio. Results vary. Ask me anything below, I answer every comment.
+
+(354 characters, fits TikTok's comment limit)
+
+Shorter alternative if you want it to read fast on mobile:
+No visible-abs promise here. 30 days = stronger core, smaller waist, habits that stick. Founder spots 29 €, lifetime, starts Nov 7. Link in bio. Results vary. Questions below, I answer all of them.
+
+Reply plan for the first hour: answer every comment, pin the best question, and reply with the same
+honest tone (no numbers promised, no "last spots").
+
 ## Hashtags
 #absforreal #honestfitness #coreworkout #fitnessmyths #buildinpublic
 
