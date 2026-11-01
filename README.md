@@ -16,6 +16,7 @@ Brand assets and 3D physics Shorts, rendered offline: Rapier for physics, Three.
 - `scenes/last_ball.html`: randare 3D + overlay-uri (hook-uri, legendă, eliminări, câștigător)
 - `tools/audio_last_ball.py`: muzică + SFX generate din evenimentele simulării
 - `tools/render.js`: server local + Chromium → ffmpeg
+- `discipline/`: **DISCIPLINE** — scurtmetraj animat 2:30 (Remotion + SVG, 16:9 și 9:16, 3 hook-uri A/B/C). Vezi `discipline/README.md` și `discipline/PLAN.md`
 
 ## Comenzi
 ```bash
