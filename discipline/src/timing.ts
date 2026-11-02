@@ -323,25 +323,12 @@ export const SFX_CUES: Cue[] = [
 /** Music bed (public/audio/music.mp3) starts after the hook's dead silence. */
 export const MUSIC = {
   start: act1.start,
-  /** [frame, volume] keyframes — eased between points. */
+  /** [frame, volume] keyframes — eased between points. The score (scripts/gen_score.py)
+   *  carries its own dynamics; this only fades it in/out. Ducks under the VO automatically. */
   envelope: [
     [act1.start, 0],
-    [act1.start + 12, 0.5],
-    [act1.end - 10, 0.5],
-    [turning.start + 10, 0.28],
-    [s2.sittingUp.start, 0.3],
-    [s2.silence.start - 4, 0.3],
-    [s2.silence.start, 0],
-    [s2.silence.end, 0],
-    [s2.getsUp.start + 20, 0.35],
-    [act2.start, 0.85],
-    [act2.end - 6, 0.85],
-    [doubt.start + 4, 0.1],
-    [doubt.end, 0.12],
-    [s5.climb.start, 0.45],
-    [act3.end - 10, 1],
-    [s6.title.start, 0.9],
-    [finale.end - 40, 0.6],
+    [act1.start + 10, 1],
+    [finale.end - 20, 1],
     [finale.end, 0],
   ] as Array<[number, number]>,
 };
@@ -351,7 +338,7 @@ export const MUSIC = {
  * to film time 0:00 (first line sits at 0:00.4 inside the file).
  * VO_MODE 'lines': drop public/audio/vo/line_01.mp3 … and each plays at its frame.
  */
-export const VO_MODE: 'stem' | 'lines' = 'stem';
+export const VO_MODE: 'stem' | 'lines' = 'lines';
 export type VoLine = { at: number; text: string };
 export const VO_LINES: VoLine[] = [
   { at: HOOK.vo, text: 'Nobody was coming to save him.' },
@@ -395,6 +382,20 @@ export const VO_LINES: VoLine[] = [
   { at: sec(132.6), text: 'Nobody came to save him.' },
   { at: sec(135.8), text: 'He saved himself.' },
   { at: sec(145.4), text: 'Motivation gets you started. Discipline keeps you going.' },
+];
+
+/** Music ducking under the voice (0..1 depth). */
+export const VO_DUCK = 0.45;
+/** VO lines that are NOT shown as on-screen captions (already have on-screen text). */
+export const CAPTION_SKIP = [0, VO_LINES.length - 1];
+
+/** Beat pulses (frames): the picture breathes with the drums of the score. */
+const at80 = (t0: number, bars: number, perBar: number[]) =>
+  Array.from({ length: bars }, (_, b) => perBar.map((q) => Math.round((t0 + b * 3 + q * 0.75) * FPS))).flat();
+export const BEAT_PULSES: number[] = [
+  ...at80(47, 10, [0, 2]),
+  ...at80(110, 5, [0, 2]),
+  ...at80(131, 3, [0, 1, 2, 3]),
 ];
 
 /* ═════════════════════════════ REVIEW STILLS ═════════════════════════════ */

@@ -2,7 +2,8 @@ import React from 'react';
 import { Audio, Sequence, getStaticFiles, staticFile } from 'remotion';
 import type { HookVariant } from '../config/copy';
 import { EASE, keys, prog, type Key } from '../lib/anim';
-import { MUSIC, SFX_CUES, VO_LINES, VO_MODE, type Cue } from '../timing';
+import { VO_DURATIONS } from '../config/voTiming';
+import { FPS, MUSIC, SFX_CUES, VO_DUCK, VO_LINES, VO_MODE, type Cue } from '../timing';
 
 /**
  * All audio, wired to the frames in timing.ts. Drop files into public/audio/ with
@@ -26,11 +27,24 @@ const exists = (() => {
   };
 })();
 
+/** 0..1: how much the narration is speaking at a frame (smooth attack/release). */
+const voActivity = (f: number) => {
+  let a = 0;
+  VO_LINES.forEach((l, i) => {
+    const end = l.at + (VO_DURATIONS[i] ?? 2) * FPS;
+    const up = prog(f, l.at - 6, l.at + 2, EASE.soft);
+    const down = 1 - prog(f, end, end + 14, EASE.soft);
+    a = Math.max(a, Math.min(up, down));
+  });
+  return a;
+};
+
 const musicVolume = (absFrame: number) =>
   keys(
     absFrame,
     MUSIC.envelope.map(([fr, v]) => [fr, v, EASE.soft] as Key),
-  );
+  ) *
+  (1 - VO_DUCK * voActivity(absFrame));
 
 const cueVolume = (f: number, c: Cue) => {
   let v = c.volume;

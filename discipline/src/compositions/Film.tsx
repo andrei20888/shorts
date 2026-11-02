@@ -1,6 +1,7 @@
 import React from 'react';
 import { AbsoluteFill, Sequence } from 'remotion';
 import { Soundtrack } from '../audio/Soundtrack';
+import { Captions } from '../components/Captions';
 import { DayLabel } from '../components/DayLabel';
 import type { HookVariant } from '../config/copy';
 import { COLORS } from '../config/theme';
@@ -50,6 +51,7 @@ export const Film: React.FC<FilmProps> = ({ variant, audio = true }) => (
       <Sequence name="Finale" from={S.finale.start} durationInFrames={S.finale.dur}>
         <Finale />
       </Sequence>
+      <Captions />
       <DayLabel />
     </ImpactLayer>
     <Vignette />

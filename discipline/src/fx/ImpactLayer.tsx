@@ -4,7 +4,7 @@ import { AbsoluteFill, useCurrentFrame } from 'remotion';
 import type { HookVariant } from '../config/copy';
 import { FX } from '../config/theme';
 import { useSvgId } from '../lib/format';
-import { IMPACTS } from '../timing';
+import { BEAT_PULSES, IMPACTS } from '../timing';
 
 /** 0..~1.4 impact energy at an absolute frame. */
 export const impactEnergy = (frame: number, variant?: HookVariant) => {
@@ -28,7 +28,12 @@ export const ImpactLayer: React.FC<{ variant?: HookVariant; children: React.Reac
   const dx = a * FX.shake.maxPx * noise2D('shake-x', frame * 0.85, 0.5);
   const dy = a * FX.shake.maxPx * 0.75 * noise2D('shake-y', 0.5, frame * 0.85);
   const rot = a * 0.6 * noise2D('shake-r', frame * 0.6, 2);
-  const scale = 1 + a * 0.045;
+  let pulse = 0;
+  for (const p of BEAT_PULSES) {
+    const d = frame - p;
+    if (d >= 0 && d < 16) pulse += Math.exp(-d / 3.5);
+  }
+  const scale = 1 + a * 0.045 + 0.016 * Math.min(1.2, pulse);
   const off = a * FX.chroma.maxOffset;
   const chroma = off > 0.5;
   return (
