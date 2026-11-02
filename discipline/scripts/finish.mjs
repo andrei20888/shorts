@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
  * Post-process the masters from scripts/render-final.sh:
- *  1. out/release/*.mp4  — loudness-normalised to -14 LUFS / -1.5 dBTP (two-pass, linear),
- *                          video stream copied bit-for-bit (still H.264 CRF 18).
+ *  1. out/release/*.mp4  — loudness-normalised to -14 LUFS / -1.5 dBTP (two-pass), and the
+ *                          video converted ONCE from Remotion's full-range BT.601 (yuvj420p)
+ *                          to standard limited-range BT.709 yuv420p at CRF 18 — the safest
+ *                          format for TikTok / Instagram / YouTube uploads.
  *  2. ../output/short03_discipline/ — repo copies under GitHub's 100 MB limit
  *     (films: two-pass x264 to ~90 MB; hooks: CRF 20) + thumbnails.
  *
@@ -35,9 +37,12 @@ for (const name of masters) {
   // pass 1: measure
   const r = spawnSync('ffmpeg', ['-hide_banner', '-i', src, '-af', `loudnorm=${LN}:print_format=json`, '-vn', '-f', 'null', '-'], { encoding: 'utf8' });
   const m = JSON.parse(r.stderr.slice(r.stderr.lastIndexOf('{'), r.stderr.lastIndexOf('}') + 1));
-  // pass 2: apply (linear), copy video
+  // pass 2: apply loudness; video → limited-range BT.709 at CRF 18
   ff([
-    '-i', src, '-map', '0:v', '-map', '0:a', '-c:v', 'copy',
+    '-i', src, '-map', '0:v', '-map', '0:a',
+    '-vf', 'scale=in_range=pc:out_range=tv:in_color_matrix=bt601:out_color_matrix=bt709:flags=lanczos+accurate_rnd+full_chroma_int,format=yuv420p',
+    '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-profile:v', 'high',
+    '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv',
     '-af', `loudnorm=${LN}:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true`,
     '-ar', '48000', '-c:a', 'aac', '-b:a', '256k', '-movflags', '+faststart', dst,
   ]);
@@ -52,11 +57,11 @@ for (const name of masters) {
     const dur = duration(src);
     const vbit = Math.floor((90e6 * 8) / dur - 192e3);
     const log = path.join(tmp, name.replace('.mp4', ''));
-    const common = ['-c:v', 'libx264', '-preset', 'slow', '-b:v', String(vbit), '-maxrate', String(Math.floor(vbit * 1.6)), '-bufsize', String(vbit * 3), '-pix_fmt', 'yuv420p', '-passlogfile', log];
+    const common = ['-c:v', 'libx264', '-preset', 'slow', '-b:v', String(vbit), '-maxrate', String(Math.floor(vbit * 1.6)), '-bufsize', String(vbit * 3), '-pix_fmt', 'yuv420p', '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv', '-passlogfile', log];
     ff(['-i', src, ...common, '-pass', '1', '-an', '-f', 'null', '/dev/null']);
     ff(['-i', src, ...common, '-pass', '2', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', dst]);
   } else {
-    ff(['-i', src, '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-maxrate', '14M', '-bufsize', '28M', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', dst]);
+    ff(['-i', src, '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-maxrate', '14M', '-bufsize', '28M', '-pix_fmt', 'yuv420p', '-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv', '-c:a', 'aac', '-b:a', '192k', '-movflags', '+faststart', dst]);
   }
   console.log(`✓ output/short03_discipline/${name}  ${mb(dst)} MB`);
 }
