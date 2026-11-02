@@ -26,12 +26,12 @@
 | # | time | frame | scene | line | est / window |
 |---:|---:|---:|---|---|---|
 | 01 | 0:00.40 | 12 | HOOK | Nobody was coming to save him. | 2.8 s / 3.8 s |
-| 02 | 0:04.20 | 126 | ACT 1 · The Struggle | Every morning started the same way. | 2.8 s / 3.4 s |
-| 03 | 0:07.60 | 228 | ACT 1 · The Struggle | Snooze. Again. And again. | 1.9 s / 3.0 s |
-| 04 | 0:10.60 | 318 | ACT 1 · The Struggle | He kept telling himself: tomorrow. | 2.3 s / 3.0 s |
-| 05 | 0:13.60 | 408 | ACT 1 · The Struggle | Tomorrow turned into a habit. | 2.3 s / 2.7 s |
-| 06 | 0:16.30 | 489 | ACT 1 · The Struggle | He fed the comfort. Starved the dream. | 3.2 s / 3.3 s |
-| 07 | 0:19.60 | 588 | ACT 1 · The Struggle | And the person in the mirror… | 2.8 s / 3.0 s |
+| 02 | 0:04.20 | 126 | ACT 1 · The Struggle | Every morning started the same way. | 2.8 s / 3.0 s |
+| 03 | 0:07.20 | 216 | ACT 1 · The Struggle | Snooze. Again. And again. | 1.9 s / 3.7 s |
+| 04 | 0:10.90 | 327 | ACT 1 · The Struggle | He kept telling himself: tomorrow. | 2.3 s / 3.0 s |
+| 05 | 0:13.90 | 417 | ACT 1 · The Struggle | Tomorrow turned into a habit. | 2.3 s / 2.3 s ⚠️ tight |
+| 06 | 0:16.20 | 486 | ACT 1 · The Struggle | He fed the comfort. Starved the dream. | 3.2 s / 3.7 s |
+| 07 | 0:19.90 | 597 | ACT 1 · The Struggle | And the person in the mirror… | 2.8 s / 2.7 s ⚠️ tight |
 | 08 | 0:22.60 | 678 | ACT 1 · The Struggle | …became a stranger. | 1.5 s / 4.0 s |
 | 09 | 0:26.60 | 798 | TURNING POINT | Then one night, something broke. | 2.3 s / 4.0 s |
 | 10 | 0:30.60 | 918 | TURNING POINT | Not his heart. | 1.5 s / 2.4 s |
@@ -44,9 +44,9 @@
 | 17 | 0:50.00 | 1500 | ACT 2 · The Grind | No one clapped. | 1.5 s / 2.4 s |
 | 18 | 0:52.40 | 1572 | ACT 2 · The Grind | He ran while the city slept. | 2.8 s / 3.4 s |
 | 19 | 0:55.80 | 1674 | ACT 2 · The Grind | He read when he wanted to scroll. | 3.2 s / 3.6 s |
-| 20 | 0:59.40 | 1782 | ACT 2 · The Grind | He chose cold water over warm excuses. | 3.2 s / 4.2 s |
-| 21 | 1:03.60 | 1908 | ACT 2 · The Grind | Five A.M. Every. Single. Day. | 2.3 s / 4.2 s |
-| 22 | 1:07.80 | 2034 | ACT 2 · The Grind | He didn't feel like it. | 2.3 s / 2.6 s |
+| 20 | 0:59.40 | 1782 | ACT 2 · The Grind | He chose cold water over warm excuses. | 3.2 s / 3.9 s |
+| 21 | 1:03.30 | 1899 | ACT 2 · The Grind | Five A.M. Every. Single. Day. | 2.3 s / 4.7 s |
+| 22 | 1:08.00 | 2040 | ACT 2 · The Grind | He didn't feel like it. | 2.3 s / 2.4 s |
 | 23 | 1:10.40 | 2112 | ACT 2 · The Grind | He did it anyway. | 1.9 s / 3.0 s |
 | 24 | 1:13.40 | 2202 | ACT 2 · The Grind | Day after day after day. | 2.3 s / 6.6 s |
 | 25 | 1:20.00 | 2400 | THE DOUBT | Around day two hundred, the stairs stopped ending. | 3.6 s / 6.6 s |
@@ -69,7 +69,7 @@
 
 ## Delivering the file
 
-- **Current mode: `stem`.** Export ONE file `public/audio/vo.mp3`, full length, aligned so its 0:00 = film 0:00 (pad the start: the first line begins at 0:00.40). Easiest: record/edit against the rendered video.
+- **Current mode: `lines`.** Export one file per line: `public/audio/vo/line_01.mp3 … line_NN.mp3`; each plays at its frame above.
 - Switch modes with `VO_MODE` in `src/timing.ts` (`'stem' | 'lines'`). `lines` is ideal for TTS (one generation per line).
 - To retime a line, edit its `at:` in `VO_LINES`, then `npm run docs`.
 

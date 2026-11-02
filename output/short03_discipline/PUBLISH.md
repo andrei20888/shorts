@@ -9,8 +9,8 @@
 Copiile din repo sunt versiuni web (~90 MB, sub limita GitHub). Masterele H.264 CRF 18 se generează local:
 `cd discipline && bash scripts/render-final.sh && node scripts/finish.mjs` → `discipline/out/release/`.
 
-> ⚠️ **Sunet placeholder.** Muzica și SFX-urile sunt sintetizate temporar și **nu există încă voice-over** (`vo.mp3` e gol).
-> Pune fișierele reale în `discipline/public/audio/` (aceleași nume — vezi `SFX_CUES.md`, `VOICEOVER.md`) și rulează din nou cele două comenzi de mai sus.
+**Sunet:** voice-over AI (Higgsfield · ElevenLabs v4, vocea „Mark”), muzică originală compusă procedural (fără drepturi de autor de plătit), subtitrări animate pe voce.
+> La publicare bifează eticheta de conținut generat AI („AI-generated content” pe TikTok / „Altered or synthetic content” pe YouTube) — vocea e sintetică.
 
 ## Titlu (alege unul)
 1. `He Woke Up at 5AM for 365 Days. This Is What Happened.`

@@ -62,9 +62,9 @@
 | 1056 | 0:35.20 | `heartbeat.mp3` | 0.90 | full | all | TURNING: heartbeat, building |
 | 1080 | 0:36.00 | `whoosh.mp3` | 0.60 | full | all | TURNING: days blur by |
 | 1102 | 0:36.73 | `impact.mp3` | 0.70 | full | all | TURNING: DAY 30 lands |
-| 1150 | 0:38.33 | `alarm_beep.mp3` | 0.90 | full | all | TURNING: alarm — he is already sitting up |
-| 1168 | 0:38.93 | `alarm_beep.mp3` | 0.90 | full | all | TURNING: alarm — he is already sitting up |
-| 1186 | 0:39.53 | `alarm_beep.mp3` | 0.90 | full | all | TURNING: alarm — he is already sitting up |
+| 1150 | 0:38.33 | `alarm_beep.mp3` | 0.60 | full | all | TURNING: alarm — he is already sitting up |
+| 1168 | 0:38.93 | `alarm_beep.mp3` | 0.60 | full | all | TURNING: alarm — he is already sitting up |
+| 1186 | 0:39.53 | `alarm_beep.mp3` | 0.60 | full | all | TURNING: alarm — he is already sitting up |
 | 1304 | 0:43.47 | `impact.mp3` | 0.35 | full | all | TURNING: feet hit the floor |
 | 1405 | 0:46.83 | `whoosh.mp3` | 0.80 | full | all | TURNING: whip into Act 2 |
 | 1414 | 0:47.13 | `alarm_beep.mp3` | 0.80 | full | all | ACT 2: 5:00 alarm #1 (wakes faster) |
@@ -124,22 +124,8 @@
 | frame | time | volume |
 |---:|---:|---:|
 | 90 | 0:03.00 | 0.00 |
-| 102 | 0:03.40 | 0.50 |
-| 740 | 0:24.67 | 0.50 |
-| 760 | 0:25.33 | 0.28 |
-| 1110 | 0:37.00 | 0.30 |
-| 1256 | 0:41.87 | 0.30 |
-| 1260 | 0:42.00 | 0.00 |
-| 1290 | 0:43.00 | 0.00 |
-| 1310 | 0:43.67 | 0.35 |
-| 1410 | 0:47.00 | 0.85 |
-| 2304 | 1:16.80 | 0.85 |
-| 2314 | 1:17.13 | 0.10 |
-| 2970 | 1:39.00 | 0.12 |
-| 3120 | 1:44.00 | 0.45 |
-| 3740 | 2:04.67 | 1.00 |
-| 4170 | 2:19.00 | 0.90 |
-| 4460 | 2:28.67 | 0.60 |
+| 100 | 0:03.33 | 1.00 |
+| 4480 | 2:29.33 | 1.00 |
 | 4500 | 2:30.00 | 0.00 |
 
 Grid: **80 BPM** (1 beat = 22.5 frames). Act 2 cuts land every 2 beats (45 frames). Pick or edit music at 80 BPM (or 160) with the
@@ -147,4 +133,4 @@ downbeat at 0:47.00 so the montage stays beat-synced; or change `BPM`/`MONTAGE_B
 
 ## Voice-over
 
-`public/audio/vo.mp3` is placed at **frame 0** as one stem aligned to film time (first line at 0:00.40 inside the file). See VOICEOVER.md.
+VO is placed per line: `public/audio/vo/line_NN.mp3` at the frames listed in VOICEOVER.md.

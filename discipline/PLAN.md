@@ -2,7 +2,7 @@
 
 **2:30 · 1920×1080 + 1080×1920 · 30 fps · 4 500 frames · Remotion (React + TS) · 100 % code-drawn SVG**
 
-Status: **Step 3 — released.** Style approved; polish pass done (`review/04_all_shots.jpg` = one still per shot); final films, hook clips, thumbnails and `PUBLISH.md` are in `../output/short03_discipline/`. Audio is still the synthesized placeholder set (no voice-over yet).
+Status: **Step 3 — released.** Style approved; polish pass done (`review/04_all_shots.jpg` = one still per shot); final films, hook clips, thumbnails and `PUBLISH.md` are in `../output/short03_discipline/`. Motivational pass done: AI voice-over (41 lines, Higgsfield · ElevenLabs v4, voice “Mark”), original procedural score, kinetic captions, beat pulses.
 
 ---
 
@@ -73,9 +73,15 @@ Cycles: `walk(phase)`, `run(phase)`, `climb(s, tread)` (feet land on real treads
 
 ## 6. Audio
 
-All cues are wired (`src/audio/Soundtrack.tsx`) and listed with exact frames in `SFX_CUES.md`; the narration script with timestamps is in `VOICEOVER.md` (41 lines, ~190 words). `public/audio/` holds **synthesized placeholders** (alarm, slap, whoosh, bass hit, impact, heartbeat, rain, wind + a temp score on the 80 BPM grid) so renders already have correct sync; VO is a silent placeholder. Replace any file with the same name.
+All cues are wired (`src/audio/Soundtrack.tsx`) and listed with exact frames in `SFX_CUES.md`; the narration script with timestamps is in `VOICEOVER.md` (41 lines, ~190 words).
+
+- **Voice-over** — generated on Higgsfield (ElevenLabs v4, preset voice “Mark”). Raw takes: `audio_src/vo_raw/`; `npm run audio:vo` measures real durations (`src/config/voTiming.ts`), processes each line (HPF, presence, compression, −15 LUFS) into `public/audio/vo/line_NN.mp3` and writes per-line music ducking (`src/config/voDuck.ts`).
+- **Score** — `npm run audio:score` (`scripts/gen_score.py`, numpy/scipy) composes the original 80 BPM score: piano Act 1 → swell + one second of hard silence at the turning point → drums/brass drop at the montage (0:47) → sparse doubt → rise → triumph at the summit (2:11). No licensing needed.
+- **Mix** — music −5 dB under everything, dips 3–9 dB under each line (close lines share one dip), −4 dB master trim so stacked hits never clip; `finish.mjs` brings the master to −14 LUFS / −1.5 dBTP.
+- **Captions** — `src/components/Captions.tsx`: ≤3-word kinetic captions synced to the VO, punch words in gold.
+- SFX are still synthesized (`npm run audio:placeholders`); replace any file with the same name.
 
 ## 7. Next steps
 
-- Record the voice-over (`VOICEOVER.md`) and pick licensed music at 80 BPM, drop them into `public/audio/`, then `bash scripts/render-final.sh && node scripts/finish.mjs`.
+- Optional: swap the synthesized SFX for recorded ones (same file names), then `bash scripts/render-final.sh && node scripts/finish.mjs`.
 - Optional polish: secondary animation (breathing, blanket cloth), match cuts between acts, turning-point fist clench, title-card shine.

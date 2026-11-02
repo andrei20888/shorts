@@ -289,7 +289,7 @@ export const SFX_CUES: Cue[] = [
   ),
   c('whoosh', s2.dayJump.start, 0.6, 'TURNING: days blur by'),
   c('impact', BEATS.turning.dayLand, 0.7, 'TURNING: DAY 30 lands'),
-  ...BEATS.turning.alarmRings.map((f) => c('alarm_beep', f, 0.9, 'TURNING: alarm — he is already sitting up')),
+  ...BEATS.turning.alarmRings.map((f) => c('alarm_beep', f, 0.6, 'TURNING: alarm — he is already sitting up')),
   c('impact', BEATS.turning.standUp + 6, 0.35, 'TURNING: feet hit the floor'),
   c('whoosh', s2.getsUp.end - 5, 0.8, 'TURNING: whip into Act 2'),
   // ── ACT 2 ──
@@ -323,6 +323,9 @@ export const SFX_CUES: Cue[] = [
 /** Music bed (public/audio/music.mp3) starts after the hook's dead silence. */
 export const MUSIC = {
   start: act1.start,
+  /** Overall music trim in dB (scripts/mix_vo.py MUSIC_GAIN_DB must match). The final
+   *  loudness pass (finish.mjs, −14 LUFS) brings the whole mix back up. */
+  gainDb: -5,
   /** [frame, volume] keyframes — eased between points. The score (scripts/gen_score.py)
    *  carries its own dynamics; this only fades it in/out. Ducks under the VO automatically. */
   envelope: [
@@ -343,11 +346,11 @@ export type VoLine = { at: number; text: string };
 export const VO_LINES: VoLine[] = [
   { at: HOOK.vo, text: 'Nobody was coming to save him.' },
   { at: sec(4.2), text: 'Every morning started the same way.' },
-  { at: sec(7.6), text: 'Snooze. Again. And again.' },
-  { at: sec(10.6), text: 'He kept telling himself: tomorrow.' },
-  { at: sec(13.6), text: 'Tomorrow turned into a habit.' },
-  { at: sec(16.3), text: 'He fed the comfort. Starved the dream.' },
-  { at: sec(19.6), text: 'And the person in the mirror…' },
+  { at: sec(7.2), text: 'Snooze. Again. And again.' },
+  { at: sec(10.9), text: 'He kept telling himself: tomorrow.' },
+  { at: sec(13.9), text: 'Tomorrow turned into a habit.' },
+  { at: sec(16.2), text: 'He fed the comfort. Starved the dream.' },
+  { at: sec(19.9), text: 'And the person in the mirror…' },
   { at: sec(22.6), text: '…became a stranger.' },
   { at: sec(26.6), text: 'Then one night, something broke.' },
   { at: sec(30.6), text: 'Not his heart.' },
@@ -361,8 +364,8 @@ export const VO_LINES: VoLine[] = [
   { at: sec(52.4), text: 'He ran while the city slept.' },
   { at: sec(55.8), text: 'He read when he wanted to scroll.' },
   { at: sec(59.4), text: 'He chose cold water over warm excuses.' },
-  { at: sec(63.6), text: 'Five A.M. Every. Single. Day.' },
-  { at: sec(67.8), text: "He didn't feel like it." },
+  { at: sec(63.3), text: 'Five A.M. Every. Single. Day.' },
+  { at: sec(68.0), text: "He didn't feel like it." },
   { at: sec(70.4), text: 'He did it anyway.' },
   { at: sec(73.4), text: 'Day after day after day.' },
   { at: sec(80.0), text: 'Around day two hundred, the stairs stopped ending.' },
@@ -384,8 +387,12 @@ export const VO_LINES: VoLine[] = [
   { at: sec(145.4), text: 'Motivation gets you started. Discipline keeps you going.' },
 ];
 
-/** Music ducking under the voice (0..1 depth). */
-export const VO_DUCK = 0.45;
+/** Music ducking under the voice: per-line depth in dB lives in config/voDuck.ts
+ *  (scripts/mix_vo.py). Lines closer than this many frames share one dip (no pumping). */
+export const VO_DUCK_BRIDGE = 48;
+/** Pre-mix trim on everything (dB) so stacked hits never clip inside Remotion's 16-bit mix;
+ *  finish.mjs normalises the master back to −14 LUFS with a −1.5 dBTP limiter. */
+export const MASTER_GAIN_DB = -4;
 /** VO lines that are NOT shown as on-screen captions (already have on-screen text). */
 export const CAPTION_SKIP = [0, VO_LINES.length - 1];
 

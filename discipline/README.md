@@ -48,13 +48,16 @@ No internet / custom Chrome? Point Remotion at a local Chrome Headless Shell:
 - **Every on-screen word** — `src/config/copy.ts` (`/` = line break, separate landscape/portrait breaks).
 - **Hook variant in the main film** — `defaultProps.variant` in `src/Root.tsx` (or pass `--props='{"variant":"B"}'`).
 
-## Audio — just drop files in
+## Audio
 
 ```
-public/audio/music.mp3            starts at frame 90 (after the hook's dead silence), volume envelope in timing.ts
-public/audio/vo.mp3               full-length stem aligned to 0:00 (VO_MODE='stem')  — or vo/line_01.mp3… (VO_MODE='lines')
+public/audio/music.mp3            original score (npm run audio:score → scripts/gen_score.py), starts at frame 90
+public/audio/vo/line_01.mp3 …     processed VO lines (npm run audio:vo), each plays at its frame in timing.ts
 public/audio/sfx/alarm_beep.mp3 slap.mp3 whoosh.mp3 bass_hit.mp3 impact.mp3 heartbeat.mp3 rain.mp3 wind.mp3
 ```
 
-The files shipped there are synthesized placeholders (`npm run audio:placeholders` regenerates them; needs `ffmpeg`).
+VO: raw takes live in `audio_src/vo_raw/` (`scripts/fetch-vo.sh` re-downloads them). After changing a line or its
+start frame: `npm run audio:vo` (real durations → `src/config/voTiming.ts`, processed lines, per-line ducking measured against `out/score.wav` from `npm run audio:score` →
+`src/config/voDuck.ts`), then `npm run docs`. The score needs `pip install numpy scipy`; the VO step needs
+`pip install soundfile pyloudnorm`. SFX are synthesized (`npm run audio:placeholders`, needs `ffmpeg`).
 A missing file is skipped — it never breaks a render. Exact frames for every cue: `SFX_CUES.md`.
