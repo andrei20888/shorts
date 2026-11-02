@@ -16,6 +16,7 @@ npm run dev                 # Remotion Studio (scrub every composition)
 | `Discipline-Vertical` | 1080×1920 | 4500 |
 | `Hook-A` · `Hook-B` · `Hook-C` | 1920×1080 | 180 (first 6 s with that hook) |
 | `Hook-*-Vertical` | 1080×1920 | 180 |
+| `Thumbnail` · `Thumbnail-Vertical` | 1920×1080 · 1080×1920 | DAY 1 vs DAY 365 cover |
 | `CharacterSheet` | 1920×1080 | rig / mood model sheet |
 
 ## Render
@@ -30,6 +31,11 @@ npm run render                          # out/discipline_16x9.mp4   (H.264, CRF 
 npm run render:vertical                 # out/discipline_9x16.mp4
 npm run render:hooks                    # out/hook_A.mp4, hook_B.mp4, hook_C.mp4
 npm run render:all
+
+# Release pipeline (what produced ../output/short03_discipline/)
+bash scripts/render-final.sh            # bundle once → out/final/: both films + 6 hook clips (16:9 + 9:16), CRF 18
+node scripts/finish.mjs                 # → out/release/ (−14 LUFS, video untouched) + web copies & thumbnails in ../output/
+npm run stills -- Thumbnail:0 Thumbnail-Vertical:0
 ```
 
 No internet / custom Chrome? Point Remotion at a local Chrome Headless Shell:

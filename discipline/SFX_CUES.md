@@ -33,10 +33,10 @@
 | 0 | 0:00.00 | `alarm_beep.mp3` | 0.85 | full | C | HOOK: frame 0 alarm, far below (we fall toward it) |
 | 4 | 0:00.13 | `whoosh.mp3` | 0.90 | full | C | HOOK C: the fall |
 | 20 | 0:00.67 | `slap.mp3` | 0.90 | full | A | HOOK A: hand slaps snooze |
-| 45 | 0:01.50 | `bass_hit.mp3` | 1.00 | full | all | HOOK: massive bass hit at 1.5 s |
-| 45 | 0:01.50 | `impact.mp3` | 0.80 | full | C | HOOK C: landing at the bed |
-| 45 | 0:01.50 | `whoosh.mp3` | 1.00 | full | A | HOOK A: divider shatters (synced to bass hit) |
-| 45 | 0:01.50 | `whoosh.mp3` | 0.90 | full | B | HOOK B: brows slam down |
+| 45 | 0:01.50 | `bass_hit.mp3` | 0.85 | full | all | HOOK: massive bass hit at 1.5 s |
+| 45 | 0:01.50 | `impact.mp3` | 0.60 | full | C | HOOK C: landing at the bed |
+| 45 | 0:01.50 | `whoosh.mp3` | 0.70 | full | A | HOOK A: divider shatters (synced to bass hit) |
+| 45 | 0:01.50 | `whoosh.mp3` | 0.65 | full | B | HOOK B: brows slam down |
 | 78 | 0:02.60 | `heartbeat.mp3` | 1.00 | full | all | HOOK: dead silence + single heartbeat → Act 1 |
 | 96 | 0:03.20 | `alarm_beep.mp3` | 0.90 | full | all | ACT 1: 5:00 alarm rings again |
 | 114 | 0:03.80 | `alarm_beep.mp3` | 0.90 | full | all | ACT 1: 5:00 alarm rings again |

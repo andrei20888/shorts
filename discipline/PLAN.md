@@ -2,7 +2,7 @@
 
 **2:30 · 1920×1080 + 1080×1920 · 30 fps · 4 500 frames · Remotion (React + TS) · 100 % code-drawn SVG**
 
-Status: **Step 1 (style approval).** Rig, FX stack, all 3 hooks and a first pass of every scene are built. The stills in `review/` are for sign-off before Step 2 (per-scene polish + a still from each) and Step 3 (final renders).
+Status: **Step 3 — released.** Style approved; polish pass done (`review/04_all_shots.jpg` = one still per shot); final films, hook clips, thumbnails and `PUBLISH.md` are in `../output/short03_discipline/`. Audio is still the synthesized placeholder set (no voice-over yet).
 
 ---
 
@@ -77,5 +77,5 @@ All cues are wired (`src/audio/Soundtrack.tsx`) and listed with exact frames in 
 
 ## 7. Next steps
 
-- **Step 2** — per-scene polish, one still per scene: secondary animation (breathing, blinks, cloth on the blanket), act-to-act transitions (match cuts), push-up/hill framing in 9:16, the turning-point fist clench, title-card shine.
-- **Step 3** — `npm run render:all` → `out/discipline_16x9.mp4`, `out/discipline_9x16.mp4`, `out/hook_A|B|C.mp4` (H.264, CRF 18).
+- Record the voice-over (`VOICEOVER.md`) and pick licensed music at 80 BPM, drop them into `public/audio/`, then `bash scripts/render-final.sh && node scripts/finish.mjs`.
+- Optional polish: secondary animation (breathing, blanket cloth), match cuts between acts, turning-point fist clench, title-card shine.

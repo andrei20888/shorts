@@ -2,6 +2,7 @@ import React from 'react';
 import { Composition, Folder } from 'remotion';
 import { CharacterSheet } from './compositions/CharacterSheet';
 import { Film } from './compositions/Film';
+import { Thumbnail } from './compositions/Thumbnail';
 import { loadFonts } from './lib/fonts';
 import { DURATION, FPS, HEIGHT, HOOK_PREVIEW_DURATION, WIDTH } from './timing';
 
@@ -56,6 +57,11 @@ export const RemotionRoot: React.FC = () => {
             />
           </React.Fragment>
         ))}
+      </Folder>
+
+      <Folder name="Thumbnails">
+        <Composition id="Thumbnail" component={Thumbnail} durationInFrames={1} fps={FPS} width={WIDTH} height={HEIGHT} />
+        <Composition id="Thumbnail-Vertical" component={Thumbnail} durationInFrames={1} fps={FPS} width={V.width} height={V.height} />
       </Folder>
 
       <Folder name="Dev">

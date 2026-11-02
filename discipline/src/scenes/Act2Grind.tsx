@@ -100,7 +100,7 @@ const RunBeat: React.FC<{ b: MontageBeat }> = ({ b }) => {
     { x: 40, y: -230, zoom: (b.rep === 4 ? 2.4 : 1.7) * (1 + 0.05 * prog(f, 0, 45, EASE.soft)), rot: b.rep === 4 ? -3 : 0 },
     { y: -260 },
   );
-  const hillCam = useCam({ x: 60, y: gy - 230, zoom: portrait ? 1.6 : 1.75, rot: 4 }, { y: gy - 260 });
+  const hillCam = useCam({ x: 60, y: gy - 230, zoom: portrait ? 1.6 : 1.75, rot: 4 }, { x: 30, y: gy - 250, zoom: 2.05 });
   if (variant === 'street') {
     const dawn = Math.min(1, b.index / 18);
     const cam = streetCam;
@@ -134,7 +134,7 @@ const PushupBeat: React.FC<{ b: MontageBeat }> = ({ b }) => {
     { x: 200, y: -200, zoom: 1.9, rot: 2 },
   ];
   const c = cams[b.rep % 3];
-  const cam = useCam({ ...c, zoom: c.zoom * (1 + 0.05 * prog(f, 0, 45, EASE.soft)) });
+  const cam = useCam({ ...c, zoom: c.zoom * (1 + 0.05 * prog(f, 0, 45, EASE.soft)) }, { x: c.x + (b.rep % 3 === 1 ? 40 : 75) });
   return (
     <Stage cam={cam} bg={p.wall} seed="a2push">
       <Bedroom palette={p} sky="predawn" frame={f} blanket="thrownBack" shoes="none" clock={{ time: `5:${String(12 + b.rep * 3).padStart(2, '0')}`, glow: 1 }} door={false} />
